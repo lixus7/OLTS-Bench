@@ -1,0 +1,18 @@
+{
+  "_comment": "The full main-study matrix for ETTh1 at H = 96: DLinear and PatchTST, three seeds, both splits. Roughly 1-2 hours on four A100 40GB GPUs with --jobs-per-gpu 2.",
+  "name": "etth1_student",
+  "datasets": ["ETTh1"],
+  "models": ["DLinear", "PatchTST"],
+  "splits": ["O", "T"],
+  "horizons": [96],
+  "seeds": [2024, 2025, 2026],
+  "frozen_windows": {"O": [96, 512, 720, 1024], "T": [96, 512, 720, 1024, 2048, 4096]},
+  "common_W": {"O": 1024, "T": 4096},
+  "online_window": 96,
+  "online_methods": ["Naive", "ER", "PROCEED"],
+  "matched_frozen": true,
+  "lr_grid": [0.0001, 0.0003, 0.001],
+  "lr_selection_seed": 2024,
+  "track": "C",
+  "online_multipliers": [1.0]
+}

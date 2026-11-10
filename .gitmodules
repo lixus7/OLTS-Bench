@@ -1,0 +1,3 @@
+[submodule "third_party/OnlineTSF"]
+	path = third_party/OnlineTSF
+	url = https://github.com/SJTU-DMTai/OnlineTSF.git

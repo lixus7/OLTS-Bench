@@ -1,0 +1,51 @@
+{
+  "_comment": "Supplementary round 3 idea on ETTh1: long-window online (W1024) against a frozen W1024 that is also tuned (5 learning rates, early stopping with patience 5, best epoch = track T); online multipliers from 0.003 to 1 picked on VALIDATION. Training origins stay those of the main study (common_W 1024 for O, 4096 for T), as in round 3.",
+  "name": "etth1_tuned_w1024",
+  "datasets": [
+    "ETTh1"
+  ],
+  "models": [
+    "DLinear"
+  ],
+  "splits": [
+    "O",
+    "T"
+  ],
+  "horizons": [
+    96
+  ],
+  "seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "frozen_windows": [
+    1024
+  ],
+  "common_W": {
+    "O": 1024,
+    "T": 4096
+  },
+  "online_window": 1024,
+  "online_methods": [
+    "ER",
+    "PROCEED"
+  ],
+  "matched_frozen": true,
+  "lr_grid": [
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "track": "T",
+  "online_multipliers": [
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0
+  ]
+}

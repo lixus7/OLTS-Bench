@@ -1,0 +1,11 @@
+# Python 3.10 or 3.11. Install the PyTorch build for your CUDA first, for example:
+#   pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cu121
+# (the main study used torch 2.4.1 + CUDA 11.8 and numpy 1.24; torch >= 2.0 works)
+numpy<2
+pandas
+scikit-learn
+einops
+transformers>=4.30,<5   # PROCEED (OnlineTSF) uses transformers.Conv1D
+tqdm
+matplotlib
+tables                  # only needed for PEMS-BAY (.h5)

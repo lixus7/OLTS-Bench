@@ -1,0 +1,15 @@
+{
+  "_comment": "Installation check, about 5 minutes on one GPU. Only 2 training epochs: the numbers are NOT results.",
+  "name": "smoke",
+  "datasets": ["ETTh1"],
+  "models": ["DLinear"],
+  "splits": ["O"],
+  "horizons": [96],
+  "seeds": [2024],
+  "frozen_windows": [96, 512],
+  "common_W": 512,
+  "online_methods": ["Naive", "ER", "PROCEED"],
+  "matched_frozen": true,
+  "lr_grid": [0.0001],
+  "max_epochs": 2
+}

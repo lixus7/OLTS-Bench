@@ -1,0 +1,7 @@
+runs/
+data/*
+!data/README.md
+__pycache__/
+*.pyc
+*.part
+.DS_Store

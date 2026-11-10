@@ -1,0 +1,18 @@
+{
+  "_comment": "The main study's protocol on one dataset, one backbone, one seed: ETTh1, DLinear, H = 96, seed 2024, both splits. About 20-30 minutes on one GPU. Windows and common_W are the main study's values for ETTh1.",
+  "name": "etth1_quick",
+  "datasets": ["ETTh1"],
+  "models": ["DLinear"],
+  "splits": ["O", "T"],
+  "horizons": [96],
+  "seeds": [2024],
+  "frozen_windows": {"O": [96, 512, 720, 1024], "T": [96, 512, 720, 1024, 2048, 4096]},
+  "common_W": {"O": 1024, "T": 4096},
+  "online_window": 96,
+  "online_methods": ["Naive", "ER", "PROCEED"],
+  "matched_frozen": true,
+  "lr_grid": [0.0001, 0.0003, 0.001],
+  "lr_selection_seed": 2024,
+  "track": "C",
+  "online_multipliers": [1.0]
+}
