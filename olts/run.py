@@ -127,7 +127,7 @@ def require(run, jobs, step):
 
 
 def visible_gpus(arg):
-    """GPU ids for CUDA_VISIBLE_DEVICES. When a scheduler (SLURM, PBS, IONA) has already set
+    """GPU ids for CUDA_VISIBLE_DEVICES. When a job scheduler (SLURM, PBS, ...) has already set
     CUDA_VISIBLE_DEVICES, indices refer to the devices it granted, never to physical GPUs."""
     granted = [g.strip() for g in os.environ.get('CUDA_VISIBLE_DEVICES', '').split(',') if g.strip()]
     if not granted:
