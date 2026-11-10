@@ -15,6 +15,7 @@ Medians are used throughout because a few diverging online runs make means meani
 """
 import argparse
 import csv
+import functools
 import json
 import math
 import random
@@ -53,7 +54,9 @@ def cell(values, pos=None):
                 min=round(100 * v[0], 1), max=round(100 * v[-1], 1))
 
 
+@functools.lru_cache(maxsize=None)
 def per_origin_blocks(run, job, blocks=10):
+    """(SSE, count) of each of `blocks` contiguous time blocks of one stream (read once per stream)."""
     p = Path(run) / 'jobs' / job / 'per_origin.json'
     if not p.exists():
         return None
@@ -110,7 +113,7 @@ def analyze(run=None, streams_csv=None, out=None, online_window=96):
         p['gain'] = gain(p['ref']['MSE'], p['online']['MSE'])
         p['log_ratio'] = math.log(p['ref']['MSE'] / p['online']['MSE'])
         if run is not None:
-            rb, ob = per_origin_blocks(run, p['ref']['job']), per_origin_blocks(run, p['online']['job'])
+            rb, ob = per_origin_blocks(str(run), p['ref']['job']), per_origin_blocks(str(run), p['online']['job'])
             if rb and ob:
                 p['first30'] = block_gain(rb, ob, (0, 1, 2))
                 p['last30'] = block_gain(rb, ob, (7, 8, 9))
@@ -162,7 +165,8 @@ def analyze(run=None, streams_csv=None, out=None, online_window=96):
 
     def uniq(k):
         return sorted({r[k] for r in rows})
-    meta = dict(source=str(streams_csv), datasets=uniq('dataset'), models=uniq('model'), splits=uniq('split'),
+    src = streams_csv.relative_to(run) if run is not None and streams_csv.is_relative_to(run) else Path(streams_csv.name)
+    meta = dict(source=str(src), datasets=uniq('dataset'), models=uniq('model'), splits=uniq('split'),
                 horizons=uniq('H'), seeds=uniq('seed'), online_window=online_window,
                 methods=sorted({r['method'] for r in online}, key=lambda m: (['Naive', 'ER', 'PROCEED'] + [m]).index(m)),
                 frozen_windows={sp: sorted({W for k, ws in frozen.items() if k[2] == sp for W in ws}) for sp in uniq('split')},

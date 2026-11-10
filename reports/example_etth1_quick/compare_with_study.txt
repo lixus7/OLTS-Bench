@@ -1,0 +1,25 @@
+configuration                                                                MSE here  MSE study     diff
+ETTh1 · DLinear · O · 96 · 2024 · ER · 96 · lr 1e-04 · x1 · C                  0.9988     0.9988   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · ER-frozen · 96 · lr 1e-04 · x1 · C           1.0005     1.0005   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Frozen · 96 · lr 1e-04 · x1 · C              0.9906     0.9906   +0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Frozen · 512 · lr 1e-04 · x1 · C             0.9523     0.9523   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Frozen · 720 · lr 1e-04 · x1 · C             1.0324     1.0324   +0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Frozen · 1024 · lr 1e-04 · x1 · C            1.0548     1.0548   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Naive · 96 · lr 1e-04 · x1 · C               1.0245     1.0245   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · Naive-frozen · 96 · lr 1e-04 · x1 · C        1.0609     1.0609   -0.00%
+ETTh1 · DLinear · O · 96 · 2024 · PROCEED · 96 · lr 1e-04 · x1 · C             1.0001     1.0001   +0.00%
+ETTh1 · DLinear · O · 96 · 2024 · PROCEED-frozen · 96 · lr 1e-04 · x1 · C      0.9550     0.9550   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · ER · 96 · lr 1e-04 · x1 · C                  0.3936     0.3936   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · ER-frozen · 96 · lr 1e-04 · x1 · C           0.3967     0.3967   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 96 · lr 1e-04 · x1 · C              0.3827     0.3827   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 512 · lr 1e-04 · x1 · C             0.3742     0.3742   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 720 · lr 1e-04 · x1 · C             0.3846     0.3846   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 1024 · lr 1e-04 · x1 · C            0.3901     0.3901   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 2048 · lr 1e-04 · x1 · C            0.4205     0.4205   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Frozen · 4096 · lr 1e-04 · x1 · C            0.5143     0.5143   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Naive · 96 · lr 1e-04 · x1 · C               0.3956     0.3956   +0.00%
+ETTh1 · DLinear · T · 96 · 2024 · Naive-frozen · 96 · lr 1e-04 · x1 · C        0.3999     0.3999   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · PROCEED · 96 · lr 1e-04 · x1 · C             0.4179     0.4179   -0.00%
+ETTh1 · DLinear · T · 96 · 2024 · PROCEED-frozen · 96 · lr 1e-04 · x1 · C      0.4312     0.4312   -0.00%
+
+22 of 22 TEST runs have a study counterpart; |difference| median 0.0000%, largest 0.0000%

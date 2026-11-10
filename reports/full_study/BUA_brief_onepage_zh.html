@@ -1,0 +1,181 @@
+<title>BUA 在线学习一页摘要</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap">
+<style>
+/* Layout: one A4 sheet — question, answer box, the main table, then three short blocks and the questions for the reader. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --ink: #14202b; --ink-2: #44515d; --muted: #66727d;
+  --rule: #dde2e7; --rule-strong: #c3cbd3; --ol: #2a78d6; --fz: #eb6834; --tint: #e9eef3;
+  --b3: #256abf; --b2: #6ea7ec; --b1: #b7d3f6; --n0: #eceef0; --o1: #f4c4b3; --o2: #e78662; --o3: #b4481e;
+  --on-strong: #ffffff; --on-mid: #14202b;
+  --font-sans: "IBM Plex Sans", "Noto Sans SC", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1215; --surface: #151a1f; --ink: #e6eaee; --ink-2: #b6bfc7; --muted: #8b959e;
+    --rule: #283037; --rule-strong: #3a444d; --ol: #3987e5; --fz: #d95926; --tint: #1b2228;
+    --b3: #3986e4; --b2: #285e9f; --b1: #274161; --n0: #2e3133; --o1: #603627; --o2: #9c4525; --o3: #de602f;
+    --on-strong: #0e1215; --on-mid: #e6eaee;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1215; --surface: #151a1f; --ink: #e6eaee; --ink-2: #b6bfc7; --muted: #8b959e;
+  --rule: #283037; --rule-strong: #3a444d; --ol: #3987e5; --fz: #d95926; --tint: #1b2228;
+  --b3: #3986e4; --b2: #285e9f; --b1: #274161; --n0: #2e3133; --o1: #603627; --o2: #9c4525; --o3: #de602f;
+  --on-strong: #0e1215; --on-mid: #e6eaee;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 1.6; }
+.page { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 3rem; display: flex; flex-direction: column; gap: 1rem; }
+h1, h2 { margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.5rem, 4vw, 1.9rem); line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; }
+h2 { font-size: 0.9375rem; line-height: 1.35; font-weight: 600; }
+p, ul, ol { margin: 0; }
+b, strong { font-weight: 600; }
+a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid var(--ol); outline-offset: 2px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.setup { color: var(--ink-2); font-size: 0.9rem; }
+.answer { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.verdict { font-size: 1.15rem; font-weight: 600; }
+.answer ul, .block ul, .qs { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.tables { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+.tw { overflow-x: auto; min-width: 0; }
+.heat { border-collapse: separate; border-spacing: 2px; width: 100%; font-variant-numeric: tabular-nums; }
+.heat caption { text-align: left; font-weight: 600; font-size: 0.85rem; padding: 0 0 0.25rem 2px; }
+.heat caption small { font-weight: 400; color: var(--muted); }
+.heat th { font-weight: 500; font-size: 0.72rem; color: var(--muted); padding: 0.15rem 0.25rem; text-align: center; white-space: nowrap; }
+.heat tbody th { text-align: left; color: var(--ink-2); font-size: 0.78rem; }
+.heat td { text-align: center; border-radius: 4px; padding: 0.3rem 0.2rem; font-size: 0.82rem; line-height: 1.15; }
+.b3, .o3 { color: var(--on-strong); }
+.b2, .b1, .n0, .o1, .o2 { color: var(--on-mid); }
+.b3 { background: var(--b3); } .b2 { background: var(--b2); } .b1 { background: var(--b1); } .n0 { background: var(--n0); }
+.o1 { background: var(--o1); } .o2 { background: var(--o2); } .o3 { background: var(--o3); }
+.cap { font-size: 0.8rem; color: var(--muted); }
+.key { display: flex; flex-wrap: wrap; gap: 0.2rem 0.9rem; font-size: 0.78rem; color: var(--ink-2); }
+.key span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.chip { width: 0.75rem; height: 0.75rem; border-radius: 3px; display: inline-block; }
+.chip.ol { background: var(--b3); } .chip.fz { background: var(--o3); } .chip.n0 { background: var(--n0); border: 1px solid var(--rule-strong); }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+.block { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; font-size: 0.9rem; }
+.block h2 { font-size: 0.875rem; }
+.ask { background: var(--tint); border-radius: 10px; padding: 0.8rem 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem; }
+.note { font-size: 0.8rem; color: var(--muted); }
+footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 0.6rem; }
+/* second page: the learning-rate supplement */
+.p2 { display: flex; flex-direction: column; gap: 1rem; border-top: 2px solid var(--rule-strong); padding-top: 1.5rem; margin-top: 1rem; }
+.p2title { font-size: clamp(1.3rem, 3.4vw, 1.6rem); line-height: 1.25; font-weight: 600; margin: 0; text-wrap: balance; }
+.heat td small { display: block; font-size: 0.68rem; opacity: 0.85; margin-top: 0.1rem; }
+.ask ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+@media (max-width: 640px) {
+  .tables, .grid { grid-template-columns: minmax(0, 1fr); }
+}
+@page { size: A4; margin: 11mm 12mm; }
+@media print {
+  :root { --bg: #ffffff; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html { font-size: 13px; }
+  body { font-size: 13px; line-height: 1.6; }
+  .page { max-width: none; padding-block: 0; gap: 0.8rem; }
+  .tables, .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .answer, .ask, .tables { break-inside: avoid; }
+  .p2 { break-before: page; border-top: 0; padding-top: 0; margin-top: 0; gap: 0.6rem; }
+}
+</style>
+<main class="page" lang="zh-CN">
+  <p class="eyebrow">BUA 项目 · 一页摘要 · 结果截至 2026 年 11 月 8 日</p>
+  <h1>短窗口在线学习，能打败长窗口冻结模型吗？</h1>
+  <p class="setup"><b>比什么：</b>在线模型只读最近 96 步，部署后用陆续到达的真实值不停更新参数（Naive、ER、PROCEED 三种方法）；冻结模型读 512–4,096 步，训练完不再改。<b>怎么比：</b>同一份代码、同一套训练预算（50 轮、不早停、所有模型共用一个学习率），10 个数据集 × DLinear、PatchTST × 预测长度 24/96/336 × 3 个种子；两种划分：传统 T（训练/验证/测试 = 60–70/10–20/20）和在线式 O（20/5/75）。</p>
+
+  <section class="answer" aria-label="结论">
+    <p class="verdict">答案：总体上没有。</p>
+    <ul>
+      <li><b>传统划分 T：</b>15 个比较（3 种方法 × 5 档窗口）全是冻结赢，按中位数算，在线的 MSE 高 12%–49%。</li>
+      <li><b>在线式划分 O：</b>对 W512、W720 在线输；对 W1024、W2048，ER、PROCEED 与冻结打平（在线误差比冻结高 2.1% 到低 1.8%）；对 W4096 在线赢（在线误差低 17%–32%），但核对后主要是冻结 W4096 本身变差：同一批配对上，它的 MSE 是 W2048 的 1.24 倍。</li>
+      <li><b>只看“继续更新”：</b>测试开始时把在线模型复制两份，一份继续更新、一份冻结：继续更新那份的误差比冻结那份高 5.0% 到低 4.7%（中位数），个别运行会训崩、误差大到离谱。部署时每次预测的用时是冻结模型的 3–7 倍。</li>
+    </ul>
+  </section>
+
+  <section aria-label="主结果">
+    <div class="tables">
+      <div class="tw"><table class="heat"><caption><b>表 1</b>　O · 在线式划分 <small>20/5/75</small></caption><thead><tr><th scope="col" style="text-align:left">冻结 W</th><th scope="col">512</th><th scope="col">720</th><th scope="col">1,024</th><th scope="col">2,048</th><th scope="col">4,096</th></tr></thead><tbody><tr><th scope="row">Naive</th><td class="o2">−22.8</td><td class="o2">−34.2</td><td class="o1">−12.0</td><td class="o1">−19.9</td><td class="b1">+17.0</td></tr><tr><th scope="row">ER</th><td class="o1">−10.3</td><td class="o1">−9.9</td><td class="n0">−2.1</td><td class="n0">−1.7</td><td class="b2">+30.8</td></tr><tr><th scope="row">PROCEED</th><td class="o1">−14.4</td><td class="o1">−14.6</td><td class="n0">+1.1</td><td class="n0">+1.8</td><td class="b2">+32.1</td></tr></tbody></table></div>
+      <div class="tw"><table class="heat"><caption><b>表 2</b>　T · 传统划分 <small>60–70/10–20/20</small></caption><thead><tr><th scope="col" style="text-align:left">冻结 W</th><th scope="col">512</th><th scope="col">720</th><th scope="col">1,024</th><th scope="col">2,048</th><th scope="col">4,096</th></tr></thead><tbody><tr><th scope="row">Naive</th><td class="o2">−48.0</td><td class="o2">−49.2</td><td class="o2">−41.5</td><td class="o2">−28.3</td><td class="o2">−20.1</td></tr><tr><th scope="row">ER</th><td class="o2">−35.7</td><td class="o2">−34.4</td><td class="o2">−24.7</td><td class="o1">−19.0</td><td class="o1">−16.5</td></tr><tr><th scope="row">PROCEED</th><td class="o2">−36.3</td><td class="o2">−35.0</td><td class="o2">−23.3</td><td class="o1">−15.1</td><td class="o1">−12.3</td></tr></tbody></table></div>
+    </div>
+  </section>
+  <div class="key" aria-label="颜色说明">
+    <span><i class="chip ol"></i>在线更好</span><span><i class="chip fz"></i>冻结更好</span><span><i class="chip n0"></i>相差 ±5% 以内</span>
+  </div>
+  <p class="cap">每格是在线模型（W = 96）相对该档冻结窗口的 MSE 收益中位数（%）：收益 = (冻结 MSE − 在线 MSE) ÷ 冻结 MSE，正数表示在线更好；最高 +100%，往下没有下限（−100% 即在线误差是冻结的 2 倍）。每格是 86–180 组配对（数据集 × 骨干 × 预测长度 × 种子）的中位数。O 划分的 W4096 只剩 7 个数据集，训练段比 4,096 步短的跑不了。</p>
+
+  <section class="block">
+    <h2>补充实验（完整版第 8 节；11 月 5–8 日四轮，大多是 W1024、H = 96；第二页有表）</h2>
+    <ul>
+      <li><b>调小在线学习率</b>（离线 × 0.03–1，验证集选）：长窗口在线 W1024 基本不再比冻结 W1024 差，7 个数据集合起来，O 划分在线误差低 7.4%，T 划分高 0.7%；Electricity 的 O 划分例外（原因在查）。不调小时普遍更差（第一轮同一批配置上，T 划分在线误差高 16.8%）。PatchTST 在 PEMS08、PEMS-BAY 上超过冻结 10 倍的训崩也没了，但那里短窗口在线仍比不更新差。</li>
+      <li><b>冻结也调参后：</b>在线 W1024 对调参后的冻结 W1024，误差在 O 划分低 3.7%、T 划分低 0.7%，仍略好。</li>
+      <li><b>为什么 O 划分好得多：</b>O 划分的冻结只用了最早 20% 的数据。用前 75% 重训一次，它在最后 20% 上比一路更新的在线还好（在线误差高 8.0%）。</li>
+      <li><b>同样长的历史：</b>在线 W96 的记忆限制在 1,024 步，对调参后的冻结 W1024，在线误差高 11%–12%；但在线一方没调参，两边都不调参时 O 划分是在线好 22%。</li>
+      <li><b>预测 336 步</b>方向和 96 步一样（O 划分在线误差低 1.3%，T 划分高 3.1%）。</li>
+    </ul>
+  </section>
+
+  <section class="ask" aria-label="待讨论">
+    <h2>待讨论</h2>
+    <ol class="qs">
+      <li><b>结论定位：</b>实用结论（固定预算下选哪种部署方式）已有数据支持。机制上补充实验给了两点：长窗口加小学习率的更新只有小幅好处；O 划分里在线的优势，重训一次冻结模型就能拿到。这两点放主结论还是放讨论。</li>
+      <li><b>下一步比不比成本：</b>同样计算量下，定期重训冻结模型和在线更新哪个更划算。</li>
+      <li><b>发散运行怎么报告：</b>主表有两条在线运行的误差是冻结的上亿倍（最大约 2 × 10<sup>11</sup> 倍），目前按中位数加发散比例报告。</li>
+    </ol>
+  </section>
+
+  <p class="note"><b>注意：</b>主表所有方法共用一个学习率；同一数据集的配对共用一段测试数据，彼此相关，没有做显著性检验。</p>
+  <footer>完整版（29 页，含定义、例子、分数据集结果和补充实验）：<a href="https://github.com/lixus7/OLTS-Bench/blob/main/reports/full_study/BUA_brief_full_zh.pdf">reports/full_study/BUA_brief_full_zh.pdf</a></footer>
+
+  <section class="p2" aria-labelledby="p2-title">
+    <p class="eyebrow">BUA 项目 · 一页摘要 · 第二页：补充实验（11 月 5–8 日，四轮）</p>
+    <h2 id="p2-title" class="p2title">学习率调小以后，再给冻结模型同样的机会，在线还占优吗？</h2>
+    <p class="setup"><b>为什么做：</b>主实验保留的在线 W1024 运行里，加上在线更新常常比不更新还差。前两轮把在线学习率调小（离线 × 0.03–1，验证集挑）；第三、四轮再给冻结模型同样的机会：调参、重训、看同样长的历史。最多 7 个数据集，大多是 W1024、预测 96 步。</p>
+    <section class="answer" aria-label="补充实验结论">
+      <p class="verdict">答案：学习率调小后，长窗口加更新不再变差；但冻结重训用上新数据后，比在线还好。</p>
+      <ul>
+        <li><b>学习率是主要原因：</b>第二轮能配对的 29 组，调小后在线比不调小的自己误差低 16%，对冻结从差 19% 变成好 1.6%。7 个数据集合起来，调小后在线比冻结在 O 划分误差低 7.4%，T 划分高 0.7%。</li>
+        <li><b>冻结也调参后</b>（学习率在验证集上选、早停），从它出发的在线 W1024 仍略好（表 15–19 第 ① 行）。</li>
+        <li><b>但冻结重训用上新数据后，比一路更新的在线好：</b>重训到 75% 的冻结，在最后 20% 上让在线误差高 8.0%（②）。同样 1,024 步的历史下，调好的冻结 W1024 比记忆受限的在线 W96 好（③），但在线一方没调参，两边都不调参时 O 划分是在线好。</li>
+      </ul>
+    </section>
+    <div class="tables">
+      <div class="tw"><table class="heat"><caption><b>表 9（简版）</b>　调小学习率后，在线 W1024 对冻结 W1024</caption><thead><tr><th scope="col" style="text-align:left">数据集（变量数）</th><th scope="col">O</th><th scope="col">T</th></tr></thead><tbody><tr><th scope="row">ETTh2（7）</th><td class="n0">−1.8<small>6/12</small></td><td class="n0">+4.7<small>12/12</small></td></tr><tr><th scope="row">ETTm1（7）</th><td class="b2">+25.5<small>10/10</small></td><td class="n0">+1.7<small>9/12</small></td></tr><tr><th scope="row">Weather（21）</th><td class="b2">+44.7<small>6/6</small></td><td class="n0">−0.9<small>0/6</small></td></tr><tr><th scope="row">Solar（137）</th><td class="n0">+4.9<small>12/12</small></td><td class="n0">−1.5<small>3/12</small></td></tr><tr><th scope="row">PEMS08（170）</th><td class="b2">+22.0<small>6/6</small></td><td class="n0">−0.2<small>3/6</small></td></tr><tr><th scope="row">Electricity（321）</th><td class="o2">−40.3<small>0/6</small></td><td class="n0">−1.1<small>0/6</small></td></tr><tr><th scope="row">PEMS-BAY（325）</th><td class="b1">+8.2<small>6/6</small></td><td class="n0">−1.7<small>0/6</small></td></tr><tr><th scope="row">全部 7 个</th><td class="b1">+7.4<small>46/58</small></td><td class="n0">−0.7<small>27/60</small></td></tr></tbody></table></div>
+      <div class="tw"><table class="heat"><caption><b>表 15–19（只列合计）</b>　第三、四轮的结果</caption><thead><tr><th scope="col" style="text-align:left">在线对冻结</th><th scope="col">O</th><th scope="col">T</th></tr></thead><tbody><tr><th scope="row">① 冻结也调参</th><td class="n0">+3.7<small>39/54</small></td><td class="n0">+0.7<small>44/54</small></td></tr><tr><th scope="row">② 重训的冻结</th><td class="o1">−8.0<small>12/54</small></td><td class="n0">—</td></tr><tr><th scope="row">③ 同样的历史</th><td class="o1">−11.4<small>16/36</small></td><td class="o1">−12.2<small>0/36</small></td></tr><tr><th scope="row">④ PEMS-BAY 短窗口</th><td class="o2">−43.8<small>0/6</small></td><td class="o2">−27.5<small>0/6</small></td></tr><tr><th scope="row">⑤ 预测 336 步</th><td class="n0">+1.3<small>24/42</small></td><td class="n0">−3.1<small>6/42</small></td></tr></tbody></table></div>
+    </div>
+    <div class="key" aria-label="颜色说明">
+      <span><i class="chip ol"></i>在线更好</span><span><i class="chip fz"></i>冻结更好</span><span><i class="chip n0"></i>相差 ±5% 以内</span>
+    </div>
+    <p class="cap">收益中位数（%），正数 = 在线误差更低，小字是在线更好的条数。表 15–19：① 在线 W1024 对调参后的冻结；② 同一个在线对重训到 75% 的冻结（只看最后 20%）；③ 记忆限 1,024 步的在线 W96（离线没调参）对调参后的冻结 W1024；④ PatchTST · PEMS-BAY 在线 W96 对冻结 W96（训崩 3/12 → 0/12）；⑤ 预测 336 步（只有 DLinear，冻结没调参）。详见完整版第 8 节。</p>
+    <section class="block">
+      <h2>为什么 O 划分好得多</h2>
+      <ul>
+        <li>不是测的时间段不同：在大致同一段时间（每条序列最后约 20%）上，O 划分在线误差仍低 13%，T 划分打平（完整版表 11）。</li>
+        <li>是冻结模型的数据又旧又少：O 划分的冻结只用了前 20%，重训到 75% 就比在线好（表 15–19 第 ② 行）；T 划分的冻结本来就用了 60%–70%。</li>
+      </ul>
+    </section>
+    <section class="block">
+      <h2>短窗口和成本</h2>
+      <ul>
+        <li>在线 W96 对冻结 W96：主表做法下 T 划分在线误差高 7%–14%，O 划分打平；学习率调小后 O 划分低 11%、T 划分低 5%（第一轮 6 组配置）。</li>
+        <li>学习率调小不会让更新更省：小学习率的在线 W1024 每次预测仍是冻结的约 6.6 倍。</li>
+      </ul>
+    </section>
+    <section class="ask" aria-label="还不能说的">
+      <h2>还不能说的</h2>
+      <ul>
+        <li>定期重训和在线更新哪个更划算；同样历史下两边都调参后谁好；Electricity 的 O 划分为什么例外（一个几乎不变的变量占了冻结误差的 98%，去掉它重跑的实验 E 还没回来）。</li>
+        <li>范围窄：最多 7 个数据集，大多是 W1024、预测 96 步；中位数只作描述，不是统计检验。</li>
+      </ul>
+    </section>
+  </section>
+
+</main>

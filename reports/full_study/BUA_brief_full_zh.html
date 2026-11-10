@@ -1,0 +1,818 @@
+<title>BUA 在线学习简报</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column (~52rem). Summary first, then the three comparisons as charts,
+   then claims and questions; reference material folded into <details> at the end.
+   Colour carries one meaning everywhere: blue = online learning better, orange = frozen better. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #14202b;
+  --ink-2: #44515d;
+  --muted: #66727d;
+  --rule: #dde2e7;
+  --rule-strong: #c3cbd3;
+  --seg: #dfe4e9;
+  --ol: #2a78d6;
+  --fz: #eb6834;
+  --b3: #256abf; --b2: #6ea7ec; --b1: #b7d3f6; --n0: #eceef0; --o1: #f4c4b3; --o2: #e78662; --o3: #b4481e;
+  --on-strong: #ffffff; --on-mid: #14202b;
+  --tint: #e9eef3;
+  --shadow: rgba(20, 32, 43, 0.14);
+  --font-sans: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1215; --surface: #151a1f; --ink: #e6eaee; --ink-2: #b6bfc7; --muted: #8b959e;
+    --rule: #283037; --rule-strong: #3a444d; --seg: #2a3239;
+    --ol: #3987e5; --fz: #d95926;
+    --b3: #3986e4; --b2: #285e9f; --b1: #274161; --n0: #2e3133; --o1: #603627; --o2: #9c4525; --o3: #de602f;
+    --on-strong: #0e1215; --on-mid: #e6eaee;
+    --tint: #1b2228; --shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1215; --surface: #151a1f; --ink: #e6eaee; --ink-2: #b6bfc7; --muted: #8b959e;
+  --rule: #283037; --rule-strong: #3a444d; --seg: #2a3239;
+  --ol: #3987e5; --fz: #d95926;
+  --b3: #3986e4; --b2: #285e9f; --b1: #274161; --n0: #2e3133; --o1: #603627; --o2: #9c4525; --o3: #de602f;
+  --on-strong: #0e1215; --on-mid: #e6eaee;
+  --tint: #1b2228; --shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; }
+.page { max-width: 52rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2.5rem 4rem; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); line-height: 1.12; font-weight: 600; letter-spacing: -0.015em; max-width: 21ch; }
+h2 { font-size: 1.4rem; line-height: 1.25; font-weight: 600; letter-spacing: -0.005em; }
+h3 { font-size: 1rem; line-height: 1.35; font-weight: 600; }
+p, ul, ol, dl { margin: 0; }
+p, li { max-width: 66ch; }
+a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--ol); outline-offset: 2px; }
+b, strong { font-weight: 600; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.note { font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+.sec { display: flex; flex-direction: column; gap: 1rem; padding-block: 2.25rem; border-top: 1px solid var(--rule); }
+.sec > .head { display: flex; flex-direction: column; gap: 0.35rem; }
+ul.points, ol.points { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+ul.points li::marker { color: var(--muted); }
+
+/* hero */
+.hero { display: flex; flex-direction: column; gap: 1.1rem; padding-bottom: 2.25rem; }
+.lede { font-size: 1.0625rem; color: var(--ink-2); }
+.answer { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.25rem 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.answer .verdict { font-size: 1.2rem; font-weight: 600; line-height: 1.3; }
+.answer ul { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.answer .open { border-top: 1px solid var(--rule); padding-top: 0.7rem; color: var(--ink-2); }
+.key { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.8125rem; color: var(--ink-2); }
+.key span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.chip { width: 0.8rem; height: 0.8rem; border-radius: 3px; display: inline-block; flex: none; }
+.chip.ol { background: var(--ol); } .chip.fz { background: var(--fz); } .chip.n0 { background: var(--n0); border: 1px solid var(--rule-strong); }
+.status { font-size: 0.875rem; color: var(--muted); }
+.jump { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.875rem; }
+.jump a { color: var(--ink-2); }
+
+/* diagram + cards */
+figure { margin: 0; }
+.fig { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1rem 0.85rem; display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.fig svg { display: block; width: 100%; height: auto; min-width: 560px; }
+.fig svg.d-svg { min-width: 660px; }
+figcaption { font-size: 0.8125rem; line-height: 1.5; color: var(--muted); max-width: 70ch; }
+.d-svg text { font-family: var(--font-sans); }
+.d-seg { fill: var(--seg); }
+.d-seglab { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; fill: var(--muted); }
+.d-row { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.d-sub { font-size: 11.5px; fill: var(--muted); }
+.d-txt { font-size: 12px; fill: var(--ink-2); }
+.d-ol { fill: var(--ol); } .d-fz { fill: var(--fz); }
+.d-kline { stroke: var(--ol); stroke-width: 2; stroke-linecap: round; }
+.d-now { stroke: var(--rule-strong); stroke-width: 1; }
+.d-arrow { fill: none; stroke: var(--ink-2); stroke-width: 1.25; }
+.d-head { fill: var(--ink-2); }
+.d-yes { fill: var(--ink-2); } .d-no { fill: var(--seg); }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 0.95rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.card .how { font-size: 0.875rem; color: var(--ink-2); }
+.card .found { margin-top: auto; font-size: 0.875rem; border-top: 1px solid var(--rule); padding-top: 0.55rem; }
+.card .found b { display: block; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+
+/* setup facts */
+.facts { display: grid; grid-template-columns: 11rem minmax(0, 1fr); border-top: 1px solid var(--rule); }
+.facts > div { display: contents; }
+.facts dt, .facts dd { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
+.facts dt { font-weight: 500; font-size: 0.875rem; color: var(--ink-2); padding-right: 1rem; }
+.facts dd { margin: 0; font-size: 0.9375rem; min-width: 0; }
+
+/* heat tables */
+.heat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; }
+.heat { border-collapse: separate; border-spacing: 2px; width: 100%; font-variant-numeric: tabular-nums; }
+.heat caption { text-align: left; font-weight: 600; font-size: 0.9375rem; padding: 0 0 0.35rem 2px; caption-side: top; }
+.heat th { font-weight: 500; font-size: 0.75rem; color: var(--muted); padding: 0.2rem 0.3rem; text-align: center; white-space: nowrap; }
+.heat th.corner { text-align: left; }
+.heat tbody th { text-align: left; font-size: 0.875rem; color: var(--ink); font-weight: 500; padding-right: 0.5rem; }
+.heat td { text-align: center; border-radius: 4px; padding: 0.42rem 0.25rem; font-size: 0.875rem; line-height: 1.15; cursor: default; }
+.heat td small { display: block; font-size: 0.6875rem; opacity: 0.78; margin-top: 2px; }
+.heat .grp th { text-align: left; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 0.6rem; }
+.heat-ds td { min-width: 3.6rem; }
+.heat-ds tbody th { white-space: normal; min-width: 6.5rem; }
+.b3, .o3 { color: var(--on-strong); }
+.b2, .b1, .n0, .o1, .o2 { color: var(--on-mid); }
+.b3 { background: var(--b3); } .b2 { background: var(--b2); } .b1 { background: var(--b1); } .n0 { background: var(--n0); }
+.o1 { background: var(--o1); } .o2 { background: var(--o2); } .o3 { background: var(--o3); }
+td.na { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--rule-strong); }
+.heat td:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+.scale { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; font-size: 0.6875rem; font-variant-numeric: tabular-nums; }
+.scale .sw { padding: 0.2rem 0.45rem; border-radius: 3px; }
+.scale .scale-end { color: var(--muted); padding: 0 0.4rem; font-size: 0.75rem; }
+.callout { background: var(--tint); border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.9375rem; }
+
+/* svg charts */
+.chart-svg text { font-family: var(--font-sans); font-size: 12px; fill: var(--ink-2); }
+.chart-svg .t-strong { fill: var(--ink); font-weight: 600; }
+.chart-svg .t-muted { fill: var(--muted); }
+.chart-svg .tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.chart-svg .val { fill: var(--ink); font-variant-numeric: tabular-nums; }
+.chart-svg .grid { stroke: var(--rule); stroke-width: 1; }
+.chart-svg .axis, .chart-svg .base { stroke: var(--rule-strong); stroke-width: 1; }
+.chart-svg .parity { stroke: var(--ink-2); stroke-width: 1; }
+.bar-ol { fill: var(--ol); } .bar-fz { fill: var(--fz); }
+.dot-ol { fill: var(--ol); stroke: var(--surface); stroke-width: 2; }
+.dot-fz { fill: var(--fz); stroke: var(--surface); stroke-width: 2; }
+.ring-ol { fill: var(--surface); stroke: var(--ol); stroke-width: 2; }
+.ring-fz { fill: var(--surface); stroke: var(--fz); stroke-width: 2; }
+.mark { cursor: default; }
+.mark:hover, .mark:focus-visible { opacity: 0.8; outline: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1.2rem; font-size: 0.8125rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.lg-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.lg-dot.ol { background: var(--ol); } .lg-dot.fz { background: var(--fz); }
+.lg-dot.fill { background: var(--ink-2); } .lg-dot.ring { box-shadow: inset 0 0 0 2px var(--ink-2); }
+
+/* meters */
+.meters { display: flex; flex-direction: column; gap: 0.6rem; }
+.meter { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr) 3.2rem; align-items: center; gap: 0.75rem; font-size: 0.875rem; }
+.meter .track { height: 10px; border-radius: 5px; background: var(--seg); overflow: hidden; }
+.meter .fill { display: block; height: 100%; min-width: 3px; background: var(--ink-2); border-radius: 5px; }
+.meter .fill.zero { min-width: 0; width: 0; }
+.meter .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* plain tables */
+.tw { overflow-x: auto; }
+table.plain { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+table.plain th, table.plain td { text-align: left; padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.plain thead th { font-weight: 500; color: var(--muted); font-size: 0.8125rem; }
+table.num td { font-variant-numeric: tabular-nums; }
+table.ex tbody th { font-weight: 500; color: var(--ink-2); }
+details.twin > summary, details.more > summary { cursor: pointer; font-size: 0.875rem; color: var(--ink-2); }
+details.twin[open] > summary { margin-bottom: 0.5rem; }
+
+/* example */
+.example { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
+
+/* claims */
+.claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.claims > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.claims h3 { display: flex; align-items: center; gap: 0.5rem; }
+.claims ul { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.9375rem; }
+.mark-yes, .mark-no { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 4px; border: 1px solid var(--rule-strong); color: var(--ink-2); font-weight: 500; }
+
+/* questions */
+ol.qs { list-style: none; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 1.1rem; }
+ol.qs > li { counter-increment: q; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0 0.5rem; }
+ol.qs > li::before { content: counter(q); font-family: var(--font-mono); font-size: 0.875rem; color: var(--muted); padding-top: 0.1rem; }
+ol.qs h3 { margin-bottom: 0.2rem; }
+ol.qs ul { padding-left: 1.1rem; margin-top: 0.4rem; display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* details */
+.details { display: flex; flex-direction: column; gap: 0.5rem; }
+details.more { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 0.8rem 1rem; }
+details.more > summary { font-weight: 600; color: var(--ink); font-size: 0.9375rem; }
+details.more[open] > summary { margin-bottom: 0.75rem; }
+details.more .body { display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9375rem; }
+pre { margin: 0; background: var(--tint); border-radius: 8px; padding: 0.75rem 0.9rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.55; }
+code { font-family: var(--font-mono); font-size: 0.85em; overflow-wrap: anywhere; }
+footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; font-size: 0.8125rem; color: var(--muted); }
+
+/* tooltip */
+.tip { position: fixed; z-index: 30; pointer-events: none; max-width: 19rem; background: var(--surface); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: 6px; padding: 0.45rem 0.6rem; font-size: 0.8125rem; line-height: 1.4; box-shadow: 0 6px 18px var(--shadow); }
+
+@media (max-width: 760px) {
+  .cards, .claims, .heat-pair { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts dt { border-bottom: 0; padding-bottom: 0; }
+  .facts dd { padding-top: 0.2rem; }
+  .meter { grid-template-columns: minmax(0, 1fr) 3.2rem; }
+  .meter .lab { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Chinese overrides */
+body { line-height: 1.75; }
+p, li { max-width: 42em; }
+h1 { max-width: 15em; letter-spacing: 0; line-height: 1.25; text-wrap: wrap; }
+h1 .nb { display: inline-block; }
+h2 { letter-spacing: 0; }
+.eyebrow { font-family: var(--font-sans); letter-spacing: 0.06em; font-weight: 500; }
+.card .found b, .heat .grp th, .mark-yes, .mark-no, .d-seglab { font-family: var(--font-sans); letter-spacing: 0.04em; }
+.heat thead th small { display: block; font-size: 0.6875rem; color: var(--muted); font-weight: 400; }
+.howto { font-size: 0.9375rem; color: var(--ink-2); }
+.howto b { color: var(--ink); }
+.explain { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.15rem 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.explain h3 { font-size: 1.02rem; }
+.explain ol, .explain ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; margin: 0; }
+.explain .sub { font-size: 0.8125rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+.defs { display: flex; flex-direction: column; gap: 0.5rem; padding-left: 1.1rem; margin: 0; }
+@page { size: A4; margin: 14mm 12mm; }
+@media print {
+  :root { --bg: #ffffff; }
+  body { background: #ffffff; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .jump, .tip, details.twin > summary { display: none !important; }
+  .page { padding-block: 0; max-width: none; }
+  .fig svg, .fig svg.d-svg { min-width: 0 !important; }
+  .scroll, .tw { overflow: visible !important; }
+  .fig, .card, .claims > div, table.heat, .meters, ol.qs > li, .answer { break-inside: avoid; }
+  .explain { break-inside: auto; display: block; }
+  .explain > * + * { margin-top: 0.6rem !important; }
+  #q6 .explain:first-of-type { break-before: page; }
+  .explain table, .explain h3, .explain .sub, .explain li { break-inside: avoid; }
+  .explain table.q7all { break-inside: auto; }
+  .explain h3, .explain .sub { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  h2, h3, .head { break-after: avoid; }
+  .head { break-inside: avoid; }
+  details.more { break-inside: auto; }
+  html { font-size: 13.5px; }
+  body { font-size: 13.5px; line-height: 1.65; }
+  p, li { max-width: none; }
+  .sec { padding-block: 1.1rem; gap: 0.7rem; }
+  .hero { gap: 0.8rem; padding-bottom: 1.1rem; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .claims, .heat-pair { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .facts { grid-template-columns: 10rem minmax(0, 1fr) !important; }
+  .facts dt { border-bottom: 1px solid var(--rule) !important; padding: 0.4rem 1rem 0.4rem 0 !important; }
+  .facts dd { padding: 0.4rem 0 !important; }
+  .meter { grid-template-columns: 11rem minmax(0, 1fr) 3.2rem !important; }
+  .meter .lab { grid-column: auto !important; }
+}
+
+.tcap { font-weight: 600; font-size: 0.875rem; margin: 0 0 0.3rem; }
+@media print { .tcap { break-after: avoid; } }
+
+#q6 .sec { padding-block: 0; border-top: 0; gap: 0.55rem; }
+#q6 .sec > h3 { font-size: 1.1rem; }
+#q6 .setup { color: var(--ink-2); font-size: 0.95rem; }
+#q6 .terms dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.4rem 0.9rem; font-size: 0.92rem; }
+#q6 .terms dt { font-weight: 600; white-space: nowrap; }
+#q6 .terms dd { margin: 0; color: var(--ink-2); min-width: 0; }
+#q6 .how { font-size: 0.9rem; color: var(--ink-2); }
+#q6 .explain h4 { margin: 0; font-size: 0.95rem; font-weight: 600; }
+#q6 .explain .guess { color: var(--ink-2); }
+#q6 .cap { font-size: 0.8125rem; color: var(--muted); }
+#q6 .res { border-collapse: separate; border-spacing: 2px; width: 100%; font-variant-numeric: tabular-nums; }
+#q6 .res caption, #q6 table.plain caption { text-align: left; font-weight: 600; font-size: 0.875rem; padding: 0 0 0.3rem 2px; }
+#q6 .res th { font-weight: 500; font-size: 0.75rem; color: var(--muted); padding: 0.2rem 0.3rem; text-align: center; }
+#q6 .res tbody th, #q6 .res tfoot th { text-align: left; color: var(--ink-2); font-size: 0.82rem; white-space: nowrap; }
+#q6 .res td { text-align: center; border-radius: 4px; padding: 0.34rem 0.25rem; font-size: 0.875rem; line-height: 1.15; white-space: nowrap; }
+#q6 .res td small { display: block; font-size: 0.6875rem; opacity: 0.85; margin-top: 0.1rem; }
+#q6 .res td.lab { background: none; color: var(--ink-2); font-size: 0.8rem; }
+#q6 .res tfoot th { padding-top: 0.45rem; }
+#q6 table.plain td { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#q6 table.plain th:first-child, #q6 table.plain td:first-child { text-align: left; }
+#q6 table.plain thead th { vertical-align: bottom; }
+#q6 table.plain .tot th, #q6 table.plain .tot td { font-weight: 600; }
+#q6 .ask { background: var(--tint); border-radius: 10px; padding: 0.9rem 1.15rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.92rem; }
+#q6 .ask ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+#q6 ol.lrqs { padding-left: 1.4rem; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+@media (max-width: 640px) {
+  #q6 .terms dl { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  #q6 .terms dd { margin-bottom: 0.35rem; }
+}
+@media print {
+  #q6 .res, #q6 table.plain, #q6 .terms, #q6 .key, #q6 .cap { break-inside: avoid; }
+  #q6 .how { break-inside: avoid; break-after: avoid; }
+  #q6 .sec > h3, #q6 .explain h4 { break-after: avoid; }
+}
+</style>
+<main class="page" lang="zh-CN">
+
+<header class="hero">
+  <p class="eyebrow">BUA 项目 · 讨论稿 · 结果截至 2026 年 11 月 8 日</p>
+  <h1><span class="nb">短窗口在线学习，</span><span class="nb">能打败长窗口冻结模型吗？</span></h1>
+  <p class="lede">在线模型每次只读最近 96 步，但部署之后会用陆续到达的真实值不停更新参数。冻结模型每次读更长的历史（512 到 4,096 步），训练完就不再改。我们在 10 个数据集上、用同一套训练预算比较这两种做法。我们还想弄清楚：在线模型占优的地方，靠的是什么？是一路更新把比输入窗口更长的历史“记”进了参数（如果是这样，给冻结模型一个同样长的输入窗口也能做到），还是随时间调整参数本身有用，比如跟上分布漂移，这是长窗口替代不了的。</p>
+  <div class="answer">
+    <p class="eyebrow">一句话结论</p>
+    <p class="verdict">总体上，在线学习没有赢。</p>
+    <p class="note">W1024 指输入 1,024 步的冻结模型，其余类推；Naive、ER、PROCEED 是三种在线更新方法。全页的百分数，除特别说明，都是“收益”：在线模型的误差（MSE）比冻结模型低多少。正数表示在线更好，比如 +20% 就是在线误差比冻结低 20%；负数表示冻结更好，比如 −20% 就是在线误差比冻结高 20%（定义见第 2 节）。</p>
+    <ul>
+      <li><b>传统划分 T</b>（训练/验证/测试 = 60/20/20 或 70/10/20）：3 种在线方法 × 5 档冻结窗口，一共 15 个比较（表 2），冻结长窗口全赢；按中位数算，在线模型的 MSE 比冻结高 12%–49%。对 W512–W1024 的 9 个比较，按数据集重抽样也稳定是冻结更好，10 个数据集里在线更好的最多 1 个。</li>
+      <li><b>在线式划分 O</b>（20/5/75）：有输有赢（表 1）。对 W512、W720 在线输；对 W1024、W2048，ER、PROCEED 与冻结基本打平（在线误差比冻结高 2.1% 到低 1.8%）；只有对 W4096 在线明显赢。核对后，主要是这一档冻结模型本身比 W2048 差，主要不是因为换了数据集；为什么变差，推测是训练样本太少（见第 3 节表 3 下面的解释）。按数据集重抽样，O 划分 15 个比较都没有稳定的输赢。</li>
+      <li><b>继续更新本身</b>：测试开始时把在线模型复制成两份，一份继续更新、一份冻结。继续更新的那份误差有时能低几个百分点（图 2），但个别运行会训崩，误差比冻结大几个数量级（见讨论问题 2）。</li>
+      <li><b>成本</b>：在线模型离线训练更省时间，但部署时每次预测的用时是冻结模型的 3–7 倍（图 4）。</li>
+      <li><b>补充实验</b>（第 8 节，11 月 5–8 日四轮，大多是 W1024、H = 96）：把在线学习率调小后，长窗口模型加更新基本不再变差（表 7–9）。冻结模型也在验证集上选学习率、早停以后，从它出发的在线 W1024 仍略好：误差在 O 划分低 3.7%、T 划分低 0.7%（表 15）。但 O 划分的优势主要来自冻结模型只用了最早 20% 的数据：用前 75% 重训一次冻结模型，在最后 20% 上，一路更新的在线误差反而比它高 8.0%（表 16）。同样只用 1,024 步历史时，调好的冻结 W1024 比在线 W96 好，在线误差高 11%–12%（表 17）；不过在线一方的离线训练没调参，两边都不调参时 O 划分是在线好。学习率调小也消除了 PEMS-BAY 上的训崩，但那里在线仍比不更新差（表 18）；预测 336 步时，方向和 96 步一样（表 19）。</li>
+    </ul>
+    <p class="open"><b>还没回答的问题：</b>收益来自更多历史还是来自参数更新，补充实验给了更多证据，但还没完全分开：长窗口模型再加小学习率的更新，还能好一点（表 15）；O 划分里在线的优势，重训一次冻结模型就能拿到（表 16）；同样 1,024 步的历史下，调过参的冻结 W1024 比限制记忆的在线 W96 好，但在线一方没调参，两边都不调参时 O 划分是在线好（表 17）。还没比的是：两边都调参以后同样历史下谁好；同样的计算量下，定期重训和在线更新哪个更划算。Electricity 的 O 划分为什么例外，去掉一个几乎不变的变量重跑的实验（实验 E）已安排，结果还没回来（8.11 节）。</p>
+  </div>
+  <div class="key" aria-label="颜色说明">
+    <span><i class="chip ol"></i>蓝色：在线更好</span>
+    <span><i class="chip fz"></i>橙色：冻结更好</span>
+    <span><i class="chip n0"></i>灰色：收益在 ±5% 以内</span>
+  </div>
+  <p class="status">主表和三个对照只整理已有结果，没有新跑实验；“补充实验”一节是 11 月 5–8 日新跑的四轮。每个配置、每个种子的明细另有一份附表，需要可以另发。11 月 9 日这一版新增第 8.6–8.11 节（表 15–20，第三、四轮）；前文里被新结果改变的说法一并改了，原来的表 15（前一轮研究）改叫表 21。</p>
+  <nav class="jump" aria-label="章节">
+    <a href="#design">1 设计</a><a href="#setup">2 实验设置</a><a href="#accuracy">3 主结果</a><a href="#by-dataset">4 分数据集</a><a href="#updating">5 继续更新</a><a href="#history">6 同等历史</a><a href="#cost">7 成本</a><a href="#q6">8 补充实验</a><a href="#claims">9 结论</a><a href="#discussion">10 讨论</a><a href="#details">11 附录</a>
+  </nav>
+</header>
+
+<section class="sec" id="design">
+  <div class="head"><p class="eyebrow">第 1 节 · 设计</p><h2>在时刻 t，两个模型各看到什么</h2></div>
+  <figure class="fig">
+    <div class="scroll"><svg class="d-svg" viewBox="0 0 760 296" role="img" aria-label="时间轴：训练集、验证集、测试集。在时刻 t，在线模型只读最近 96 步，但参数里带着从验证期开始的历史；冻结模型读最近 W 步且从不更新。只有测试集开头一小段能找到和在线模型历史一样长的冻结窗口。"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker></defs><rect class="d-seg" x="150" y="26" width="150" height="16" rx="3"/><text class="d-seglab" x="225.0" y="18" text-anchor="middle">训练集</text><rect class="d-seg" x="302" y="26" width="40" height="16" rx="3"/><text class="d-seglab" x="322.0" y="18" text-anchor="middle">验证</text><rect class="d-seg" x="344" y="26" width="400" height="16" rx="3"/><text class="d-seglab" x="544.0" y="18" text-anchor="middle">测试集</text><text class="d-sub" x="225" y="58" text-anchor="middle">两个模型都在这里离线训练</text><text class="d-sub" x="344" y="58">逐步滚动预测并评分</text><line class="d-now" x1="600" y1="44" x2="600" y2="268"/><text class="d-sub" x="600" y="288" text-anchor="middle">t = 当前时刻</text><text class="d-row" x="0" y="96">在线模型</text><text class="d-sub" x="0" y="113">W = 96，持续更新</text><rect class="d-ol" x="588" y="86" width="12" height="12" rx="2"/><text class="d-txt" x="610" y="97">只读最近 96 步</text><path class="d-arrow" d="M556 44 C556 66 584 62 590 82" marker-end="url(#arr)"/><text class="d-sub" x="548" y="78" text-anchor="end">真实值到齐后更新参数</text><line class="d-kline" x1="302" y1="122" x2="600" y2="122"/><line class="d-kline" x1="302" y1="116" x2="302" y2="128"/><text class="d-txt" x="310" y="142">K(t)：部署后用过的历史</text><text class="d-row" x="0" y="178">冻结模型</text><text class="d-sub" x="0" y="195">W = 512 … 4,096，参数固定</text><rect class="d-fz" x="510" y="168" width="90" height="12" rx="2"/><text class="d-txt" x="610" y="179">读最近 W 步</text><text class="d-sub" x="300" y="179">训练完参数不再改</text><text class="d-row" x="0" y="246">同等历史？</text><text class="d-sub" x="0" y="263">对照 3</text><rect class="d-yes" x="344" y="238" width="48" height="12" rx="2"/><rect class="d-no" x="394" y="238" width="350" height="12" rx="2"/><text class="d-sub" x="368" y="230" text-anchor="middle">可比</text><text class="d-sub" x="404" y="230">K(t) 已超过所有冻结窗口</text></svg></div>
+    <figcaption><b>图 1</b>　示意图，不按比例。手机上可以左右滑动看全图。两个模型都先在训练集上离线训练。之后在线模型先在验证集上照样边预测边更新（预热），再在测试集上继续，所以它部署后用过的历史 K(t) 每一步都在变长（训练集两边都用过，不算在内）。K(t) 一旦超过最长的冻结窗口（4,096 步），就找不到看过同样多历史的冻结模型，所以对照 3 只能用测试期最开头的一小段。</figcaption>
+  </figure>
+  <div class="cards">
+    <div class="card">
+      <p class="eyebrow">对照 1 · 实用比较</p>
+      <h3>哪种部署方式更准？</h3>
+      <p class="how">在线模型（W = 96）分别对比 W = 512、720、1,024、2,048、4,096 的冻结模型，每档窗口单独报告。</p>
+      <p class="found"><b>结果</b>T 划分冻结全赢；O 划分有输有赢（表 1、表 2）。</p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">对照 2 · 同一起点</p>
+      <h3>继续更新本身有没有用？</h3>
+      <p class="how">测试开始时把在线模型复制成两份：一份继续更新，另一份从此冻结。</p>
+      <p class="found"><b>结果</b>部分运行误差能低几个百分点，但个别运行会训崩，误差大到离谱（图 2）。</p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">对照 3 · 同等历史</p>
+      <h3>收益是不是只因为看了更多历史？</h3>
+      <p class="how">在每个时刻 t，找窗口不短于 K(t) 的最短冻结模型来比；找不到就跳过这个时刻。</p>
+      <p class="found"><b>结果</b>这样比回答不了。能这样比的时间只占测试期很小一部分（占比的中位数：O 划分 1.8%，T 划分 0%；图 3、表 6）。第 8.8 节换了一种比法（限制在线记忆）：同样 1,024 步的历史，调好的冻结 W1024 更好。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="setup">
+  <div class="head"><p class="eyebrow">第 2 节 · 实验设置</p><h2>同一套代码、同一套训练预算、不偷看未来</h2></div>
+  <dl class="facts">
+    <div><dt>数据集</dt><dd>ETTh1、ETTh2、ETTm1、ETTm2、Electricity、Weather、Solar、PEMS-BAY、PEMS08、北京空气质量<sup>1</sup></dd></div>
+    <div><dt>数据划分<br>（训练/验证/测试，%）</dt><dd><b>O 在线式：</b>10 个数据集都是 20/5/75，是在线预测论文里常用的划分：训练段短、测试期长。在线模型从验证期起就边预测边更新；冻结模型的验证集只用来选学习率。<br><b>T 传统：</b>ETT、PEMS08、北京为 60/20/20；Electricity、Weather、Solar、PEMS-BAY 为 70/10/20。</dd></div>
+    <div><dt>骨干网络</dt><dd>DLinear、PatchTST，用同一份 OnlineTSF 代码</dd></div>
+    <div><dt>在线方法（W = 96）</dt><dd>Naive：每有新的真实值到齐就直接微调 · ER：经验回放，更新时混入缓存里的旧样本（缓存 500 条，每次回放 8 条，回放损失权重 0.2）· PROCEED：先估计概念漂移、再据此调整参数的在线适配方法</dd></div>
+    <div><dt>冻结窗口</dt><dd>W = 512、720、1,024、2,048、4,096；不是每个数据集和骨干都有全部窗口<sup>2</sup>。另外训练了冻结 W96（和在线一样只读 96 步，只是不更新），它不在对照 1 的主表里，单独放在“主结果”一节的方框里；“更新本身有没有用”看对照 2 更干净，因为那里两份模型连起点都一样。</dd></div>
+    <div><dt>预测长度与种子</dt><dd>H = 24、96、336；种子 2024、2025、2026</dd></div>
+    <div><dt>训练预算</dt><dd>所有模型一样：FP32、batch 32、Adam、MSE 损失、训练 50 轮、不早停、取最后一轮。为了公平，同一场景（同一数据集、骨干、划分、H）里所有窗口都预测同一批训练目标：训练起点按该场景最长的窗口对齐，短窗口不会因为输入短而多拿样本。学习率在 1e-4、3e-4、1e-3 中选一个所有窗口共用的：用种子 2024 在验证集上给三个学习率在每档窗口里排名，取平均名次最好的（平局取小）；其他种子、在线模型的离线训练和在线更新都沿用它。</dd></div>
+    <div><dt>不偷看未来</dt><dd>在 u 时刻发出的预测，要等它预测的 H 个真实值全部到齐（当前时刻 t ≥ u + H）才评分、才拿来更新。</dd></div>
+    <div><dt>怎么打分</dt><dd><b>收益 = (冻结误差 − 在线误差) ÷ 冻结误差</b>，正数表示在线更好。例：冻结 MSE 0.50、在线 0.40，收益 +20%；在线 0.60，收益 −20%；在线是冻结的 3.5 倍，收益 −250%。收益最高 +100%，往下没有下限，所以比较正负两边时请换成倍数看：+64% 相当于冻结误差是在线的 2.8 倍，−250% 是在线误差是冻结的 3.5 倍。极少数误差暴增的运行会把均值拖到天文数字，所以全页用中位数。误差用训练集标准化后的尺度，只在两者都发出了预测的同一批时刻上累计。表里的数都是多组配对的中位数。</dd></div>
+    <div><dt>一组配对</dt><dd>放在一起直接比的两次运行：数据集、骨干、划分、预测长度 H、种子、在线方法全都相同，在同一批测试时刻上各算一个 MSE，得到一个收益值。例：ETTm1 · DLinear · O 划分 · H = 96 · 种子 2024 · ER，在线 W96 对冻结 W1024，这是一组配对。一格最多 10 个数据集 × 2 个骨干 × 3 个 H × 3 个种子 = 180 组；某个窗口在某个数据集上跑不了，或者某次运行没有可用结果，对应的配对就不存在，那一格就不到 180 组。表里的 n 和“配对数”都是指这个。对照 1 里冻结的一方是单独训练的 W 步冻结模型；对照 2 里是同一个在线模型在测试开始时复制出来的副本。</dd></div>
+    <div><dt>不跨划分比绝对误差</dt><dd>O 和 T 的测试期不同（O 测后 75%，T 测后 20%），训练量也不同，所以只比较同一划分里在线和冻结的相对差。</dd></div>
+  </dl>
+  <p class="note"><sup>1</sup> 北京数据用 Quotsoft 原始数据重建（7 个变量，小时级，2014 年 5 月到 2018 年 6 月），保留真实的缺测位置；数值不能和 BasicTS 版本直接对比。<sup>2</sup> 缺窗口有两种原因。一是训练段太短：O 划分里 ETTh1、ETTh2 的训练段只有 2,880 步，最长到 W1024；PEMS08 有 3,571 步，最长到 W2048；Electricity 的 W4096 只有 H = 24、96。T 划分训练段够长，DLinear 在 10 个数据集上都有 W4096。二是 PatchTST 的资源限制，它的最长窗口：ETT 和北京 4,096；Weather 2,048；Solar、PEMS08 1,024；Electricity、PEMS-BAY 720。原因和“分数据集”一节讲的一样：PatchTST 的显存和计算量随变量数和输入长度一起涨，超过资源上限的窗口没有跑。</p>
+</section>
+
+<section class="sec" id="accuracy">
+  <div class="head"><p class="eyebrow">第 3 节 · 对照 1 · 实用比较</p><h2>传统划分下，冻结长窗口全面占优</h2></div>
+  <p class="howto"><b>怎么读：</b>表 1（O 划分）和表 2（T 划分）每一格是在线模型（W = 96）相对某一档冻结窗口的 MSE 收益中位数（%），n 是参与的配对数。例：O 划分 Naive 对 W512 是 −22.8%，意思是在这 180 组配对（10 个数据集 × 2 个骨干 × 3 个 H × 3 个种子，全齐）里，按中位数算，在线模型的 MSE 比冻结 W512 高约 23%。个别格子是 179 组：北京 DLinear 有个别运行的记录不完整，按事先定的规则剔除。</p>
+  <div class="tw"><div class="heat-pair"><table class="heat"><caption><b>表 1</b>　O · 在线式划分（训练/验证/测试 = 20/5/75）</caption><thead><tr><th scope="col" class="corner">冻结 W</th><th scope="col">512</th><th scope="col">720</th><th scope="col">1,024</th><th scope="col">2,048</th><th scope="col">4,096</th></tr></thead><tbody><tr><th scope="row">Naive</th><td class="o2" data-tip="O · 在线式划分 · Naive 对比冻结 W = 512：MSE 收益中位数 −22.82%，180 组配对">−22.8<small>n 180</small></td><td class="o2" data-tip="O · 在线式划分 · Naive 对比冻结 W = 720：MSE 收益中位数 −34.23%，180 组配对">−34.2<small>n 180</small></td><td class="o1" data-tip="O · 在线式划分 · Naive 对比冻结 W = 1,024：MSE 收益中位数 −12.01%，162 组配对">−12.0<small>n 162</small></td><td class="o1" data-tip="O · 在线式划分 · Naive 对比冻结 W = 2,048：MSE 收益中位数 −19.93%，108 组配对">−19.9<small>n 108</small></td><td class="b1" data-tip="O · 在线式划分 · Naive 对比冻结 W = 4,096：MSE 收益中位数 +17.00%，87 组配对">+17.0<small>n 87</small></td></tr><tr><th scope="row">ER</th><td class="o1" data-tip="O · 在线式划分 · ER 对比冻结 W = 512：MSE 收益中位数 −10.26%，179 组配对">−10.3<small>n 179</small></td><td class="o1" data-tip="O · 在线式划分 · ER 对比冻结 W = 720：MSE 收益中位数 −9.94%，179 组配对">−9.9<small>n 179</small></td><td class="n0" data-tip="O · 在线式划分 · ER 对比冻结 W = 1,024：MSE 收益中位数 −2.05%，161 组配对">−2.1<small>n 161</small></td><td class="n0" data-tip="O · 在线式划分 · ER 对比冻结 W = 2,048：MSE 收益中位数 −1.66%，107 组配对">−1.7<small>n 107</small></td><td class="b2" data-tip="O · 在线式划分 · ER 对比冻结 W = 4,096：MSE 收益中位数 +30.82%，86 组配对">+30.8<small>n 86</small></td></tr><tr><th scope="row">PROCEED</th><td class="o1" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 512：MSE 收益中位数 −14.40%，180 组配对">−14.4<small>n 180</small></td><td class="o1" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 720：MSE 收益中位数 −14.63%，180 组配对">−14.6<small>n 180</small></td><td class="n0" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 1,024：MSE 收益中位数 +1.14%，162 组配对">+1.1<small>n 162</small></td><td class="n0" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 2,048：MSE 收益中位数 +1.81%，108 组配对">+1.8<small>n 108</small></td><td class="b2" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 4,096：MSE 收益中位数 +32.09%，87 组配对">+32.1<small>n 87</small></td></tr></tbody></table><table class="heat"><caption><b>表 2</b>　T · 传统划分（60/20/20 或 70/10/20）</caption><thead><tr><th scope="col" class="corner">冻结 W</th><th scope="col">512</th><th scope="col">720</th><th scope="col">1,024</th><th scope="col">2,048</th><th scope="col">4,096</th></tr></thead><tbody><tr><th scope="row">Naive</th><td class="o2" data-tip="T · 传统划分 · Naive 对比冻结 W = 512：MSE 收益中位数 −48.02%，179 组配对">−48.0<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · Naive 对比冻结 W = 720：MSE 收益中位数 −49.18%，179 组配对">−49.2<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · Naive 对比冻结 W = 1,024：MSE 收益中位数 −41.52%，162 组配对">−41.5<small>n 162</small></td><td class="o2" data-tip="T · 传统划分 · Naive 对比冻结 W = 2,048：MSE 收益中位数 −28.34%，144 组配对">−28.3<small>n 144</small></td><td class="o2" data-tip="T · 传统划分 · Naive 对比冻结 W = 4,096：MSE 收益中位数 −20.08%，135 组配对">−20.1<small>n 135</small></td></tr><tr><th scope="row">ER</th><td class="o2" data-tip="T · 传统划分 · ER 对比冻结 W = 512：MSE 收益中位数 −35.69%，179 组配对">−35.7<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · ER 对比冻结 W = 720：MSE 收益中位数 −34.40%，179 组配对">−34.4<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · ER 对比冻结 W = 1,024：MSE 收益中位数 −24.71%，162 组配对">−24.7<small>n 162</small></td><td class="o1" data-tip="T · 传统划分 · ER 对比冻结 W = 2,048：MSE 收益中位数 −18.99%，144 组配对">−19.0<small>n 144</small></td><td class="o1" data-tip="T · 传统划分 · ER 对比冻结 W = 4,096：MSE 收益中位数 −16.47%，135 组配对">−16.5<small>n 135</small></td></tr><tr><th scope="row">PROCEED</th><td class="o2" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 512：MSE 收益中位数 −36.27%，179 组配对">−36.3<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 720：MSE 收益中位数 −35.00%，179 组配对">−35.0<small>n 179</small></td><td class="o2" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 1,024：MSE 收益中位数 −23.29%，162 组配对">−23.3<small>n 162</small></td><td class="o1" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 2,048：MSE 收益中位数 −15.07%，144 组配对">−15.1<small>n 144</small></td><td class="o1" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 4,096：MSE 收益中位数 −12.32%，135 组配对">−12.3<small>n 135</small></td></tr></tbody></table></div></div>
+  <div class="scale" aria-label="收益色带（%）"><span class="scale-end">冻结更好</span><span class="sw o3">≤ −50</span><span class="sw o2">−50…−20</span><span class="sw o1">−20…−5</span><span class="sw n0">±5</span><span class="sw b1">5…20</span><span class="sw b2">20…50</span><span class="sw b3">≥ 50</span><span class="scale-end">在线更好</span></div>
+  <ul class="points">
+    <li>T 划分每一格都是冻结更好。按数据集重抽样（随机重抽 10 个数据集 2,000 次，看中位数落在哪），对 W512–W1024 的 9 格，95% 区间都在 0 以下，也就是在线误差稳定更高；10 个数据集里在线更好的最多 1 个。对 W2048、W4096 的 6 格，有 5 格的区间跨过 0。</li>
+    <li>O 划分对 W512、W720 冻结更好；对 W1024、W2048，ER、PROCEED 与冻结基本打平；对 W4096 在线明显更好。但按同样的重抽样，O 划分 15 格的 95% 区间都跨过 0，包括对 W4096 的三格，所以 O 划分的输赢都不算稳。</li>
+    <li>三种在线方法里，Naive 在每一格都最差；ER 和 PROCEED 接近。</li>
+    <li>每一列的配对不一样：W512 有约 180 组，O 划分的 W4096 只有 86–87 组（T 划分 135 组）。比如从 W720 到 W1024 少掉的 18 组，正好是 PatchTST 在 Electricity 和 PEMS-BAY 上的配对；这两个数据集明显偏向冻结（看表 5 里 DLinear 那几格），少了它们，W1024 这一列就显得对在线更有利。所以不能把一行从左往右读成趋势。</li>
+    <li>换成 MAE，对在线更友好。O 划分对 W1024，Naive、ER、PROCEED 的 MAE 收益是 −1.6%、+4.8%、+4.9%（正数 = 在线误差更低），MSE 则是 −12.0%、−2.1%、+1.1%；T 划分（同样对 W1024）MAE 仍为负（−18.1%、−13.0%、−11.6%，在线误差更高）。MSE 对大误差更敏感，所以这提示在线模型的典型误差不差，但偶尔会有更大的误差。</li>
+  </ul>
+  <p class="callout"><b>中位数会掩盖极端值。</b>PROCEED 对 W1024（O 划分）的收益中位数是 +1.1%（在线误差低 1.1%），均值却是 −2,595%；对 W512（T 划分）的均值约为 −1.2 × 10<sup>11</sup>%。均值是被个别训崩的运行拖成天文数字的（见讨论问题 2）；这些值都保留着，没有删。</p>
+  <div class="explain">
+    <h3>为什么对 W4096 反而是在线赢？</h3>
+    <p class="sub">已用现有结果核对：主要是冻结 W4096 本身比 W2048 差，换了一批数据集只解释了一小部分</p>
+    <p><b>W4096 这一格少了哪些数据集。</b>O 划分的训练段只占 20%：ETTh1、ETTh2 只有 2,880 步，PEMS08 只有 3,571 步，都比 4,096 短，冻结 W4096 连一个训练样本都凑不出来。所以这三个数据集不参与这一格：不算输也不算赢，也没有换成短窗口凑数，只是不在这一格的中位数里。左边几格它们照常参与：ETTh1、ETTh2 到 W1024 为止（W2048 扣掉 2,048 步后只剩约 500–800 个训练样本，研究认为太少，没有跑），PEMS08 到 W2048（只有 DLinear；PatchTST 到 W1024）。PatchTST 的 W4096 又只有 ETTm1、ETTm2 和北京。结果 O 划分的 W4096 只剩 7 个数据集、87 组配对，W512 则是 10 个数据集、180 组。T 划分训练段长，10 个数据集每一格都在。</p>
+    <p><b>把数据集固定下来再比。</b>只用同时有 W4096 的这 87 组配对（ER 是 86 组），看在线对 W2048 和对 W4096 的收益（表 3）：</p>
+    <p class="tcap"><b>表 3</b>　固定数据集后，在线对 W2048 和对 W4096 的收益（O 划分）</p>
+    <div class="tw"><table class="plain num"><thead><tr><th>O 划分</th><th>对 W2048<br>全部配对</th><th>对 W2048<br>只用这 87 组</th><th>对 W4096<br>同样 87 组</th></tr></thead><tbody>
+      <tr><td>Naive</td><td>−19.9%</td><td>−7.5%</td><td>+17.0%</td></tr>
+      <tr><td>ER</td><td>−1.7%</td><td>+2.6%</td><td>+30.8%</td></tr>
+      <tr><td>PROCEED</td><td>+1.8%</td><td>+4.9%</td><td>+32.1%</td></tr>
+    </tbody></table></div>
+    <p>前两列都是对 W2048，差别只是换了一批数据集：在线好看了 3–12 个百分点。后两列数据集完全相同，只把冻结窗口从 2,048 换成 4,096：又涨了 25–28 个百分点。在这 87 组里，按逐配对比值的中位数，冻结 W4096 的 MSE 是冻结 W2048 的 1.24 倍，97% 的配对里 W4096 更差；T 划分里这个比值只有 1.06。</p>
+    <p><b>冻结 W4096 为什么会变差（推测）。</b>同一场景里所有窗口共用同一批训练样本，O 划分训练段短，样本本来就少；W4096 的输出层参数比 W2048 多一倍（两个骨干的输出层都随 W 线性增长），又固定训练 50 轮、不早停，更容易过拟合。所以“对 W4096 在线赢”说明的是这一档冻结模型在训练数据少时不好用，不能当成在线方法胜过长窗口的证据。</p>
+  </div>
+  <div class="explain">
+    <h3>同样只读 96 步：在线 W96 对冻结 W96</h3>
+    <p class="sub">主表的做法下，T 划分里更新反而让短窗口模型更差，O 划分基本打平；把在线学习率调小以后，两种划分都是在线更好。</p>
+    <p class="howto"><b>怎么读（表 4）：</b>冻结 W96 和在线模型读一样长的输入（最近 96 步），区别只在部署后要不要更新参数。每格是收益中位数：正数表示在线误差更低，负数表示在线误差更高；小字是在线更好的配对数，以及按数据集重抽样的 95% 区间。</p>
+    <div class="tw"><p class="tcap"><b>表 4</b>　在线 W96 对冻结 W96（主表做法）</p><table class="plain num"><thead><tr><th>在线 W96 对冻结 W96（主表做法）</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>Naive</td><td>−6.7%<br><small>65/180 组；区间 −28.9% 到 +0.8%</small></td><td>−14.1%<br><small>12/180 组；区间 −22.9% 到 −6.9%</small></td></tr><tr><td>ER</td><td>0.0%<br><small>91/179 组；区间 −6.4% 到 +7.3%</small></td><td>−8.1%<br><small>22/180 组；区间 −13.6% 到 −4.6%</small></td></tr><tr><td>PROCEED</td><td>+2.0%<br><small>99/180 组；区间 −6.7% 到 +7.5%</small></td><td>−7.0%<br><small>34/180 组；区间 −17.2% 到 −4.0%</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>T 划分：</b>三种方法都是在线误差更高（Naive 高 14.1%、ER 高 8.1%、PROCEED 高 7.0%），区间都在 0 以下，10 个数据集里在线更好的最多 1 个。</li>
+      <li><b>O 划分：</b>ER、PROCEED 与冻结打平（0.0%、+2.0%），Naive 在线误差高 6.7%，区间都跨过 0。分数据集看（ER）：ETTm1、ETTm2、Weather 上在线误差低 11%–25%，PEMS08、Electricity 上高 38%、52%。</li>
+      <li><b>学习率调小后</b>（补充实验第一轮，6 组配置）：在线 W96 对冻结 W96，O 划分在线误差低 11.2%（34 条全部在线更好），T 划分低 5.1%（36 条里 29 条）。所以主表里“更新让短窗口变差”，很大程度上也是学习率太大。</li>
+      <li><b>成本：</b>两边训练用的是同样的模型和数据，训练时间基本一样；部署时每次预测，在线是冻结 W96 的 3.9 倍（Naive）、6.5 倍（ER）、7.2 倍（PROCEED）。</li>
+      <li><b>为什么主表不放这一列：</b>“更新本身有没有用”看对照 2 更干净：那里两份模型连验证期预热都一样，差别只在测试期是否继续更新；这里的在线模型还在验证期预热过。</li>
+    </ul>
+  </div>
+  <div class="explain">
+    <h3>主结果说明了什么</h3>
+    <p class="sub">有数据支持的</p>
+    <ul>
+      <li>T 划分下，输入够长的冻结模型是很强的基线，短窗口在线学习在每一档窗口上都比不过它。</li>
+      <li>O 划分（训练段短、测试期长）下，在线学习能追到基本打平（对 W1024–W2048），但没有稳定超过。</li>
+      <li>单纯持续微调（Naive）最差；加了回放（ER）或漂移适配（PROCEED）明显更好。</li>
+    </ul>
+    <p class="sub">我们的猜测（还需要验证）</p>
+    <ul>
+      <li>O 划分里在线学习追得上来，是因为冻结模型只用前 20% 的数据训练，却要在后面 75% 上一直用下去；在线模型在这 75% 上边测边学，到最后相当于多用了好几倍的数据，也能跟上分布漂移。T 划分训练段长、测试段短，这个优势就小了。可以粗略核对：O 划分只看测试期最后 30%（约等于整条序列的最后 22.5%，和 T 划分的测试期差不多是同一段时间），在线对冻结 W1024 的收益是 ER 0.0%、PROCEED −1.0%、Naive −13.7%，仍远好于 T 划分的 −24.7%、−23.3%、−41.5%；而 O 划分测试期的前 30%，在线反而差得多（ER −16.4%、PROCEED −16.3%、Naive −36.9%）。所以差别不在测的是哪一段时间，在线是越往后越追上来。第 8.7 节的检验（用的是长窗口在线 W1024）支持这个猜测：用前 75% 的数据重训一次冻结模型，它在最后 20% 上反而比在线好。</li>
+      <li>长输入窗口和在线更新可能在补同一样东西：训练结束之后数据发生的变化，比如新的水平、季节和更长的周期。窗口够长时，冻结模型从输入里就能看到这些变化，在线更新能补的就不多了。补充实验的 2×2 在 6 组配置上不支持这个猜测：学习率调小后，更新在 W1024 和 W96 上的好处差不多（见第 8.3 节、表 12）。</li>
+      <li>在这套训练预算下，冻结模型的窗口不是越长越好：同一批配对上，W4096 就比 W2048 差（见表 3）；从多长开始变差，还没有逐档核对。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="by-dataset">
+  <div class="head"><p class="eyebrow">第 4 节 · 对照 1 · 分数据集</p><h2>哪些数据集偏向在线，哪些偏向冻结</h2></div>
+  <p class="howto"><b>表 5 比的是什么：</b>只取一个固定切片。在线一方是 ER（输入 96 步，部署时持续更新），冻结一方是 W1024（输入 1,024 步，训练完不再改）。每一格是某个数据集、某个骨干、某种划分下，两者在 9 组配对（3 个预测长度 × 3 个种子）上的 MSE 收益中位数。选 ER 和 W1024 只是为了看数据集之间的差别，不代表最好的方法或窗口。</p>
+  <p class="howto"><b>怎么读一格：</b>ETTh2 · PatchTST · O 是 +64.4%，表示在线模型的 MSE 只有冻结模型的约 36%；PEMS08 · PatchTST · O 是 −245.9%，表示在线模型的 MSE 约是冻结模型的 3.5 倍。鼠标停在格子上（手机上点一下）能看到这个倍数。</p>
+  <div class="tw"><table class="heat heat-ds"><caption><b>表 5</b>　ER（在线，W = 96）对比冻结 W = 1,024，MSE 收益中位数（%）</caption><thead><tr><th class="corner" rowspan="2" scope="col">数据集</th><th colspan="2" scope="colgroup">O · 在线式<small>20/5/75</small></th><th colspan="2" scope="colgroup">T · 传统<small>60/20/20 或 70/10/20</small></th></tr><tr><th scope="col">DLinear</th><th scope="col">PatchTST</th><th scope="col">DLinear</th><th scope="col">PatchTST</th></tr></thead><tbody><tr class="grp"><th colspan="5" scope="colgroup">7 个变量</th></tr><tr><th scope="row">ETTh1</th><td class="b1" data-tip="ETTh1 · DLinear · O · 在线式划分：收益 +5.30%，在线 MSE ≈ 冻结的 0.95 倍">+5.3</td><td class="b2" data-tip="ETTh1 · PatchTST · O · 在线式划分：收益 +24.62%，在线 MSE ≈ 冻结的 0.75 倍">+24.6</td><td class="n0" data-tip="ETTh1 · DLinear · T · 传统划分：收益 +0.05%，在线 MSE ≈ 冻结的 1.00 倍">+0.1</td><td class="n0" data-tip="ETTh1 · PatchTST · T · 传统划分：收益 −1.97%，在线 MSE ≈ 冻结的 1.02 倍">−2.0</td></tr><tr><th scope="row">ETTh2</th><td class="b2" data-tip="ETTh2 · DLinear · O · 在线式划分：收益 +23.31%，在线 MSE ≈ 冻结的 0.77 倍">+23.3</td><td class="b3" data-tip="ETTh2 · PatchTST · O · 在线式划分：收益 +64.44%，在线 MSE ≈ 冻结的 0.36 倍">+64.4</td><td class="n0" data-tip="ETTh2 · DLinear · T · 传统划分：收益 −0.23%，在线 MSE ≈ 冻结的 1.00 倍">−0.2</td><td class="n0" data-tip="ETTh2 · PatchTST · T · 传统划分：收益 +1.72%，在线 MSE ≈ 冻结的 0.98 倍">+1.7</td></tr><tr><th scope="row">ETTm1</th><td class="o1" data-tip="ETTm1 · DLinear · O · 在线式划分：收益 −5.43%，在线 MSE ≈ 冻结的 1.05 倍">−5.4</td><td class="b1" data-tip="ETTm1 · PatchTST · O · 在线式划分：收益 +6.45%，在线 MSE ≈ 冻结的 0.94 倍">+6.5</td><td class="o1" data-tip="ETTm1 · DLinear · T · 传统划分：收益 −15.67%，在线 MSE ≈ 冻结的 1.16 倍">−15.7</td><td class="o3" data-tip="ETTm1 · PatchTST · T · 传统划分：收益 −51.44%，在线 MSE ≈ 冻结的 1.51 倍">−51.4</td></tr><tr><th scope="row">ETTm2</th><td class="b1" data-tip="ETTm2 · DLinear · O · 在线式划分：收益 +18.83%，在线 MSE ≈ 冻结的 0.81 倍">+18.8</td><td class="b3" data-tip="ETTm2 · PatchTST · O · 在线式划分：收益 +53.05%，在线 MSE ≈ 冻结的 0.47 倍">+53.1</td><td class="o2" data-tip="ETTm2 · DLinear · T · 传统划分：收益 −42.54%，在线 MSE ≈ 冻结的 1.43 倍">−42.5</td><td class="o2" data-tip="ETTm2 · PatchTST · T · 传统划分：收益 −48.39%，在线 MSE ≈ 冻结的 1.48 倍">−48.4</td></tr><tr><th scope="row">北京空气质量</th><td class="b1" data-tip="北京空气质量 · DLinear · O · 在线式划分：收益 +19.95%，在线 MSE ≈ 冻结的 0.80 倍">+20.0</td><td class="b1" data-tip="北京空气质量 · PatchTST · O · 在线式划分：收益 +8.34%，在线 MSE ≈ 冻结的 0.92 倍">+8.3</td><td class="n0" data-tip="北京空气质量 · DLinear · T · 传统划分：收益 −4.98%，在线 MSE ≈ 冻结的 1.05 倍">−5.0</td><td class="o2" data-tip="北京空气质量 · PatchTST · T · 传统划分：收益 −23.67%，在线 MSE ≈ 冻结的 1.24 倍">−23.7</td></tr><tr class="grp"><th colspan="5" scope="colgroup">多于 7 个变量</th></tr><tr><th scope="row">Weather</th><td class="n0" data-tip="Weather · DLinear · O · 在线式划分：收益 −3.60%，在线 MSE ≈ 冻结的 1.04 倍">−3.6</td><td class="o1" data-tip="Weather · PatchTST · O · 在线式划分：收益 −17.03%，在线 MSE ≈ 冻结的 1.17 倍">−17.0</td><td class="o1" data-tip="Weather · DLinear · T · 传统划分：收益 −19.11%，在线 MSE ≈ 冻结的 1.19 倍">−19.1</td><td class="o1" data-tip="Weather · PatchTST · T · 传统划分：收益 −6.73%，在线 MSE ≈ 冻结的 1.07 倍">−6.7</td></tr><tr><th scope="row">Solar</th><td class="o3" data-tip="Solar · DLinear · O · 在线式划分：收益 −53.77%，在线 MSE ≈ 冻结的 1.54 倍">−53.8</td><td class="o2" data-tip="Solar · PatchTST · O · 在线式划分：收益 −35.20%，在线 MSE ≈ 冻结的 1.35 倍">−35.2</td><td class="o3" data-tip="Solar · DLinear · T · 传统划分：收益 −59.93%，在线 MSE ≈ 冻结的 1.60 倍">−59.9</td><td class="o2" data-tip="Solar · PatchTST · T · 传统划分：收益 −37.70%，在线 MSE ≈ 冻结的 1.38 倍">−37.7</td></tr><tr><th scope="row">PEMS08</th><td class="o3" data-tip="PEMS08 · DLinear · O · 在线式划分：收益 −55.01%，在线 MSE ≈ 冻结的 1.55 倍">−55.0</td><td class="o3" data-tip="PEMS08 · PatchTST · O · 在线式划分：收益 −245.88%，在线 MSE ≈ 冻结的 3.46 倍">−245.9</td><td class="o3" data-tip="PEMS08 · DLinear · T · 传统划分：收益 −86.78%，在线 MSE ≈ 冻结的 1.87 倍">−86.8</td><td class="o3" data-tip="PEMS08 · PatchTST · T · 传统划分：收益 −195.37%，在线 MSE ≈ 冻结的 2.95 倍">−195.4</td></tr><tr><th scope="row">Electricity</th><td class="o3" data-tip="Electricity · DLinear · O · 在线式划分：收益 −132.30%，在线 MSE ≈ 冻结的 2.32 倍">−132.3</td><td class="na" data-tip="Electricity · PatchTST · O · 在线式划分：PatchTST 在这个数据集上没有 W = 1,024（资源上限，见表下说明）">n/a</td><td class="o3" data-tip="Electricity · DLinear · T · 传统划分：收益 −53.78%，在线 MSE ≈ 冻结的 1.54 倍">−53.8</td><td class="na" data-tip="Electricity · PatchTST · T · 传统划分：PatchTST 在这个数据集上没有 W = 1,024（资源上限，见表下说明）">n/a</td></tr><tr><th scope="row">PEMS-BAY</th><td class="o2" data-tip="PEMS-BAY · DLinear · O · 在线式划分：收益 −35.33%，在线 MSE ≈ 冻结的 1.35 倍">−35.3</td><td class="na" data-tip="PEMS-BAY · PatchTST · O · 在线式划分：PatchTST 在这个数据集上没有 W = 1,024（资源上限，见表下说明）">n/a</td><td class="o2" data-tip="PEMS-BAY · DLinear · T · 传统划分：收益 −46.58%，在线 MSE ≈ 冻结的 1.47 倍">−46.6</td><td class="na" data-tip="PEMS-BAY · PatchTST · T · 传统划分：PatchTST 在这个数据集上没有 W = 1,024（资源上限，见表下说明）">n/a</td></tr></tbody></table></div>
+  <p class="note">北京 DLinear 的 O 划分只有 8 组可用配对（缺 H = 336、种子 2024 那一组，原因见第 5 节）。数值跨度很大（−246% 到 +64%），所以每格都直接标了数字。</p>
+  <div class="explain">
+    <h3>为什么 PatchTST 有两格是 n/a</h3>
+    <p>PatchTST 把每个变量当成一条独立的序列送进 Transformer。Electricity 和 PEMS-BAY 各有三百多个变量，一个 batch 的 32 个窗口就是一万多条序列；输入长到 1,024 步时，超出了显存资源上限。实验规定不能为了放得下而减小 batch、降低精度或改训练轮数，所以 PatchTST 在这两个数据集上最长只跑到 W720，W1024 这一格空着。这不代表 PatchTST 不能用在这两个数据集上，也不能当成 0 或失败来算。</p>
+  </div>
+  <ul class="points">
+    <li>7 个变量的数据集（ETTh1、ETTh2、ETTm1、ETTm2、北京）在 O 划分上大多偏向在线，ETTh2 最明显：DLinear 在线误差低 23%，PatchTST 低 64%。</li>
+    <li>变量更多的五个数据集（Weather 21 个变量、Solar 137 个、PEMS08 170 个、Electricity 321 个、PEMS-BAY 325 个）在两种划分上都偏向冻结，PEMS08 最明显。</li>
+    <li>同一个数据集，O 和 T 的结论常常相反。例如 ETTm2：O 划分在线误差低 18.8%（DLinear）、53.1%（PatchTST），T 划分在线误差高 42.5%、48.4%。划分方式对结论影响很大。</li>
+  </ul>
+</section>
+
+<section class="sec" id="updating">
+  <div class="head"><p class="eyebrow">第 5 节 · 对照 2 · 同一起点</p><h2>继续更新本身，收益小而且不稳定</h2></div>
+  <p>测试开始时把在线模型复制成两份：一份继续用到达的真实值更新，另一份从此冻结。两份起点完全一样，差别只在测试期间要不要继续更新。</p>
+  <p class="howto"><b>怎么读：</b>这里一组配对，就是一次在线运行和它自己的冻结副本。例：ETTm1 · DLinear · O 划分 · H = 96 · 种子 2024 · PROCEED 这一次运行，在测试开始那一刻复制成两份，一份继续更新、一份冻结，在同样的测试时刻上各算一个 MSE，得到一个收益值。每种划分、每种方法最多 10 个数据集 × 2 个骨干 × 3 个 H × 3 个种子 = 180 组，“配对数”就是实际有几组。图 2 里的数是这些收益值的中位数：PROCEED 在 O 划分是 +4.66%，表示按中位数算，继续更新那份的 MSE 比冻结那份低约 4.7%；“109/179 组更好”是说 179 组里有 109 组继续更新那份的 MSE 更低。O 划分的 ER、PROCEED 只有 179 组，少的是北京 · DLinear · H = 336 · 种子 2024：这组运行的记录不完整，按事先定的规则剔除。对照 1 里只有 ER 缺这一组；PROCEED 只在这一节缺，因为缺的是它的冻结副本。</p>
+  <figure class="fig">
+    <div class="legend"><span><i class="chip ol"></i>继续更新更好</span><span><i class="chip fz"></i>冻结更好</span></div>
+    <div class="scroll"><svg class="chart-svg" viewBox="0 0 640 262" role="img" aria-label="继续更新相对于从测试开始就冻结的 MSE 收益中位数。O 划分：Naive −1.15%，ER +1.95%，PROCEED +4.66%；T 划分：Naive −4.98%，ER −1.83%，PROCEED +1.88%。"><line class="grid" x1="192.0" y1="30" x2="192.0" y2="212"/><line class="grid" x1="261.0" y1="30" x2="261.0" y2="212"/><line class="grid" x1="399.0" y1="30" x2="399.0" y2="212"/><line class="grid" x1="468.0" y1="30" x2="468.0" y2="212"/><line class="axis" x1="192.0" y1="212" x2="468.0" y2="212"/><text class="tick" x="192.0" y="230" text-anchor="middle">−6%</text><text class="tick" x="261.0" y="230" text-anchor="middle">−3%</text><text class="tick" x="330.0" y="230" text-anchor="middle">0%</text><text class="tick" x="399.0" y="230" text-anchor="middle">+3%</text><text class="tick" x="468.0" y="230" text-anchor="middle">+6%</text><text class="t-muted" x="330" y="252" text-anchor="middle">继续更新那份的 MSE 收益中位数</text><text class="t-strong" x="0" y="18">O · 在线式划分</text><text class="t-strong" x="0" y="126">T · 传统划分</text><text x="12" y="44">Naive</text><path class="mark bar-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · Naive：MSE 收益中位数 −1.15%，MAE +0.53%；180 组里 88 组继续更新更好" data-tip="O · 在线式划分 · Naive：MSE 收益中位数 −1.15%，MAE +0.53%；180 组里 88 组继续更新更好" d="M330.0 32.0H307.6A4 4 0 0 0 303.6 36.0V44.0A4 4 0 0 0 307.6 48.0H330.0Z"/><text class="val" x="297.6" y="44" text-anchor="end">−1.15%</text><text class="t-muted" x="500" y="44">88/180 组更好</text><text x="12" y="70">ER</text><path class="mark bar-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · ER：MSE 收益中位数 +1.95%，MAE +0.11%；179 组里 103 组继续更新更好" data-tip="O · 在线式划分 · ER：MSE 收益中位数 +1.95%，MAE +0.11%；179 组里 103 组继续更新更好" d="M330.0 58.0H370.9A4 4 0 0 1 374.9 62.0V70.0A4 4 0 0 1 370.9 74.0H330.0Z"/><text class="val" x="380.9" y="70">+1.95%</text><text class="t-muted" x="500" y="70">103/179 组更好</text><text x="12" y="96">PROCEED</text><path class="mark bar-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · PROCEED：MSE 收益中位数 +4.66%，MAE +1.43%；179 组里 109 组继续更新更好" data-tip="O · 在线式划分 · PROCEED：MSE 收益中位数 +4.66%，MAE +1.43%；179 组里 109 组继续更新更好" d="M330.0 84.0H433.2A4 4 0 0 1 437.2 88.0V96.0A4 4 0 0 1 433.2 100.0H330.0Z"/><text class="val" x="443.2" y="96">+4.66%</text><text class="t-muted" x="500" y="96">109/179 组更好</text><text x="12" y="152">Naive</text><path class="mark bar-fz" tabindex="0" role="img" aria-label="T · 传统划分 · Naive：MSE 收益中位数 −4.98%，MAE −1.02%；180 组里 50 组继续更新更好" data-tip="T · 传统划分 · Naive：MSE 收益中位数 −4.98%，MAE −1.02%；180 组里 50 组继续更新更好" d="M330.0 140.0H219.5A4 4 0 0 0 215.5 144.0V152.0A4 4 0 0 0 219.5 156.0H330.0Z"/><text class="val" x="209.5" y="152" text-anchor="end">−4.98%</text><text class="t-muted" x="500" y="152">50/180 组更好</text><text x="12" y="178">ER</text><path class="mark bar-fz" tabindex="0" role="img" aria-label="T · 传统划分 · ER：MSE 收益中位数 −1.83%，MAE −0.05%；180 组里 62 组继续更新更好" data-tip="T · 传统划分 · ER：MSE 收益中位数 −1.83%，MAE −0.05%；180 组里 62 组继续更新更好" d="M330.0 166.0H291.9A4 4 0 0 0 287.9 170.0V178.0A4 4 0 0 0 291.9 182.0H330.0Z"/><text class="val" x="281.9" y="178" text-anchor="end">−1.83%</text><text class="t-muted" x="500" y="178">62/180 组更好</text><text x="12" y="204">PROCEED</text><path class="mark bar-ol" tabindex="0" role="img" aria-label="T · 传统划分 · PROCEED：MSE 收益中位数 +1.88%，MAE +2.88%；180 组里 115 组继续更新更好" data-tip="T · 传统划分 · PROCEED：MSE 收益中位数 +1.88%，MAE +2.88%；180 组里 115 组继续更新更好" d="M330.0 192.0H369.2A4 4 0 0 1 373.2 196.0V204.0A4 4 0 0 1 369.2 208.0H330.0Z"/><text class="val" x="379.2" y="204">+1.88%</text><text class="t-muted" x="500" y="204">115/180 组更好</text><line class="base" x1="330" y1="28" x2="330" y2="212"/></svg></div>
+    <figcaption><b>图 2</b>　正数表示继续更新的那份误差更低。Naive 在两种划分里继续更新都更差；ER 在 O 划分更好、T 划分更差；只有 PROCEED 两边都更好，但它的均值被个别训崩的运行拉到 −4,710%（O）和约 −9.2 × 10<sup>7</sup>%（T）。手机上可以左右滑动看全图。</figcaption>
+    <details class="twin"><summary>展开数字</summary><div class="tw"><p class="tcap"><b>图 2 的数字</b></p><table class="plain num"><thead><tr><th>划分</th><th>方法</th><th>配对数</th><th>MSE 收益中位数</th><th>继续更新更好</th><th>MAE 收益中位数</th></tr></thead><tbody><tr><td>O · 在线式划分</td><td>Naive</td><td>180</td><td>−1.15%</td><td>88/180</td><td>+0.53%</td></tr><tr><td>O · 在线式划分</td><td>ER</td><td>179</td><td>+1.95%</td><td>103/179</td><td>+0.11%</td></tr><tr><td>O · 在线式划分</td><td>PROCEED</td><td>179</td><td>+4.66%</td><td>109/179</td><td>+1.43%</td></tr><tr><td>T · 传统划分</td><td>Naive</td><td>180</td><td>−4.98%</td><td>50/180</td><td>−1.02%</td></tr><tr><td>T · 传统划分</td><td>ER</td><td>180</td><td>−1.83%</td><td>62/180</td><td>−0.05%</td></tr><tr><td>T · 传统划分</td><td>PROCEED</td><td>180</td><td>+1.88%</td><td>115/180</td><td>+2.88%</td></tr></tbody></table></div></details>
+  </figure>
+  <p class="note">补充实验把在线学习率调小以后，长窗口（W1024）上继续更新的好处更清楚：7 个数据集合起来，继续更新那份的误差比冻结副本低 7.0%（O 划分）和 2.7%（T 划分），见第 8.2 节。冻结模型也调参以后（第三轮），继续更新那份的误差比冻结副本低 9.8%（O 划分）和 0.3%（T 划分），见第 8.6 节。</p>
+</section>
+
+<section class="sec" id="history">
+  <div class="head"><p class="eyebrow">第 6 节 · 对照 3 · 同等历史</p><h2>想让两边看过的历史一样长，几乎做不到</h2></div>
+  <p><b>思路：</b>如果在线模型的收益只是因为它部署后一路“记住”了更长的历史，那么给冻结模型一个同样长的输入窗口，应该也能做到。K(t) 是在线模型从验证期预热开始、到时刻 t 为止一路用过的数据跨度（训练集两边都用过，不算在内）。约定：冻结模型的输入窗口不短于 K(t)，就算它在预测时也“看得到”这段历史。</p>
+  <p><b>问题：</b>K(t) 每一步都加 1，而且从验证期就开始累计，很快就超过最长的 4,096 步；之后就找不到同样长的冻结窗口了。</p>
+  <div class="fig meters">
+    <div class="meter"><span class="lab">O · 在线式划分<br><span class="note">约 180 组里 125–126 组有可比的时刻，其余 54 组没有</span></span><span class="track" role="img" aria-label="O · 在线式划分：1.83%"><span class="fill" style="width:1.83%"></span></span><span class="v">1.83%</span></div>
+    <div class="meter"><span class="lab">T · 传统划分<br><span class="note">180 组里只有 54 组有可比的时刻，其余 126 组没有</span></span><span class="track" role="img" aria-label="T · 传统划分：0.00%"><span class="fill zero" style="width:0.00%"></span></span><span class="v">0.00%</span></div>
+    <p class="note"><b>图 3</b>　每次运行的测试期里，能做同等历史比较的时间占比（中位数）。</p>
+  </div>
+  <div class="tw"><p class="tcap"><b>表 6</b>　同等历史比较：在线对窗口不短于 K(t) 的冻结模型</p><table class="plain num"><thead><tr><th>划分</th><th>方法</th><th>有可比时刻的运行</th><th>可比那一段上的 MSE 收益</th></tr></thead><tbody><tr><td>O · 在线式划分</td><td>Naive</td><td>126/180</td><td>−1.11%</td></tr><tr><td>O · 在线式划分</td><td>ER</td><td>125/179</td><td>+2.40%</td></tr><tr><td>O · 在线式划分</td><td>PROCEED</td><td>126/180</td><td>+1.54%</td></tr><tr><td>T · 传统划分</td><td>Naive</td><td>54/180</td><td>+34.16%</td></tr><tr><td>T · 传统划分</td><td>ER</td><td>54/180</td><td>+35.36%</td></tr><tr><td>T · 传统划分</td><td>PROCEED</td><td>54/180</td><td>+34.00%</td></tr></tbody></table></div>
+  <p><b>T 划分那 +34%（在线误差比冻结低 34%）要小心读。</b>能比的只有 54 组运行：ETTh1、ETTh2（两个骨干）和 Electricity、PEMS08（只有 DLinear）。其余 126 组在测试一开始就没得比：T 划分的验证期长（占 10%–20%），在线模型预热完用过的历史已经比能用的最长冻结窗口还长。这 54 组比的都是冻结 W4096，覆盖的是测试期开头约 10%–38% 的时刻。+34% 主要来自其中 36 组 ETTh 运行（按数据集和骨干分组，在线误差低 23%–71%）；Electricity 和 PEMS08 上在线反而更差（误差高 60%、高 399%）。所以它不能代表整个测试期，也不能和对照 1 直接比，比的又正好是前面发现会变差的 W4096。为什么测试开头这段在线赢这么多，还没查。猜测：测试开头紧接验证期，在线模型刚用验证期的数据更新过，冻结模型只见过更早的训练段。第 8.7 节的结果和这个猜测方向一致（冻结模型用上更新的数据后就追上了在线），但没有直接检验这一段。要回答“是不是只靠更多历史”，需要换一种实验设计：第 8.5 节做了一版（把在线记忆限制在 1,024 步），第 8.8 节用小学习率重做了一遍：和调参后的冻结 W1024 比，在线误差高 11%–12%。</p>
+</section>
+
+<section class="sec" id="cost">
+  <div class="head"><p class="eyebrow">第 7 节 · 成本</p><h2>训练更省，预测更慢</h2></div>
+  <div class="explain">
+    <h3>两个比值的定义</h3>
+    <ul class="defs">
+      <li><b>训练时间比</b> = 在线模型的离线训练用时 ÷ 冻结模型的离线训练用时。离线训练指部署前在训练集上的训练，只算最后选中的那一次训练，不含在验证集上挑学习率的试跑。小于 1 表示在线模型训练更快。</li>
+      <li><b>每次预测用时比</b> = 测试时在线模型每发出一次预测的用时 ÷ 冻结模型的用时。冻结模型只做一次前向计算；在线模型还要用新到的真实值更新参数（ER 还要回放旧样本，PROCEED 还要做适配），这些时间都算在内。大于 1 表示在线模型更慢。</li>
+      <li><b>例：</b>ER、O 划分、对比 W1024，训练时间比 0.82×，即在线少用 18% 的训练时间；每次预测用时比 6.39×，即在线每次预测的用时是冻结模型的 6.4 倍。</li>
+    </ul>
+  </div>
+  <figure class="fig">
+    <div class="legend">
+      <span><i class="lg-dot ol"></i>训练时间比（离线）</span>
+      <span><i class="lg-dot fz"></i>每次预测用时比（部署）</span>
+      <span><i class="lg-dot fill"></i>实心：对比冻结 W = 1,024</span>
+      <span><i class="lg-dot ring"></i>空心：对比冻结 W = 4,096</span>
+    </div>
+    <div class="scroll"><svg class="chart-svg" viewBox="0 0 640 292" role="img" aria-label="在线 ÷ 冻结，逐配对比值的中位数。训练时间：对比 W1024 为 0.79–0.88 倍，对比 W4096 为 0.13–0.35 倍；每次预测用时两者都是 3.4–7.1 倍。"><line class="grid" x1="150.0" y1="30" x2="150.0" y2="238"/><text class="tick" x="150.0" y="256" text-anchor="middle">0.1×</text><line class="grid" x1="219.2" y1="30" x2="219.2" y2="238"/><text class="tick" x="219.2" y="256" text-anchor="middle">0.2×</text><line class="grid" x1="310.8" y1="30" x2="310.8" y2="238"/><text class="tick" x="310.8" y="256" text-anchor="middle">0.5×</text><text class="tick" x="380.0" y="256" text-anchor="middle">1×</text><line class="grid" x1="449.2" y1="30" x2="449.2" y2="238"/><text class="tick" x="449.2" y="256" text-anchor="middle">2×</text><line class="grid" x1="540.8" y1="30" x2="540.8" y2="238"/><text class="tick" x="540.8" y="256" text-anchor="middle">5×</text><line class="grid" x1="610.0" y1="30" x2="610.0" y2="238"/><text class="tick" x="610.0" y="256" text-anchor="middle">10×</text><line class="axis" x1="150" y1="238" x2="610" y2="238"/><line class="parity" x1="380.0" y1="28" x2="380.0" y2="238"/><text class="t-muted" x="372.0" y="280" text-anchor="end">← 在线更省时</text><text class="t-muted" x="388.0" y="280">在线更慢 →</text><text class="t-strong" x="0" y="18">O · 在线式划分</text><text class="t-strong" x="0" y="136">T · 传统划分</text><text x="12" y="48">Naive</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · Naive 对比冻结 W = 1,024：训练时间是冻结模型的 0.82 倍" data-tip="O · 在线式划分 · Naive 对比冻结 W = 1,024：训练时间是冻结模型的 0.82 倍" cx="360.2" cy="40" r="5"/><text class="val" x="360.2" y="30" text-anchor="middle">0.82×</text><circle class="mark ring-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · Naive 对比冻结 W = 4,096：训练时间是冻结模型的 0.14 倍" data-tip="O · 在线式划分 · Naive 对比冻结 W = 4,096：训练时间是冻结模型的 0.14 倍" cx="183.6" cy="48" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · Naive 对比冻结 W = 1,024：每次预测用时是冻结模型的 3.91 倍" data-tip="O · 在线式划分 · Naive 对比冻结 W = 1,024：每次预测用时是冻结模型的 3.91 倍" cx="516.2" cy="40" r="5"/><text class="val" x="516.2" y="30" text-anchor="middle">3.91×</text><circle class="mark ring-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · Naive 对比冻结 W = 4,096：每次预测用时是冻结模型的 3.63 倍" data-tip="O · 在线式划分 · Naive 对比冻结 W = 4,096：每次预测用时是冻结模型的 3.63 倍" cx="508.8" cy="48" r="5"/><text x="12" y="78">ER</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · ER 对比冻结 W = 1,024：训练时间是冻结模型的 0.82 倍" data-tip="O · 在线式划分 · ER 对比冻结 W = 1,024：训练时间是冻结模型的 0.82 倍" cx="360.2" cy="70" r="5"/><circle class="mark ring-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · ER 对比冻结 W = 4,096：训练时间是冻结模型的 0.13 倍" data-tip="O · 在线式划分 · ER 对比冻结 W = 4,096：训练时间是冻结模型的 0.13 倍" cx="176.2" cy="78" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · ER 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.39 倍" data-tip="O · 在线式划分 · ER 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.39 倍" cx="565.3" cy="70" r="5"/><circle class="mark ring-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · ER 对比冻结 W = 4,096：每次预测用时是冻结模型的 5.82 倍" data-tip="O · 在线式划分 · ER 对比冻结 W = 4,096：每次预测用时是冻结模型的 5.82 倍" cx="555.9" cy="78" r="5"/><text x="12" y="108">PROCEED</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · PROCEED 对比冻结 W = 1,024：训练时间是冻结模型的 0.88 倍" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 1,024：训练时间是冻结模型的 0.88 倍" cx="367.2" cy="100" r="5"/><circle class="mark ring-ol" tabindex="0" role="img" aria-label="O · 在线式划分 · PROCEED 对比冻结 W = 4,096：训练时间是冻结模型的 0.14 倍" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 4,096：训练时间是冻结模型的 0.14 倍" cx="183.6" cy="108" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · PROCEED 对比冻结 W = 1,024：每次预测用时是冻结模型的 7.03 倍" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 1,024：每次预测用时是冻结模型的 7.03 倍" cx="574.8" cy="100" r="5"/><circle class="mark ring-fz" tabindex="0" role="img" aria-label="O · 在线式划分 · PROCEED 对比冻结 W = 4,096：每次预测用时是冻结模型的 7.07 倍" data-tip="O · 在线式划分 · PROCEED 对比冻结 W = 4,096：每次预测用时是冻结模型的 7.07 倍" cx="575.4" cy="108" r="5"/><text x="12" y="164">Naive</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="T · 传统划分 · Naive 对比冻结 W = 1,024：训练时间是冻结模型的 0.79 倍" data-tip="T · 传统划分 · Naive 对比冻结 W = 1,024：训练时间是冻结模型的 0.79 倍" cx="356.5" cy="156" r="5"/><circle class="mark ring-ol" tabindex="0" role="img" aria-label="T · 传统划分 · Naive 对比冻结 W = 4,096：训练时间是冻结模型的 0.34 倍" data-tip="T · 传统划分 · Naive 对比冻结 W = 4,096：训练时间是冻结模型的 0.34 倍" cx="272.2" cy="164" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="T · 传统划分 · Naive 对比冻结 W = 1,024：每次预测用时是冻结模型的 3.79 倍" data-tip="T · 传统划分 · Naive 对比冻结 W = 1,024：每次预测用时是冻结模型的 3.79 倍" cx="513.1" cy="156" r="5"/><circle class="mark ring-fz" tabindex="0" role="img" aria-label="T · 传统划分 · Naive 对比冻结 W = 4,096：每次预测用时是冻结模型的 3.38 倍" data-tip="T · 传统划分 · Naive 对比冻结 W = 4,096：每次预测用时是冻结模型的 3.38 倍" cx="501.7" cy="164" r="5"/><text x="12" y="194">ER</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="T · 传统划分 · ER 对比冻结 W = 1,024：训练时间是冻结模型的 0.79 倍" data-tip="T · 传统划分 · ER 对比冻结 W = 1,024：训练时间是冻结模型的 0.79 倍" cx="356.5" cy="186" r="5"/><circle class="mark ring-ol" tabindex="0" role="img" aria-label="T · 传统划分 · ER 对比冻结 W = 4,096：训练时间是冻结模型的 0.34 倍" data-tip="T · 传统划分 · ER 对比冻结 W = 4,096：训练时间是冻结模型的 0.34 倍" cx="272.2" cy="194" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="T · 传统划分 · ER 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.17 倍" data-tip="T · 传统划分 · ER 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.17 倍" cx="561.8" cy="186" r="5"/><circle class="mark ring-fz" tabindex="0" role="img" aria-label="T · 传统划分 · ER 对比冻结 W = 4,096：每次预测用时是冻结模型的 5.61 倍" data-tip="T · 传统划分 · ER 对比冻结 W = 4,096：每次预测用时是冻结模型的 5.61 倍" cx="552.3" cy="194" r="5"/><text x="12" y="224">PROCEED</text><circle class="mark dot-ol" tabindex="0" role="img" aria-label="T · 传统划分 · PROCEED 对比冻结 W = 1,024：训练时间是冻结模型的 0.81 倍" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 1,024：训练时间是冻结模型的 0.81 倍" cx="359.0" cy="216" r="5"/><circle class="mark ring-ol" tabindex="0" role="img" aria-label="T · 传统划分 · PROCEED 对比冻结 W = 4,096：训练时间是冻结模型的 0.35 倍" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 4,096：训练时间是冻结模型的 0.35 倍" cx="275.1" cy="224" r="5"/><circle class="mark dot-fz" tabindex="0" role="img" aria-label="T · 传统划分 · PROCEED 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.96 倍" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 1,024：每次预测用时是冻结模型的 6.96 倍" cx="573.8" cy="216" r="5"/><circle class="mark ring-fz" tabindex="0" role="img" aria-label="T · 传统划分 · PROCEED 对比冻结 W = 4,096：每次预测用时是冻结模型的 6.86 倍" data-tip="T · 传统划分 · PROCEED 对比冻结 W = 4,096：每次预测用时是冻结模型的 6.86 倍" cx="572.4" cy="224" r="5"/></svg></div>
+    <figcaption><b>图 4</b>　在线 ÷ 冻结，逐配对比值的中位数，对数坐标。图 4 只画了 W1024 和 W4096 两档；五档窗口全算上，每次预测用时比在 3.4–7.2 倍之间。计时来自共享集群，不是严格控制的基准测试。手机上可以左右滑动看全图。</figcaption>
+    <details class="twin"><summary>展开数字</summary><div class="tw"><p class="tcap"><b>图 4 的数字</b></p><table class="plain num"><thead><tr><th>划分</th><th>方法</th><th>训练时间比<br>对比 W1024</th><th>每次预测用时比<br>对比 W1024</th><th>训练时间比<br>对比 W4096</th><th>每次预测用时比<br>对比 W4096</th></tr></thead><tbody><tr><td>O · 在线式划分</td><td>Naive</td><td>0.82×</td><td>3.91×</td><td>0.14×</td><td>3.63×</td></tr><tr><td>O · 在线式划分</td><td>ER</td><td>0.82×</td><td>6.39×</td><td>0.13×</td><td>5.82×</td></tr><tr><td>O · 在线式划分</td><td>PROCEED</td><td>0.88×</td><td>7.03×</td><td>0.14×</td><td>7.07×</td></tr><tr><td>T · 传统划分</td><td>Naive</td><td>0.79×</td><td>3.79×</td><td>0.34×</td><td>3.38×</td></tr><tr><td>T · 传统划分</td><td>ER</td><td>0.79×</td><td>6.17×</td><td>0.34×</td><td>5.61×</td></tr><tr><td>T · 传统划分</td><td>PROCEED</td><td>0.81×</td><td>6.96×</td><td>0.35×</td><td>6.86×</td></tr></tbody></table></div></details>
+  </figure>
+  <p>在线方法把计算从部署前挪到了部署中。训练时间对 W1024 省 12%–21%，对 W4096 省 65%–87%（因为 W4096 的冻结模型本身训练更慢）；但每次预测的用时是冻结模型的 3–7 倍，部署越久，多花的时间越多。</p>
+  <p>和同样读 96 步的冻结 W96 比，训练时间基本一样，每次预测在线是它的 3.9 倍（Naive）、6.5 倍（ER）、7.2 倍（PROCEED）。学习率调小也不会让更新更省：第三轮补充实验（冻结也调参的那一轮）里，用小学习率的在线 W1024 每次预测仍是冻结 W1024 的 6.6 倍（4.7–11.8 倍）。</p>
+</section>
+
+<section class="sec" id="q6">
+  <div class="head"><p class="eyebrow">第 8 节 · 补充实验 · 11 月 5–8 日</p><h2>把在线学习率调小，长窗口模型基本不再被更新带坏</h2></div>
+  <p><b>为什么做：</b>主表里在线更新直接沿用离线训练选出的学习率。用主实验另外保留的一批在线 W1024 运行（11 月 1 日缩减范围前已经跑完，倍率 1，不在表 1、表 2 里）算 2×2 时发现，在 9 个数据集上给读 1,024 步的模型（W1024）加上在线更新，误差反而比不更新高 15%–65%。我们猜是在线学习率太大：离线训练每步平均 32 个样本，在线更新每次只用最新到达的一小批，同样的学习率下步子太大。另外，主表也没有回答“同样长的历史下谁更好”。所以补了实验：前两轮看学习率（8.1–8.5 节），第三、四轮补前两轮留下的问题（8.6–8.11 节）。</p>
+  <p><b>范围：</b>第一轮（11 月 5 日）：DLinear 跑 ETTh2、ETTm1、Weather、PEMS08，PatchTST 跑 ETTh2、ETTm1；另外查了 PatchTST × PEMS08 · W96 的训崩（这一项用 Naive、PROCEED）。第二轮（11 月 6 日）只做学习率实验的 W1024，补上三个变量多的数据集：Solar（137 个变量）、Electricity（321 个）、PEMS-BAY（325 个），DLinear 三个都跑，PatchTST 只跑 Solar（另两个受显存限制，没有 W1024）。都是 O、T 两种划分，预测长度 H = 96，3 个种子，ER、PROCEED 两种在线方法；冻结模型都用主表训练好的那个，没有新的离线训练。第一轮两个实验各缺 4 条运行（运行故障，没有补跑），第二轮 48 条全部有效。</p>
+  <p><b>第三、四轮：</b>前两轮只调了在线学习率，冻结模型没动，还留下几个没回答的问题。第三轮（11 月 7 日）给冻结 W1024 也调学习率并早停，再比一次（8.6 节），并查了 Electricity 的例外（8.11 节）。第四轮（11 月 8 日）做了四个检验：把冻结模型重训到最近（8.7 节）、同样长的历史加小学习率（8.8 节）、PEMS-BAY 的训崩（8.9 节）、预测 336 步（8.10 节）。这两轮的运行全部有效；个别比较要用到的旧结果缺几条，表里写的是实际组数。</p>
+  <p class="callout"><b>这一节的百分比怎么读：</b>除特别说明，都是“收益”：在线的误差（MSE）比冻结低多少。+7.4% 表示在线误差比冻结低 7.4%（在线更好）；−0.7% 表示在线误差比冻结高 0.7%（冻结更好）。倍率 = 在线更新的学习率 ÷ 离线训练的学习率：倍率 1 就是主表的做法（不调小），0.03 表示在线学习率只有离线的 3%。8.6 节以后有三种冻结 W1024：<b>主表的冻结</b>（主表的训练方式：所有窗口共用一个学习率、训满 50 轮）、<b>调参后的冻结</b>（第三轮：学习率在验证集上选、早停）、<b>重训的冻结</b>（第四轮：用前 75% 的数据重新训练）。冻结对冻结、在线对在线的比较，正数表示前面那个误差更低。</p>
+
+  <div class="explain">
+    <h3>8.1 在线学习率是不是太大？</h3>
+    <p class="sub">结论：很可能是。调小后，长窗口在线基本不再比冻结差：O 划分在线略好，T 划分还略差 1%–2%，Electricity 的 O 划分是例外。</p>
+    <p class="howto"><b>怎么做：</b>倍率在 0.03、0.1、0.3、1 里挑：只用验证集和种子 2024 挑，挑定后另外两个种子沿用，测试集不参与挑选。冻结模型不动。</p>
+    <p class="howto"><b>表 7，第一轮，同一批配置上不调小和调小比：</b>每格是在线对同窗口冻结的收益中位数，下面是在线更好的组数。一组 = 同一骨干、数据集、划分、种子和在线方法；只用两种倍率都有结果的组。例：W1024 · T 那列，不调小时在线误差比冻结高 16.8%，26 组里只有 3 组在线更好；调小后在线误差低 2.1%，18 组在线更好。</p>
+    <div class="tw"><p class="tcap"><b>表 7</b>　第一轮：不调小和调小，在线对同窗口冻结</p><table class="plain num"><thead><tr><th>在线相对同窗口冻结</th><th>W96 · O</th><th>W96 · T</th><th>W1024 · O</th><th>W1024 · T</th></tr></thead><tbody><tr><td>不调小（倍率 1，主表的做法）</td><td>+8.4%<br><small>19/31 组</small></td><td>−4.4%<br><small>8/30 组</small></td><td>−0.3%<br><small>12/25 组</small></td><td>−16.8%<br><small>3/26 组</small></td></tr><tr><td>调小后（验证集挑的倍率）</td><td>+9.5%<br><small>31/31 组</small></td><td>+6.2%<br><small>27/30 组</small></td><td>+10.3%<br><small>19/25 组</small></td><td>+2.1%<br><small>18/26 组</small></td></tr></tbody></table></div>
+    <p class="howto"><b>表 8，第二轮，同样比法：</b>一组 = 同一配置、同一种子的两条在线运行，一条不调小（取自那批保留的在线 W1024 运行），一条用挑中的倍率，各自和同一个冻结模型比。主表里有些配置没有不调小的结果，所以只有 29 组能比，其中 18 组是 Solar；第二轮输得最多的 Electricity · O · ER 和 PatchTST · Solar · T · PROCEED 正好没有。</p>
+    <div class="tw"><div class="tw"><table class="plain"><caption><b>表 8</b>　同一配置、同一种子：不调小和调小，在线对冻结的收益</caption><thead><tr><th scope="col">数据集 · 划分</th><th scope="col">组数</th><th scope="col">不调小（×1）</th><th scope="col">调小后（挑中的倍率）</th></tr></thead><tbody><tr><th scope="row">Solar · O</th><td>9</td><td>−19.2%</td><td>+5.2%</td></tr><tr><th scope="row">Solar · T</th><td>9</td><td>−18.9%</td><td>−1.3%</td></tr><tr><th scope="row">PEMS-BAY · O</th><td>3</td><td>−14.9%</td><td>+8.3%</td></tr><tr><th scope="row">PEMS-BAY · T</th><td>1</td><td>−21.9%</td><td>−1.6%</td></tr><tr><th scope="row">Electricity · O</th><td>2</td><td>−40.8%</td><td>−28.1%</td></tr><tr><th scope="row">Electricity · T</th><td>5</td><td>−19.7%</td><td>−0.8%</td></tr><tr class="tot"><th scope="row">O 划分合计</th><td>14</td><td>−18.5%（3 组在线更好）</td><td>+5.3%（12 组）</td></tr><tr class="tot"><th scope="row">T 划分合计</th><td>15</td><td>−19.7%（0 组在线更好）</td><td>−1.3%（3 组）</td></tr><tr class="tot"><th scope="row">全部</th><td>29</td><td>−19.2%（3 组在线更好）</td><td>+1.6%（15 组）</td></tr></tbody></table></div></div>
+    <p class="howto"><b>表 9，两轮合起来，7 个数据集：</b>每格是该数据集全部运行的收益中位数（调小后，在线 W1024 对冻结 W1024），下面是在线更好的条数。</p>
+    <div class="tw"><p class="tcap"><b>表 9</b>　两轮合起来：调小后在线 W1024 对冻结 W1024</p><table class="plain num q7all"><thead><tr><th>数据集（变量数）</th><th>哪一轮</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>ETTh2（7）</td><td>第一轮</td><td>−1.8%<br><small>6/12 组</small></td><td>+4.7%<br><small>12/12 组</small></td></tr><tr><td>ETTm1（7）</td><td>第一轮</td><td>+25.5%<br><small>10/10 组</small></td><td>+1.7%<br><small>9/12 组</small></td></tr><tr><td>Weather（21）</td><td>第一轮</td><td>+44.7%<br><small>6/6 组</small></td><td>−0.9%<br><small>0/6 组</small></td></tr><tr><td>Solar（137）</td><td>第二轮</td><td>+4.9%<br><small>12/12 组</small></td><td>−1.5%<br><small>3/12 组</small></td></tr><tr><td>PEMS08（170）</td><td>第一轮</td><td>+22.0%<br><small>6/6 组</small></td><td>−0.2%<br><small>3/6 组</small></td></tr><tr><td>Electricity（321）</td><td>第二轮</td><td>−40.3%<br><small>0/6 组</small></td><td>−1.1%<br><small>0/6 组</small></td></tr><tr><td>PEMS-BAY（325）</td><td>第二轮</td><td>+8.2%<br><small>6/6 组</small></td><td>−1.7%<br><small>0/6 组</small></td></tr><tr><td><b>变量多的 5 个</b></td><td></td><td>+7.4%<br><small>30/36 组</small></td><td>−1.3%<br><small>6/36 组</small></td></tr><tr><td><b>ETT 两个</b></td><td></td><td>+8.1%<br><small>16/22 组</small></td><td>+3.8%<br><small>21/24 组</small></td></tr><tr><td><b>全部 7 个</b></td><td></td><td>+7.4%<br><small>46/58 组</small></td><td>−0.7%<br><small>27/60 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>不调小时，长窗口在线普遍更差：</b>第一轮 T 划分在线误差比冻结高 16.8%；第二轮能配对的 29 组高约 19%，只有 3 组在线更好。</li>
+      <li><b>调小以后：</b>7 个数据集合起来，O 划分在线误差比冻结低 7.4%（58 条里 46 条在线更好），T 划分高 0.7%（60 条里 27 条在线更好）。</li>
+      <li><b>按事先写好的判断线：</b>在线对冻结的中位数 ≥ 0 算“调小学习率能消除劣势”，≤ 约 −5% 算“这组倍率和更新方式下仍更差”，中间不下结论。第一轮 O、T 都成立（在线误差分别低 17.5%、2.3%）。第二轮 O 划分成立（Solar 在线误差低 4.9%、PEMS-BAY 低 8.2%）；T 划分在线误差高 1.5%（24 条里 21 条冻结更好），落在不下结论的区间。</li>
+      <li><b>Electricity 的 O 划分是例外：</b>调小后在线误差仍比冻结高 40%（ER 高 46%–81%，PROCEED 高 9%–35%），原因见 8.2、8.11 节。</li>
+      <li><b>挑中的倍率：</b>两轮都是最小的 0.03 被挑得最多（第一轮 52 个配置里 33 个，第二轮 16 个里 13 个）；更小的 0.01、0.003 在第三轮试了，0.003 被挑得最多（8.6 节）。</li>
+      <li><b>训崩的运行没有了：</b>PatchTST × PEMS08（W96，Naive、PROCEED）的 12 条运行，不调小时 10 条的误差超过冻结 W96 的 10 倍，最大约 37,693 倍；调小后最大 3.2 倍。不再训崩不等于变好：这 12 条仍都比冻结 W96 差（误差是冻结的 1.75–3.18 倍）。</li>
+      <li><b>这些数有多稳：</b>按数据集重抽样，7 个数据集合起来，O 划分的 95% 区间是在线误差低 3.8% 到低 26.5%，T 划分是高 1.5% 到低 3.6%（跨过 0）。但 O 划分 7 个数据集里只有 5 个在线更好，数据集太少，区间只能当参考。</li>
+    </ul>
+    <details class="twin"><summary>展开表 10：第二轮每个配置的结果</summary><div class="tw"><div class="tw"><table class="res"><caption><b>表 10</b>　调小学习率后，在线 W1024 对冻结 W1024 的收益</caption><thead><tr><th scope="col" rowspan="2" style="text-align:left">数据集（变量数）· 骨干</th><th scope="colgroup" colspan="2">O 划分 20/5/75</th><th scope="colgroup" colspan="2">T 划分 70/10/20</th></tr><tr><th scope="col">ER</th><th scope="col">PROCEED</th><th scope="col">ER</th><th scope="col">PROCEED</th></tr></thead><tbody><tr><th scope="row">Solar（137）· DLinear</th><td class="n0">+4.5%<small>×0.03</small></td><td class="n0">+3.0%<small>×0.03</small></td><td class="n0">−1.3%<small>×0.03</small></td><td class="n0">−1.6%<small>×0.03</small></td></tr><tr><th scope="row">Solar（137）· PatchTST</th><td class="b1">+5.2%<small>×0.3</small></td><td class="b1">+7.4%<small>×0.03</small></td><td class="b1">+6.0%<small>×0.03</small></td><td class="o2">−22.5%<small>×0.1</small></td></tr><tr><th scope="row">PEMS-BAY（325）· DLinear</th><td class="b1">+8.3%<small>×0.03</small></td><td class="b1">+8.2%<small>×0.03</small></td><td class="n0">−1.6%<small>×0.03</small></td><td class="n0">−1.8%<small>×0.03</small></td></tr><tr><th scope="row">Electricity（321）· DLinear</th><td class="o3">−62.0%<small>×0.1</small></td><td class="o2">−21.2%<small>×0.03</small></td><td class="n0">−0.7%<small>×0.03</small></td><td class="n0">−1.5%<small>×0.03</small></td></tr></tbody><tfoot><tr><th scope="row">每种划分全部 24 条</th><td colspan="2" class="n0">+4.9%<small>18/24 条在线更好</small></td><td colspan="2" class="n0">−1.5%<small>3/24 条在线更好</small></td></tr></tfoot></table></div></div><p class="note">每格是一个配置 3 个种子的收益中位数，小字是挑中的倍率。</p></details>
+  </div>
+
+  <div class="explain">
+    <h3>8.2 长窗口在线的优势从哪来，为什么 O 划分好得多</h3>
+    <p class="sub">结论：拆开看，测试期继续更新在 O 划分帮得多、T 划分帮得少；O 划分的优势越到测试期后段越大。差别不在测的是哪段时间，更可能在冻结模型训练时见过的数据多少、新旧；8.7 节的检验支持这一点。</p>
+    <p class="howto"><b>怎么拆（表 11）：</b>在线模型在验证期就开始边预测边更新（预热）。测试开始那一刻，把它复制一份冻结起来，叫“预热后的冻结副本”。三个模型都在测试期上算误差，在线对原始冻结的收益（表里的“合计”）就拆成两段：① 预热，这份副本比原始冻结好多少；② 测试期更新，在线比这份副本好多少。按误差的倍数算，每条运行都有“合计 = ① × ②”。例：Electricity · O · ER · 种子 2024 这一条，① 预热后误差变成原始冻结的 2.66 倍（收益 −166%）；② 测试期更新把误差再乘 0.61（收益 +39%）；合计 2.66 × 0.61 = 1.62 倍，也就是在线误差比冻结高 62%。后两列把测试期按时间平均切成 10 段，看前 3 段和后 3 段的收益。</p>
+    <div class="tw"><div class="tw"><table class="plain"><caption><b>表 11</b>　O 划分：在线的优势从哪来，随时间怎么变</caption><thead><tr><th scope="col">数据集</th><th scope="col">① 预热</th><th scope="col">② 测试期更新</th><th scope="col">合计</th><th scope="col">测试期<br>前 30%</th><th scope="col">测试期<br>后 30%</th></tr></thead><tbody><tr><th scope="row">ETTh2</th><td>+8.5%</td><td>−3.5%</td><td>−1.8%</td><td>+10.5%</td><td>+20.9%</td></tr><tr><th scope="row">ETTm1</th><td>+8.8%</td><td>+10.4%</td><td>+25.5%</td><td>+9.5%</td><td>+31.9%</td></tr><tr><th scope="row">Weather</th><td>+43.7%</td><td>+1.6%</td><td>+44.7%</td><td>+26.9%</td><td>+19.4%</td></tr><tr><th scope="row">Solar</th><td>−7.9%</td><td>+12.5%</td><td>+4.9%</td><td>+11.2%</td><td>−4.7%</td></tr><tr><th scope="row">PEMS08</th><td>−1.3%</td><td>+20.5%</td><td>+22.0%</td><td>+2.6%</td><td>+32.5%</td></tr><tr><th scope="row">Electricity</th><td>−190.9%</td><td>+51.0%</td><td>−40.3%</td><td>−62.6%</td><td>−28.4%</td></tr><tr><th scope="row">PEMS-BAY</th><td>−0.2%</td><td>+7.8%</td><td>+8.2%</td><td>+3.4%</td><td>+14.2%</td></tr><tr class="tot"><th scope="row">O 划分 7 个合计</th><td>+1.0%</td><td>+7.0%</td><td>+7.4%</td><td>+9.6%</td><td>+13.1%</td></tr><tr class="tot"><th scope="row">T 划分 7 个合计</th><td>−3.1%</td><td>+2.7%</td><td>−0.7%</td><td>−1.7%</td><td>+1.4%</td></tr></tbody></table></div></div>
+    <p class="note">前 7 行是 O 划分，最后两行是 O、T 划分各自 7 个数据集的合计。各列分别取中位数，所以表里的 ①、② 不能直接乘出“合计”，“合计”也不一定落在前后 30% 之间（比如 ETTh2）。一段一段的结果波动大，只看大致趋势。</p>
+    <ul>
+      <li><b>Electricity 的损失主要发生在预热：</b>预热后误差变成原始冻结的 2.7 倍（ER）和 3.2 倍（PROCEED），测试期更新只追回一部分。学习率只有离线的 3%–10%，不到两个月的预热就差这么多，比较反常。第三轮查了：预热造成的损失几乎全在一个几乎不变的变量上，见 8.11 节。</li>
+      <li><b>测试期更新：</b>O 划分 7 个数据集里 6 个在帮忙（ETTh2 例外，误差高 3.5%），合起来让误差低 7.0%；T 划分帮得少，低 2.7%，第二轮的 PEMS-BAY、Electricity 只低 0.2%、0.6%。</li>
+      <li><b>预热时好时坏：</b>第一轮 O 划分里，预热让误差低了 11.4%（34 条里 28 条变好），Weather 只靠预热就好了 44%；第二轮三个数据集上，预热几乎都让误差变高。7 个数据集合起来，O 划分误差低 1.0%，T 划分误差高 3.1%。</li>
+      <li><b>O 划分越往后，在线优势越大：</b>ETTm1 从测试期前 30% 的误差低 10%，到后 30% 的低 32%；PEMS08 从低 3% 到低 33%；PEMS-BAY 从低 3% 到低 14%。Weather、Solar 相反，越往后越小：Weather 从低 27% 降到低 19%，Solar 最后变成冻结更好；Electricity 一直是冻结更好，后段差距变小。T 划分前后段都在 ±2% 以内。</li>
+      <li><b>同一段时间上比也一样：</b>O 划分测试期的后 30% 大约是整条序列的最后 22.5%，和 T 划分的测试期（最后 20%）差不多是同一段时间。这段时间上，O 划分在线误差比冻结低 13%，T 划分基本打平。主表的短窗口在线也是 O 划分有利得多：对冻结 W1024，ER 0.0%、PROCEED −1.0%，T 划分是 −24.7%、−23.3%（见第 3 节）。</li>
+    </ul>
+    <p class="howto"><b>猜测（第一条已在 8.7 节检验）：</b></p>
+    <ul>
+      <li>O 划分的冻结模型只用前 20% 训练，见过的数据少，越往后也越旧（季节、趋势在变）；在线模型一路用新数据更新，能跟上。T 划分的冻结模型已经用了 60%–70% 的数据，测试期只有 20%，能补的少。检验办法：在最后 20% 之前用全部已有数据重训一次冻结模型，再在最后 20% 上比。第四轮做了（8.7 节）：重训后的冻结模型在最后 20% 上比在线误差还低，支持这个解释。</li>
+      <li>Weather 是一整年的数据，O 划分的训练段只有最开始约两个半月；预热用的是紧接着的约 18 天，可能带来了训练段里没有的季节规律。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.3 长窗口和在线更新是不是在补同一样东西（2×2）</h3>
+    <p class="sub">结论：不是。学习率调小后，更新在短窗口和长窗口上都有好处，幅度差不多；长窗口没有替代更新。</p>
+    <p class="howto"><b>我们原来的猜想：</b>长输入窗口和在线更新可能在补同一样东西，就是训练结束之后数据发生的变化（新的水平、季节、更长的周期）。如果是这样，窗口够长时，冻结模型从输入里就能看到这些变化，更新就没什么可补的：更新应该只在短窗口（W96）上有好处，在长窗口（W1024）上没有。</p>
+    <p class="howto"><b>怎么读（表 12）：</b>第一轮的 6 组配置，学习率调小后。“更新的收益”是在线对同窗口的冻结；“长窗口的收益”是 W1024 对 W96（冻结比冻结、在线比在线）。正数表示前者误差更低。</p>
+    <div class="tw"><p class="tcap"><b>表 12</b>　2×2：更新的收益和长窗口的收益（第一轮，调小后）</p><table class="plain num"><thead><tr><th>学习率调小后</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>更新的收益 @ W96（在线 W96 对冻结 W96）</td><td>+11.2%<br><small>34/34 组</small></td><td>+5.1%<br><small>29/36 组</small></td></tr><tr><td>更新的收益 @ W1024（在线 W1024 对冻结 W1024）</td><td>+17.5%<br><small>28/34 组</small></td><td>+2.3%<br><small>24/36 组</small></td></tr><tr><td>长窗口的收益 · 冻结（W1024 对 W96）</td><td>+9.7%<br><small>18/34 组</small></td><td>+7.5%<br><small>24/36 组</small></td></tr><tr><td>长窗口的收益 · 在线（W1024 对 W96）</td><td>+4.3%<br><small>21/34 组</small></td><td>+7.4%<br><small>26/36 组</small></td></tr></tbody></table></div>
+    <p>结果：更新在 W96 和 W1024 上都有好处（合起来分别让误差低 8.0% 和 5.1%），两者几乎一样，所以这个猜想不成立。长窗口的好处在冻结和在线两边也都在，两者大致叠加。要注意 O 划分的“长窗口收益”：ETTh2 的训练段短，冻结 W1024 比冻结 W96 还差（DLinear 误差高 54%，PatchTST 高 160%）。</p>
+  </div>
+
+  <div class="explain">
+    <h3>8.4 调小以后，短窗口在线能赢冻结长窗口吗？</h3>
+    <p class="howto"><b>怎么读（表 13）：</b>第一轮，在线 W96 对冻结 W1024 的收益中位数，下面是在线更好的组数。</p>
+    <div class="tw"><p class="tcap"><b>表 13</b>　调小后，在线 W96 对冻结 W1024（第一轮）</p><table class="plain num"><thead><tr><th>在线 W96 对冻结 W1024</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>不调小（倍率 1，主表的做法）</td><td>+16.9%<br><small>22/31 组</small></td><td>−16.9%<br><small>2/30 组</small></td></tr><tr><td>调小后（验证集挑的倍率）</td><td>+33.1%<br><small>25/31 组</small></td><td>−7.5%<br><small>9/30 组</small></td></tr></tbody></table></div>
+    <p>这一比较不在事先写好的判断线里，是结果出来后加算的。T 划分里，在线误差高出冻结的幅度缩小约一半，冻结仍占优。O 划分看起来在线赢得多，但其中一部分来自 ETTh2：那里冻结 W1024 本身比冻结 W96 还差。DLinear × PEMS08 上在线误差仍比冻结高 64%（O）和 95%（T）。另外这里只给在线调了学习率，冻结模型的学习率没动，对在线有利；冻结 W1024 也调参以后，同样历史下的比较见 8.8 节。</p>
+  </div>
+
+  <div class="explain">
+    <h3>8.5 限制在线记忆，比同样长的历史</h3>
+    <p class="sub">结论：同样长的历史下，冻结 W1024 总体更好（判断线“不差于冻结”不成立）；限制记忆确实比不限记忆差（判断线“明显更差”成立）。但这组用的是没调小的学习率；用小学习率重做的结果见 8.8 节，冻结 W1024 仍然更好。</p>
+    <p class="howto"><b>怎么做：</b>在线 W96 的记忆上限设成 1,024 步：两个副本错开交替重启，每 832 步回到训练好的检查点，每个时刻用重启更久的那个副本预测。这样在线模型部署后用过的最早观测离当前不超过 1,024 步（离线训练用过的更早数据不算），每个测试时刻都能和冻结 W1024 比，解决了对照 3 只能覆盖一小段的问题。学习率用倍率 1，和主表一致。</p>
+    <p class="howto"><b>怎么读（表 14）：</b>每格是限制记忆的在线 W96 对参照的收益中位数（正数表示限制记忆的在线误差更低），下面是在线更好的组数。</p>
+    <div class="tw"><p class="tcap"><b>表 14</b>　限制记忆的在线 W96（第一轮，倍率 1）</p><table class="plain num"><thead><tr><th>记忆上限 1,024 步的在线 W96</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>对不限记忆的在线 W96</td><td>−8.0%<br><small>1/34 组</small></td><td>−4.9%<br><small>10/34 组</small></td></tr><tr><td>对冻结 W1024</td><td>+9.5%<br><small>18/34 组</small></td><td>−21.5%<br><small>6/34 组</small></td></tr><tr><td>其中 ETTh2</td><td>+59.6%<br><small>11/11 组</small></td><td>+0.8%<br><small>6/11 组</small></td></tr><tr><td>其中 ETTm1</td><td>−10.1%<br><small>1/11 组</small></td><td>−30.8%<br><small>0/11 组</small></td></tr><tr><td>其中 Weather</td><td>+22.8%<br><small>6/6 组</small></td><td>−21.7%<br><small>0/6 组</small></td></tr><tr><td>其中 PEMS08</td><td>−156.2%<br><small>0/6 组</small></td><td>−154.0%<br><small>0/6 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>全部组上：</b>对冻结 W1024，限制记忆的在线误差高 13.1%（68 组里 24 组在线更好）；对不限记忆的在线，误差高 5.9%（68 组里 11 组更好）。</li>
+      <li><b>两处要小心：</b>这组用的是倍率 1，8.1 节说明它偏大，所以可能低估了在线。和不限记忆相比，它同时还取消了验证期预热，所以那 −5.9% 不能全算到“记忆更长”上。</li>
+    </ul>
+  </div>
+  <div class="explain">
+    <h3>8.6 冻结模型也认真调参以后，长窗口加更新还有好处吗？（第三轮）</h3>
+    <p class="sub">结论：还有，但很小。冻结 W1024 也在验证集上选学习率、早停以后，从它出发的在线 W1024 误差在 O 划分低 3.7%、T 划分低 0.7%，按事先写好的判断线，两种划分都算“不比冻结差”。ETTh2、Electricity 的 O 划分例外。</p>
+    <p class="howto"><b>为什么做：</b>前两轮只调了在线学习率，冻结模型用的是主表的训练方式（所有窗口共用一个学习率、训满 50 轮、取最后一轮），对在线有利。</p>
+    <p class="howto"><b>怎么做：</b>DLinear 跑 7 个数据集（ETTh2、ETTm1、Weather、Solar、PEMS08、Electricity、PEMS-BAY），PatchTST 跑 ETTh2、ETTm1；W1024，H = 96，O、T 两种划分，3 个种子。冻结模型重新训练：离线学习率从 1e-5、3e-5、1e-4、3e-4、1e-3 五档里用种子 2024 在验证集上选，最多训 50 轮，验证误差连续 5 轮不降就停，取验证误差最低的一轮。在线模型（ER、PROCEED）从同一种子的调参后冻结出发，倍率从 0.003、0.01、0.03、0.1、0.3、1 六档里在验证集上挑（验证期前一半预热、后一半打分），挑定后三个种子共用。所有选择都在看测试集之前定好。判断线（事先写好）：在线对冻结的中位数 ≥ 0 算“冻结调好后，加更新仍不比不更新差”，≤ 约 −5% 算“加更新仍更差”，中间不下结论。</p>
+    <p class="howto"><b>怎么读（表 15）：</b>前两列是在线 W1024 对调参后的冻结 W1024 的收益中位数（正数表示在线误差更低），下面是在线更好的组数；后两列是调参后的冻结对主表的冻结（正数表示调参后误差更低），看调参让冻结模型本身好了多少。ETTh2、ETTm1 有两个骨干，组数是其他数据集的两倍。</p>
+    <div class="tw"><p class="tcap"><b>表 15</b>　冻结也调参后：在线 W1024 对调参后的冻结 W1024（第三轮）</p><table class="plain num q7all"><thead><tr><th>数据集（变量数）</th><th>在线对调参后的冻结 · O 划分</th><th>在线对调参后的冻结 · T 划分</th><th>调参后的冻结对主表的冻结 · O 划分</th><th>调参后的冻结对主表的冻结 · T 划分</th></tr></thead><tbody><tr><td>ETTh2（7）</td><td>−31.6%<br><small>0/12 组</small></td><td>+2.3%<br><small>7/12 组</small></td><td>+28.0%<br><small>6/6 组</small></td><td>+6.3%<br><small>6/6 组</small></td></tr><tr><td>ETTm1（7）</td><td>+7.4%<br><small>12/12 组</small></td><td>+1.8%<br><small>10/12 组</small></td><td>+20.8%<br><small>6/6 组</small></td><td>+7.8%<br><small>3/6 组</small></td></tr><tr><td>Weather（21）</td><td>+28.6%<br><small>6/6 组</small></td><td>+1.2%<br><small>6/6 组</small></td><td>+22.1%<br><small>2/3 组</small></td><td>0.0%<br><small>2/3 组</small></td></tr><tr><td>Solar（137）</td><td>+2.9%<br><small>6/6 组</small></td><td>+0.3%<br><small>6/6 组</small></td><td>+0.2%<br><small>2/3 组</small></td><td>+0.3%<br><small>2/3 组</small></td></tr><tr><td>PEMS08（170）</td><td>+27.5%<br><small>6/6 组</small></td><td>+0.6%<br><small>3/6 组</small></td><td>−2.5%<br><small>0/3 组</small></td><td>−2.1%<br><small>0/3 组</small></td></tr><tr><td>Electricity（321）</td><td>−15.2%<br><small>3/6 组</small></td><td>+0.6%<br><small>6/6 组</small></td><td>−18.9%<br><small>1/3 组</small></td><td>−0.3%<br><small>0/3 组</small></td></tr><tr><td>PEMS-BAY（325）</td><td>+9.1%<br><small>6/6 组</small></td><td>+0.6%<br><small>6/6 组</small></td><td>−0.3%<br><small>1/3 组</small></td><td>+0.1%<br><small>3/3 组</small></td></tr><tr><td><b>全部 7 个</b></td><td>+3.7%<br><small>39/54 组</small></td><td>+0.7%<br><small>44/54 组</small></td><td>+1.3%<br><small>18/27 组</small></td><td>0.0%<br><small>16/27 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>合起来：</b>O 划分在线误差低 3.7%（54 组里 39 组在线更好），T 划分低 0.7%（54 组里 44 组）。两种划分都过了判断线。误差超过冻结 10 倍的在线运行：108 条里 0 条。</li>
+      <li><b>调参对冻结模型本身的帮助，合起来不大，个别数据集很大：</b>O 划分误差低 1.3%，T 划分没变（0.0%）；但 ETTh2、ETTm1、Weather 的 O 划分分别低 28.0%、20.8%、22.1%。Electricity 的 O 划分反而高 18.9%：验证集上选出的学习率和轮数，到测试期不好用。</li>
+      <li><b>例外是 ETTh2、Electricity 的 O 划分</b>（在线误差高 31.6%、15.2%）。ETTh2 的损失主要来自验证期预热：预热后的冻结副本比调参后的冻结误差高 39.8%（12 组全部变差），测试期更新只追回 12.6%。Electricity 的预热让误差高 67.7%，原因见 8.11 节。</li>
+      <li><b>拆成两段（拆法同 8.2 节）：</b>测试期更新在 O 划分让误差低 9.8%（54 组里 51 组变好），T 划分低 0.3%；预热合起来几乎为 0（O 划分 0.0%，T 划分低 0.3%），但数据集之间差别很大：Weather 的 O 划分靠预热好了 26.1%，ETTh2、Electricity 的 O 划分被预热拖累。</li>
+      <li><b>在线也从更好的起点受益：</b>和前两轮的在线（从主表的冻结出发）比，误差在 O 划分低 1.3%、T 划分低 1.8%。</li>
+      <li><b>挑中的设置：</b>最小的倍率 0.003 在 36 个配置里被挑了 23 个；离线学习率 1e-4 被挑得最多（18 次选择里 8 次）。最小档被挑得最多，说明再小一些也许更好，这次没有再往下试。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.7 O 划分为什么好得多：把冻结模型重训到最近（第四轮）</h3>
+    <p class="sub">结论：主要是因为 O 划分的冻结模型只用了最早 20% 的数据。用前 75% 的数据重训一次冻结模型，它在最后 20% 上比一路更新的在线还好：在线误差高 8.0%，54 组里 42 组冻结更好。按事先写好的判断线，支持“新数据能解释在线的优势”。</p>
+    <p class="howto"><b>为什么做：</b>8.2 节猜测，O 划分对在线有利，是因为冻结模型只用前 20% 训练，见过的数据少、越往后越旧，而在线模型一路用新数据更新。检验办法是让冻结模型也用上新数据。</p>
+    <p class="howto"><b>怎么做：</b>第三轮的 9 组骨干 × 数据集，只做 O 划分，W1024，H = 96，3 个种子。冻结模型重新训练一次：序列前 75% 当训练集（用上所有放得下 1,024 步输入和 96 步目标的窗口），75%–80% 当验证集决定训练轮数（最多 50 轮，连续 5 轮不降就停），学习率沿用第三轮选出的，测试期不更新，叫“重训的冻结”。只在最后 20% 上评分。为了和原来的误差直接比，标准化仍用 O 划分前 20% 的均值和标准差。对照是第三轮的在线 W1024（从调参后的冻结出发，验证期预热，之后在整个 O 测试期一直更新）和调参后的冻结，都只取最后 20% 里同样的预测时刻。判断线（事先写好）：在线对重训的冻结，收益中位数 ≤ 0（在线不比它好）算“新数据能解释在线的优势”；≥ 约 +5% 算“在线还有新数据解释不了的好处”；中间不下结论。</p>
+    <p class="howto"><b>怎么读（表 16）：</b>都是 O 划分、只看最后 20%。前两列是在线对两种冻结的收益（正数表示在线误差更低），第三列是重训的冻结对调参后的冻结（正数表示重训后误差更低）。</p>
+    <div class="tw"><p class="tcap"><b>表 16</b>　重训的冻结：O 划分最后 20%（第四轮）</p><table class="plain num q7all"><thead><tr><th>数据集（变量数）</th><th>在线对重训的冻结</th><th>在线对调参后的冻结</th><th>重训的冻结对调参后的冻结</th></tr></thead><tbody><tr><td>ETTh2（7）</td><td>−8.4%<br><small>3/12 组</small></td><td>−0.7%<br><small>5/12 组</small></td><td>+5.6%<br><small>3/6 组</small></td></tr><tr><td>ETTm1（7）</td><td>−9.7%<br><small>0/12 组</small></td><td>+11.9%<br><small>12/12 组</small></td><td>+18.9%<br><small>6/6 组</small></td></tr><tr><td>Weather（21）</td><td>−2.3%<br><small>1/6 组</small></td><td>+15.3%<br><small>6/6 组</small></td><td>+18.7%<br><small>3/3 组</small></td></tr><tr><td>Solar（137）</td><td>−7.6%<br><small>0/6 组</small></td><td>+0.4%<br><small>6/6 组</small></td><td>+7.3%<br><small>3/3 组</small></td></tr><tr><td>PEMS08（170）</td><td>−15.5%<br><small>0/6 组</small></td><td>+30.7%<br><small>6/6 组</small></td><td>+39.5%<br><small>3/3 组</small></td></tr><tr><td>Electricity（321）</td><td>−38.2%<br><small>2/6 组</small></td><td>−5.6%<br><small>3/6 组</small></td><td>+33.1%<br><small>3/3 组</small></td></tr><tr><td>PEMS-BAY（325）</td><td>+1.1%<br><small>6/6 组</small></td><td>+16.2%<br><small>6/6 组</small></td><td>+15.3%<br><small>3/3 组</small></td></tr><tr><td><b>全部 7 个</b></td><td>−8.0%<br><small>12/54 组</small></td><td>+11.5%<br><small>44/54 组</small></td><td>+16.5%<br><small>24/27 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>在线对重训的冻结：</b>在线误差高 8.0%，54 组里只有 12 组在线更好，判断线成立。7 个数据集里 6 个是重训的冻结更好，Electricity 差得最多（在线误差高 38.2%）。PEMS-BAY 例外：在线误差低 1.1%，6 组都是在线更好。</li>
+      <li><b>同一段时间上，在线对调参后的冻结误差低 11.5%</b>（54 组里 44 组），这就是 O 划分在线的优势。重训以后，冻结模型的误差比调参后的冻结低 16.5%（27 组里 24 组），比在线的优势还大。</li>
+      <li><b>读法：</b>O 划分在线赢冻结，主要是因为冻结模型的训练数据又旧又少，用上新数据重训一次就能追上。这和 T 划分的结果对得上：T 划分的冻结模型本来就用了 60%–70% 的数据，在线几乎没有优势（表 2、表 15）。</li>
+      <li><b>要小心：</b>只在 75% 处重训了一次，重训一次的计算量相当于从头训练一个模型；没有比在同样计算量下，定期重训和在线更新哪个更好。只做了 W1024、H = 96、O 划分。实际部署时会用新数据重新算标准化，这里为了可比没有这样做。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.8 同样长的历史，换成小学习率再比（第四轮）</h3>
+    <p class="sub">结论：结果取决于冻结模型有没有调参。把在线 W96 的记忆限制在 1,024 步、用小学习率：对调参后的冻结 W1024，在线误差在 O 划分高 11.4%、T 划分高 12.2%（T 划分 36 组全是冻结更好）；对主表的冻结，O 划分在线反而低 22.0%（主要来自 ETTh2 和 Weather，那两处主表的冻结 W1024 没训好），T 划分高 8.9%。在线一方的离线训练没调参，这对冻结有利。限制记忆只让误差高 1%–3%。</p>
+    <p class="howto"><b>为什么做：</b>8.5 节第一次比“同样长的历史”，但有两个问题：在线用的是倍率 1（8.1 节说明它偏大）；限制记忆的在线不预热、不限记忆的在线预热，两者的差别不全是记忆长短。</p>
+    <p class="howto"><b>怎么做：</b>DLinear 跑 ETTh2、ETTm1、Weather、PEMS08，PatchTST 跑 ETTh2、ETTm1；O、T 两种划分，ER、PROCEED，W96，H = 96，3 个种子。两种在线各 72 条运行：限制记忆（同 8.5 节：两个副本错开交替重启，每 832 步回到训练好的检查点，部署后用过的最早数据离当前不超过 1,024 步）和不限记忆（一个副本一直更新）。两种都从主表训练好的 W96 模型出发，都不预热；倍率用第一轮在验证集上为 W96 挑中的。冻结 W1024 有两个参照：主表的冻结和第三轮调参后的冻结。注意在线一方的离线训练没调参，调参后的冻结却在验证集上选过学习率、早停过。判断线（事先写好，但没指定用哪个冻结）：限制记忆的在线对冻结 W1024 的中位数 ≥ 0，算“同样长的历史下在线不比冻结差”；限制记忆对不限记忆的对数误差比中位数 ≤ −0.03（误差高约 3% 以上），算“记忆更长确实有用”。</p>
+    <p class="howto"><b>怎么读（表 17）：</b>行的排法和表 14 一样，方便对照。每格是限制记忆的在线 W96 对参照的收益中位数（正数表示限制记忆的在线误差更低），下面是它更好的组数。</p>
+    <div class="tw"><p class="tcap"><b>表 17</b>　限制记忆的在线 W96，小学习率（第四轮）</p><table class="plain num"><thead><tr><th>记忆上限 1,024 步的在线 W96（小学习率）</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>对不限记忆的在线 W96（两边都不预热）</td><td>−3.0%<br><small>6/36 组</small></td><td>−1.3%<br><small>6/36 组</small></td></tr><tr><td>对主表的冻结 W1024</td><td>+22.0%<br><small>24/36 组</small></td><td>−8.9%<br><small>13/36 组</small></td></tr><tr><td>其中 ETTh2</td><td>+53.0%<br><small>12/12 组</small></td><td>+4.0%<br><small>12/12 组</small></td></tr><tr><td>其中 ETTm1</td><td>−0.8%<br><small>6/12 组</small></td><td>−8.9%<br><small>1/12 组</small></td></tr><tr><td>其中 Weather</td><td>+25.0%<br><small>6/6 组</small></td><td>−18.7%<br><small>0/6 组</small></td></tr><tr><td>其中 PEMS08</td><td>−69.3%<br><small>0/6 组</small></td><td>−115.0%<br><small>0/6 组</small></td></tr><tr><td>对调参后的冻结 W1024（第三轮）</td><td>−11.4%<br><small>16/36 组</small></td><td>−12.2%<br><small>0/36 组</small></td></tr><tr><td>其中 ETTh2</td><td>+33.8%<br><small>12/12 组</small></td><td>−2.6%<br><small>0/12 组</small></td></tr><tr><td>其中 ETTm1</td><td>−15.5%<br><small>0/12 组</small></td><td>−13.1%<br><small>0/12 组</small></td></tr><tr><td>其中 Weather</td><td>+3.8%<br><small>4/6 组</small></td><td>−17.8%<br><small>0/6 组</small></td></tr><tr><td>其中 PEMS08</td><td>−64.8%<br><small>0/6 组</small></td><td>−110.7%<br><small>0/6 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>对调参后的冻结 W1024：</b>在线误差 O 划分高 11.4%（36 组里 16 组在线更好），T 划分高 12.2%（0/36）。判断线“同样长的历史下在线不比冻结差”：按调参后的冻结算，两种划分都不成立；按主表的冻结算，O 划分成立、T 划分不成立（下一条）。只有 ETTh2 的 O 划分在线明显更好（误差低 33.8%）。</li>
+      <li><b>对主表的冻结 W1024：</b>O 划分在线误差低 22.0%（36 组里 24 组），T 划分高 8.9%（13/36）。O 划分的“赢”主要来自 ETTh2（低 53.0%）和 Weather（低 25.0%）；这两处主表的冻结 W1024 训得不好，调参后分别好了 28.0%、22.1%（表 15）。PEMS08 两种划分在线都差得多（误差高 69.3%、115.0%）。</li>
+      <li><b>和表 14 比：</b>表 14 用倍率 1。学习率调小后，对主表的冻结，O 划分从低 9.5% 变成低 22.0%，T 划分从高 21.5% 变成高 8.9%，对在线有利得多，但对调参后的冻结仍然输。</li>
+      <li><b>记忆上限的作用：</b>限制记忆对不限记忆（这次两边都不预热），O 划分误差高 3.0%（对数比 −0.029，差一点没到 −0.03 的判断线），T 划分高 1.3%；36 组里各只有 6 组限制记忆更好。超过 1,024 步的“记忆”有一点用，但不多。</li>
+      <li><b>预热的作用：</b>不限记忆、不预热的在线，对第一轮预热过的同一设置，误差在 O 划分高 0.4%、T 划分高 1.4%：预热在 W96 上作用很小。</li>
+      <li><b>读法和要小心：</b>冻结 W1024 调过参以后，同样 1,024 步的历史，当输入读的冻结模型更好。但在线一方的离线训练没调参（从主表的 W96 出发），这对冻结有利；两边都用主表的训练方式时，O 划分是在线更好。要分出哪种用历史的方式更有效，需要两边都调参再比。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.9 PEMS-BAY 上的训崩，也是学习率太大吗？（第四轮）</h3>
+    <p class="sub">结论：是。PatchTST × PEMS-BAY 的短窗口在线，倍率 1 时 12 条运行里 3 条误差超过冻结 W96 的 10 倍，调小后一条都没有。但调小后在线仍比不更新差：误差比冻结 W96 高 43.8%（O）和 27.5%（T），12 条全是冻结更好。</p>
+    <p class="howto"><b>怎么做：</b>PatchTST × PEMS-BAY，W96，H = 96，Naive、PROCEED 两种在线方法，O、T 两种划分，3 个种子。倍率从 0.03、0.1、0.3、1 里用种子 2024 在验证集上挑，4 个配置都挑了最小的 0.03。倍率 1 的结果用主表的。参照是同样读 96 步、但不更新的冻结 W96。</p>
+    <p class="howto"><b>怎么读（表 18）：</b>前三行是收益中位数（正数表示前者误差更低），下面是前者更好的组数；最后一行是误差超过冻结 W96 10 倍的条数。</p>
+    <div class="tw"><p class="tcap"><b>表 18</b>　PatchTST · PEMS-BAY 的短窗口在线（第四轮）</p><table class="plain num"><thead><tr><th>PatchTST · PEMS-BAY · 在线 W96</th><th>O 划分</th><th>T 划分</th></tr></thead><tbody><tr><td>不调小（倍率 1，主表的做法）对冻结 W96</td><td>−339.4%<br><small>0/6 组</small></td><td>−244.7%<br><small>0/6 组</small></td></tr><tr><td>调小后（倍率 0.03）对冻结 W96</td><td>−43.8%<br><small>0/6 组</small></td><td>−27.5%<br><small>0/6 组</small></td></tr><tr><td>调小后对不调小</td><td>+67.3%<br><small>6/6 组</small></td><td>+63.1%<br><small>6/6 组</small></td></tr><tr><td>误差超过冻结 W96 10 倍的条数（不调小 → 调小后）</td><td>1/6 → 0/6</td><td>2/6 → 0/6</td></tr></tbody></table></div>
+    <ul>
+      <li><b>训崩没了：</b>倍率 1 时误差超过冻结 10 倍的有 3 条（O 划分 1 条、T 划分 2 条），调小后 0 条。按事先写好的读法，支持“原来的极端误差主要来自过大的学习率”。</li>
+      <li><b>但还是比不更新差：</b>调小后对倍率 1，误差低 67.3%（O）和 63.1%（T），12 条全部变好；可对冻结 W96 仍高 43.8% 和 27.5%。倍率 1 时是高 339% 和 245%（误差是冻结的 4.4 倍、3.4 倍）。</li>
+      <li>和 8.1 节 PEMS08 的结果一样：小学习率能防止训崩，但 PatchTST 在这两个变量多的交通数据集上，短窗口在线仍比不更新差。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.10 预测 336 步（第四轮）</h3>
+    <p class="sub">结论：方向和预测 96 步时一样，在线更吃亏一点。调小学习率后，在线 W1024 对冻结 W1024，O 划分误差低 1.3%（按判断线算“不比冻结差”），T 划分高 3.1%（落在中间，不下结论）；T 划分 7 个数据集里有 6 个每条运行都是冻结更好。不调小时在线误差高约 30%。</p>
+    <p class="howto"><b>怎么做：</b>DLinear 跑第三轮的 7 个数据集，W1024，H = 336，O、T 两种划分，ER、PROCEED，3 个种子。倍率从 0.03、0.1、0.3、1 里用种子 2024 在验证集上挑：28 个配置里 21 个挑了 0.03，3 个挑了 1（ETTh2 · O · ER、ETTm1 · O · PROCEED、PEMS08 · O · ER）。冻结 W1024 用主表的，没有重新调参；倍率 1 的在线用 11 月 1 日前跑完、保留下来的那批运行，缺的按规则补跑。判断线同 8.1 节。</p>
+    <p class="howto"><b>怎么读（表 19）：</b>前两列是调小后的在线 W1024 对冻结 W1024，后两列是不调小（倍率 1）的在线对冻结 W1024；正数表示在线误差更低，下面是在线更好的组数。</p>
+    <div class="tw"><p class="tcap"><b>表 19</b>　预测 336 步：在线 W1024 对冻结 W1024（第四轮，只有 DLinear）</p><table class="plain num q7all"><thead><tr><th>数据集（变量数）</th><th>调小后 · O 划分</th><th>调小后 · T 划分</th><th>不调小 · O 划分</th><th>不调小 · T 划分</th></tr></thead><tbody><tr><td>ETTh2（7）</td><td>−530.6%<br><small>0/6 组</small></td><td>+24.5%<br><small>6/6 组</small></td><td>−736.5%<br><small>0/6 组</small></td><td>+9.7%<br><small>5/6 组</small></td></tr><tr><td>ETTm1（7）</td><td>−18.8%<br><small>0/6 组</small></td><td>−1.8%<br><small>0/6 组</small></td><td>−59.5%<br><small>0/6 组</small></td><td>−49.8%<br><small>0/6 组</small></td></tr><tr><td>Weather（21）</td><td>+25.7%<br><small>6/6 组</small></td><td>−9.6%<br><small>0/6 组</small></td><td>+10.9%<br><small>6/6 组</small></td><td>−46.1%<br><small>0/6 组</small></td></tr><tr><td>Solar（137）</td><td>+1.8%<br><small>6/6 组</small></td><td>−21.8%<br><small>0/6 组</small></td><td>−22.0%<br><small>0/6 组</small></td><td>−53.4%<br><small>0/6 组</small></td></tr><tr><td>PEMS08（170）</td><td>+18.0%<br><small>6/6 组</small></td><td>−6.3%<br><small>0/6 组</small></td><td>+16.4%<br><small>3/6 组</small></td><td>−47.5%<br><small>0/6 组</small></td></tr><tr><td>Electricity（321）</td><td>−109.3%<br><small>0/6 组</small></td><td>−2.3%<br><small>0/6 组</small></td><td>−372.1%<br><small>0/6 组</small></td><td>−17.6%<br><small>0/6 组</small></td></tr><tr><td>PEMS-BAY（325）</td><td>+9.3%<br><small>6/6 组</small></td><td>−3.0%<br><small>0/6 组</small></td><td>−24.9%<br><small>0/6 组</small></td><td>−34.9%<br><small>0/6 组</small></td></tr><tr><td><b>全部 7 个</b></td><td>+1.3%<br><small>24/42 组</small></td><td>−3.1%<br><small>6/42 组</small></td><td>−27.2%<br><small>9/42 组</small></td><td>−31.4%<br><small>5/42 组</small></td></tr></tbody></table></div>
+    <ul>
+      <li><b>合起来：</b>调小后，O 划分在线误差低 1.3%（42 组里 24 组在线更好），T 划分高 3.1%（42 组里 6 组）。不调小时分别高 27.2%、31.4%。调小后对不调小，误差低 21.2%（84 组里 73 组变好，另有 9 组挑中的就是倍率 1，结果相同）。</li>
+      <li><b>T 划分：</b>除 ETTh2（在线误差低 24.5%）外，6 个数据集每条运行都是冻结更好，Solar 差得最多（在线误差高 21.8%），Weather 高 9.6%。预测 96 步时（表 9），这 6 个数据集的 T 划分都在 ±2% 以内。猜测：预测 336 步时，一个预测要等 336 步后真实值到齐才能拿来更新，数据变了以后，在线模型要更久才能跟上。</li>
+      <li><b>O 划分：</b>ETTh2 在线误差高 531%（6 组全是冻结更好；ER 挑中的是倍率 1，这 3 条误差超过冻结 10 倍），Electricity 高 109%，ETTm1 高 18.8%；其余 4 个在线更好（Weather 低 25.7%、PEMS08 低 18.0%）。ETTh2 的 O 划分训练段只有 2,880 步，放下 1,024 步输入和 336 步目标后能用的训练样本很少，两边的误差都很大（冻结的 MSE 在 22–24 之间，标准化尺度）。</li>
+      <li><b>要小心：</b>这里只给在线调了倍率，冻结用的是主表的、没调参，对在线有利；只有 DLinear。</li>
+    </ul>
+  </div>
+
+  <div class="explain">
+    <h3>8.11 Electricity 的 O 划分为什么是例外（第三轮的诊断）</h3>
+    <p class="sub">结论：一部分是数据的问题，但不全是。Electricity 有一个变量在 O 划分的训练段里几乎不变，标准化后它的误差被放大，占了主表冻结模型测试误差的 98%，预热造成的损失也几乎全在它身上。可在其余 320 个变量上，不预热、只在测试期更新的在线模型，误差也比冻结高 28%–55%。去掉这个变量重跑的实验（实验 E）已安排，结果还没回来。</p>
+    <p class="howto"><b>怎么查：</b>只看 DLinear · Electricity · O · 种子 2024，用第二轮挑中的倍率（ER 0.1、PROCEED 0.03）。① 算训练段（前 20%，5,260 步）里每个变量的标准差，找出不到全体中位数 1% 的变量；② 把第二轮的预热原样重放一遍，得到预热后的冻结副本，按变量拆开它在测试期的误差；③ 另跑一条不预热的在线：从主表的冻结 W1024 出发，只在测试期更新。</p>
+    <p class="howto"><b>怎么读（表 20）：</b>每格是对主表冻结 W1024 的收益（正数表示误差更低）；左列算全部 321 个变量，右列去掉编号 146 的变量、只算其余 320 个。每格只有一条运行。</p>
+    <div class="tw"><p class="tcap"><b>表 20</b>　Electricity · O：去掉一个几乎不变的变量前后（第三轮诊断）</p><table class="plain num"><thead><tr><th>对主表的冻结 W1024（DLinear · Electricity · O · 种子 2024）</th><th>全部 321 个变量</th><th>去掉编号 146，其余 320 个</th></tr></thead><tbody><tr><td>预热后的冻结副本 · ER（倍率 0.1）</td><td>−165.5%</td><td>−1.2%</td></tr><tr><td>预热后的冻结副本 · PROCEED（倍率 0.03）</td><td>−220.6%</td><td>−6.1%</td></tr><tr><td>不预热的在线 · ER（倍率 0.1）</td><td>−60.6%</td><td>−55.2%</td></tr><tr><td>不预热的在线 · PROCEED（倍率 0.03）</td><td>−20.1%</td><td>−28.3%</td></tr></tbody></table></div>
+    <ul>
+      <li><b>编号 146 的变量</b>（数据里的列名就是 146）<b>：</b>训练段标准差只有 0.91，全体变量的中位数是 207.9（它约为中位数的 0.4%），321 个变量里只有它低于 1%。标准化要除以这个标准差，测试期它只要稍有变化，标准化后的数值就很大。主表冻结模型在测试期的 MSE 是 9.14，去掉这一个变量只有 0.18：98.1% 的平方误差来自它。至少在这条运行上，Electricity · O 的误差几乎就是这一个变量的误差。</li>
+      <li><b>预热：</b>预热后的冻结副本，在全部变量上误差是主表冻结的 2.66 倍（ER）和 3.21 倍（PROCEED），误差增加的部分 99.9% 以上在这个变量上。只看其余 320 个变量，预热只让误差高 1.2%（ER）和 6.1%（PROCEED）。</li>
+      <li><b>测试期更新：</b>不预热的在线，在全部变量上误差比主表冻结高 60.6%（ER）和 20.1%（PROCEED）；只看其余 320 个变量也高 55.2% 和 28.3%。也就是说，其余 320 个变量合起来，测试期更新也让误差变高（只有一条运行，看不出是多数变量变差还是少数变量差得多），不能全怪编号 146 的变量。表 11 里 Electricity 的 ② 是 +51%，那是和已被预热拖坏的副本比，和这里不矛盾。</li>
+      <li><b>猜测：</b>在线更新的损失把所有变量的误差加在一起，编号 146 的变量占了绝大部分，参数主要朝着减小它的误差去调；如果各变量共用参数，其余 320 个变量就会被带偏。</li>
+      <li><b>实验 E（已安排，结果还没回来）：</b>E1 扫一遍 10 个数据集、两种划分，看还有没有别的几乎不变的变量；E2 去掉编号 146 的变量（输入、损失、评分都不用它），按第三轮的做法重跑 Electricity · O；E3 同样去掉它，按主表的做法重跑冻结 W1024 和在线 W96，和主表同一格比。</li>
+    </ul>
+  </div>
+  <p class="callout"><b>读这些结果时要记住：</b>窗口只有 W96 和 W1024；预测长度大多是 96，只有 8.10 节是 336；数据集最多 7 个（第一轮 6 组骨干 × 数据集、第二轮 4 组、第三轮 9 组）。第一、二轮只调了在线学习率，冻结模型用的是主表的训练方式；第三轮给冻结 W1024 也调了参，合起来只好了 1.3%（O）和 0.0%（T），和主实验里另一套“调参轨道”的结果（ETT、Weather 上每个窗口单独选学习率并早停，冻结 W1024 单独调能再好 1%–2%）同一量级，但个别数据集差别很大（表 15）。中位数和重抽样区间只作描述，不是严格的统计检验；学习率为什么重要、O 划分为什么有利，都还有猜测的成分。还在等的：Electricity 去掉编号 146 的变量重跑（实验 E，已安排，结果还没回来）。</p>
+</section>
+
+<section class="sec" id="claims">
+  <div class="head"><p class="eyebrow">第 9 节 · 结论</p><h2>现在能说什么，还不能说什么</h2></div>
+  <div class="claims">
+    <div>
+      <h3><span class="mark-yes">能说</span>在这次的训练预算和覆盖范围内</h3>
+      <ul>
+        <li>短窗口在线学习总体上没有打败长窗口冻结模型。</li>
+        <li>传统划分下，15 个中位数比较全部是冻结更好（表 2）；其中对 W512–W1024 的 9 个，按数据集重抽样也稳定是冻结更好，10 个数据集里在线更好的最多 1 个。</li>
+        <li>在线式划分下有输有赢（表 1）：对 W512、W720 在线输；对 W1024、W2048，ER、PROCEED 与冻结基本打平；对 W4096 在线赢，但主要因为这一档冻结模型本身变差。按数据集重抽样，这些输赢都不稳。按数据集看（表 5，只看 ER 对 W1024 这个切片），ETT 四个和北京（都是 7 个变量）大多偏向在线，Weather、Solar、PEMS08、Electricity、PEMS-BAY（21–325 个变量）都偏向冻结。</li>
+        <li>继续更新在部分运行里能让误差低几个百分点，但个别运行会训崩，误差大到离谱（图 2）。</li>
+        <li>在线模型离线训练更省，部署时每次预测的用时是冻结模型的 3–7 倍（图 4）。</li>
+        <li>在线学习率影响很大（第 8 节表 7–9，前两轮，H = 96）：调小后，长窗口模型加更新基本不再比不更新差，7 个数据集合起来，在线误差比冻结在 O 划分低 7.4%、在 T 划分高 0.7%；Electricity 的 O 划分例外。PEMS08 上误差超过冻结 10 倍的运行也没有了，PEMS-BAY 上也一样（表 18）。</li>
+        <li>冻结模型也认真调参后（第三轮），长窗口模型加小学习率的更新仍不比不更新差：在线 W1024 的误差比调参后的冻结 W1024 在 O 划分低 3.7%、T 划分低 0.7%（表 15）；ETTh2、Electricity 的 O 划分例外。</li>
+        <li>O 划分比 T 划分对在线有利，不是因为测的时间段不同（只看每条序列最后约 20%，O 划分仍比 T 划分对在线有利得多：长窗口在线误差低 13%、T 划分打平（表 11）；主表的短窗口在线对冻结 W1024 是 ER 0.0%、PROCEED −1.0%，T 划分是 −24.7%、−23.3%），而是因为 O 划分的冻结模型只用了最早 20% 的数据：用前 75% 重训一次，冻结模型在最后 20% 上反而比在线好，在线误差高 8.0%（表 16）。</li>
+        <li>同样 1,024 步的历史下，调参后的冻结 W1024 比记忆限制在 1,024 步的在线 W96 误差低：在线误差高 11.4%（O）、12.2%（T，36 组全是冻结更好）（表 17）。但在线一方的离线训练没调参；两边都用主表的训练方式时，O 划分是在线好 22.0%。</li>
+        <li>预测 336 步时（只有 DLinear，表 19），调小学习率的在线 W1024 对冻结 W1024：O 划分在线误差低 1.3%，T 划分高 3.1%，方向和预测 96 步一样，在线更吃亏一点。</li>
+      </ul>
+    </div>
+    <div>
+      <h3><span class="mark-no">还不能说</span>现有数据撑不住的</h3>
+      <ul>
+        <li>在线的好处是不是都能靠重训拿到、哪个更划算。重训只在 O 划分、W1024、H = 96 上做了一次（在 75% 处），PEMS-BAY 上在线仍略好；没有比同样计算量下定期重训和在线更新的成本。</li>
+        <li>各方法都调到最优以后的排名。第三轮只给冻结 W1024 和从它出发的在线调了参；主表的其他窗口、短窗口在线 W96 的离线学习率，还是所有窗口共用一个。</li>
+        <li>在线更新的步子多小才合适。第三轮加了 0.01、0.003，最小的 0.003 在 36 个配置里被挑了 23 个，再小会怎样还没试。</li>
+        <li>Electricity 的 O 划分为什么例外。第三轮的诊断指向一个几乎不变的变量，但其余 320 个变量上在线也更差（8.11 节）；去掉它重跑的实验 E 已安排，结果还没回来。</li>
+        <li>同样长的历史下，当输入读和靠更新记进参数哪个更有效。表 17 里在线一方的离线训练没调参，两边都调参的比较还没做。</li>
+        <li>别的预测长度和骨干。预测 24 步没做补充实验；预测 336 步只做了 DLinear。</li>
+        <li>严格的统计显著性。按数据集重抽样只是粗略估计：数据集只有 7–10 个；同一数据集上的配对共用同一段测试数据，彼此相关；每次运行内部，相邻时刻的预测区间也互相重叠。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="discussion">
+  <div class="head"><p class="eyebrow">第 10 节 · 讨论</p><h2>想一起讨论的几个问题</h2></div>
+  <p class="note">每个预测时刻的误差记录都保留着，问题 3、4 用现有结果还能继续分析；问题 2、4、5、6 在第 8 节的补充实验里有了新结果。</p>
+  <ol class="qs">
+    <li><div><h3>我们想讲哪种结论？</h3><p>实用结论（固定预算下选哪种部署方式）有数据支持。机制结论（是历史在起作用还是更新在起作用），第三、四轮给了更多证据（见问题 5、6），但范围还窄：最多 7 个数据集，大多是 W1024、H = 96。</p></div></li>
+    <li><div><h3>个别运行误差暴涨是怎么回事？和学习率有关吗？</h3><p>是个别在线运行“训崩”了：更新时参数跑飞，之后的预测误差大到离谱。主表 1,079 条短窗口在线运行里，有 16 条的 MSE 超过冻结模型的 10 倍，全是 PatchTST：多数是 PROCEED 在 PEMS-BAY、PEMS08 上，另有 5 条 Naive 在 PEMS08 上。最极端的一条是 PEMS-BAY · PatchTST · PROCEED · T 划分 · H = 96 · 种子 2025：在线 MSE 1.13 × 10<sup>11</sup>，同一配置的冻结只有 0.55。这一条就占了“PROCEED 对 W512（T 划分）收益均值 −1.2 × 10<sup>11</sup>%”的 99.7%；O 划分那个 −2,595% 的均值，95% 来自 PEMS08 · PatchTST 的三个种子。所以全页用中位数，均值只当提醒。和学习率有关：补充实验把在线学习率调小后，PEMS08 上原来 10 条误差超过冻结 10 倍的运行一条都没有了（最大从约 37,693 倍降到 3.2 倍，见 8.1 节）。第四轮在 PEMS-BAY 上也验证了（8.9 节、表 18）：PatchTST 不调小时 12 条里 3 条误差超过冻结 W96 的 10 倍，调小后一条都没有；但这 12 条仍都比冻结 W96 差（中位数高 28%–44%）。</p></div></li>
+    <li><div><h3>W4096 的“赢”主要是哪个原因？（部分已核对）</h3><p>只用同时有 W4096 的 87 组配对重读：在线对 W2048 的收益是 −7.5% 到 +4.9%（基本打平），对 W4096 是 +17.0% 到 +32.1%（在线误差低 17%–32%）；同一批配对上，冻结 W4096 的 MSE 是 W2048 的 1.24 倍。所以主要是冻结 W4096 本身变差，数据集变少只解释了一小部分；为什么变差（样本少、参数多、不早停）还是推测。按数据集重抽样，对 W4096 这三格的 95% 区间也都略跨过 0。另一组现成结果（ETT、Weather 上每个窗口单独选学习率并早停）里，冻结 W4096 在 T 划分上能好 16%，也说明它在主表的训练方式下没训好。详见第 3 节和表 3。</p></div></li>
+    <li><div><h3>变量多的数据集在线全输，是因为变量多吗？</h3><p>主表 ER 对 W1024 这个切片里（表 5），7 个变量的数据集（ETTh1、ETTh2、ETTm1、ETTm2、北京）在 O 划分的 10 格里，在线赢 9 格；变量更多的五个数据集（Weather 21 个、Solar 137 个、PEMS08 170 个、Electricity 321 个、PEMS-BAY 325 个）有数据的 8 格，在线全输。别的切片是不是也这样，还没查。这五个同时也是气象、光伏、交通、电力数据，“变量多”也可能只是数据类型不同的代理。可能的原因：变量多时每次更新的幅度、共用的学习率、缺测和零值的处理方式。补充实验里，长窗口在线（表 9，在线 W1024 对冻结 W1024）：学习率调小后，这五个数据集合起来，O 划分在线误差低 7.4%（Electricity 除外），T 划分高 1.3%；ETTh2、ETTm1（7 个变量）上 T 划分在线误差低 3.8%。短窗口在线（W96）调小学习率后，第一轮在 Weather、PEMS08 上和冻结 W1024 比过（DLinear）：Weather 的 O 划分在线误差低 27%、T 划分高 11%；PEMS08 高 64%（O）和 94%（T）。第四轮的 PEMS-BAY（PatchTST，只能和冻结 W96 比）仍高 44%（O）和 28%（T）（表 18）。另外，Electricity 的 O 划分有一个几乎不变的变量，冻结模型测试误差的 98% 来自它（8.11 节）；主表这一格去掉它以后怎样，实验 E 会看。</p></div></li>
+    <li><div><h3>O 和 T 结论不同，是训练量、测试时间段还是测试期长度在起作用？（已有结果）</h3><p>两种划分同时改变了训练量、时间段和测试期长度。时间段这一条已经可以排除：O 划分的测试期占整条序列的后 75%，切成 10 段后，最后 3 段大约就是序列的最后 22.5%，和 T 划分的测试期（最后 20%）差不多是同一段时间。只在这一段上比，主表里在线对冻结 W1024 的收益是 ER 0.0%、PROCEED −1.0%、Naive −13.7%，仍远好于 T 划分的 −24.7%、−23.3%、−41.5%；补充实验的长窗口在线也一样（表 11：这一段上 O 划分在线误差低 13%，T 划分打平）。所以更可能是训练量和新旧：O 划分的冻结模型只见过前 20% 的数据，越往后越旧。第四轮做了检验（8.7 节、表 16）：用前 75% 重训一次冻结模型，在最后 20% 上，一路更新的在线误差反而比它高 8.0%（54 组里 42 组冻结更好）。T 划分的冻结模型本来就用了 60%–70% 的数据，所以在线在 T 划分没什么可补的。测试期长度这一条还没单独分开。</p></div></li>
+    <li><div><h3>怎么把“历史”和“更新”分开？（已有结果）</h3><p>2×2 和限制记忆在第 8.3、8.5 节（表 12、表 14）：学习率调小后，更新和长窗口的好处大致叠加；同样长的历史下，学习率没调小的在线模型总体输给冻结 W1024（在线误差高 13%）。第三、四轮又补了三点：① 换成小学习率以后，同样 1,024 步的历史，调参后的冻结 W1024 仍比限制记忆的在线 W96 好，在线误差高 11.4%（O）和 12.2%（T）；但在线一方的离线训练没调参，对主表的冻结，O 划分是在线好 22.0%（8.8 节、表 17）；② 在长窗口模型上再加小学习率的更新，还能好一点：O 划分误差低 3.7%，T 划分低 0.7%（8.6 节、表 15）；③ 超过 1,024 步的记忆作用不大：限制记忆只让误差高 1%–3%（表 17）。读法：更新在长窗口上有小幅好处，而在 O 划分，在线的优势重训一次冻结模型也能拿到（8.7 节）；同样长的历史下，当输入读和靠更新记进参数哪个更有效，要两边都调参再比。可能的后续（都还没安排）：</p>
+      <ul>
+        <li>同样长的历史下两边都调参再比：在线 W96 的离线训练也在验证集上选学习率、早停，再和调参后的冻结 W1024 比。</li>
+        <li>定期重训和在线更新比成本：同样的计算量下，每隔多久重训一次冻结模型能追上在线。</li>
+        <li>倍率再往下试（0.003 在第三轮被挑得最多）。</li>
+        <li>每个窗口、每个方法分别调学习率（推迟的调参方案），只在需要给方法排名时再做。</li>
+      </ul></div></li>
+  </ol>
+</section>
+
+<section class="sec" id="details">
+  <div class="head"><p class="eyebrow">第 11 节 · 附录</p><h2>背景与参考</h2></div>
+  <div class="details">
+    <details class="more">
+      <summary>前一轮研究：用过去的误差修正冻结模型的预测（10 月 25–27 日）</summary>
+      <div class="body">
+        <p>2,160 组运行：12 个模型 × 10 个数据集 × 3 种输入长度 × H = 4、24 × 3 个种子。问题是：输入变长能不能消掉误差里的周期结构？固定的周期模板、近期误差还能修正多少？这一轮没有测试在线更新参数，和主实验分开报告。数据集和主实验不完全相同（有 Traffic、Illness），表里的“收益”是各行自己的对比（比如长输入对短输入），不是本页的在线对冻结。它只是背景：更长的输入有时有用、有时没用。</p>
+        <p class="tcap"><b>表 21</b>　前一轮研究的主要结果</p>
+        <div class="tw"><table class="plain num"><tbody>
+          <tr><th scope="row">输入变长</th><td>同一个模型，长输入对短输入：Electricity 和 Traffic 各 72 组配对全部变好（MSE 收益中位数 +25.85%、+28.35%），但全部 720 组配对里只有 365 组变好，所以输入变长并不总有用。</td></tr>
+          <tr><th scope="row">固定周期模板</th><td>在验证集上拟合、用到测试集：1,944 组里只有 393 组变好，收益中位数 −2.32%。</td></tr>
+          <tr><th scope="row">再加近期误差</th><td>在模板之外的额外收益中位数约 +0.01%；MixLinear 是局部例外。</td></tr>
+          <tr><th scope="row">误差形状</th><td>2,160 组里有 1,701 组，预测窗口的均值偏移占了总 MSE 的一半以上。但有偏移不等于这个偏移能被预测。</td></tr>
+          <tr><th scope="row">Illness</th><td>216 组数据太短、不够校准：属于无法评估，不是失败。</td></tr>
+        </tbody></table></div>
+        <p class="note">另有一个用测试集前 2/3 校准、后 1/3 评分的协议（2,052 组），用到了测试集，只能算探索，不能当确认。880 组训练到了 50 轮上限，590 组的最佳验证点就在第 50 轮，所以这轮结果也不是 12 个模型调优后的排名。</p>
+      </div>
+    </details>
+    <details class="more">
+      <summary>实验范围与 11 月 1 日的缩减</summary>
+      <div class="body">
+        <ul class="points">
+          <li>主实验：10 个数据集 × 2 个骨干 × 2 种划分 × 3 个预测长度 × 3 个种子。冻结窗口 6 档（W = 96、512、720、1,024、2,048、4,096），在线方法 3 种（W = 96），每种都配一个同起点的冻结副本。</li>
+          <li>11 月 1 日为了控制预算缩小了范围：每个窗口、每个方法分别调参的方案和长窗口在线实验推迟了（后来的补充实验做了其中一小部分：W1024 的长窗口在线、W1024 冻结的调参，见第 8 节）。这是按预算砍的，不是看了测试结果再删的；已经跑完的部分都保留。</li>
+          <li>受资源限制跑不了的窗口单列排除，没有为了放得下而改 batch、精度或训练轮数。</li>
+        </ul>
+      </div>
+    </details>
+    <details class="more">
+      <summary>数据处理</summary>
+      <div class="body">
+        <ul class="points">
+          <li>标准化只在训练集上拟合；损失和评分只算真实观测到的目标值。</li>
+          <li>当作真实数据保留的零值：Solar 夜间、PEMS08 流量。当作缺测处理：PEMS-BAY 的零速度、Weather 的 −9999。</li>
+          <li>北京：Quotsoft 城市级数据里的北京（全市一组数，不是单个站点），7 个变量（AQI、PM2.5、PM10、SO2、NO2、O3、CO），2014-05-13 到 2018-06-20 共 36,000 个小时，按北京时间处理。输入只做因果的前向填充，开头的缺口用训练集均值补。其中 10 天的原始文件缺失，单独标记，不算作实测缺测。</li>
+        </ul>
+      </div>
+    </details>
+    <details class="more">
+      <summary>术语表</summary>
+      <div class="body">
+        <div class="tw"><table class="plain"><tbody>
+          <tr><th scope="row">O / T 划分</th><td>在线式（20/5/75）和传统（60–70/10–20/20）两种训练/验证/测试划分。</td></tr>
+          <tr><th scope="row">固定预算设置</th><td>主表和各对照用的训练方式。另有一套“每个窗口、每个方法分别选学习率并早停”的调参方案，已推迟（第三轮只给 W1024 做了一部分）。</td></tr>
+          <tr><th scope="row">倍率</th><td>补充实验里，在线更新的学习率 = 离线学习率 × 倍率。倍率 1 就是主表的做法：在线更新和离线训练步子一样大。</td></tr>
+          <tr><th scope="row">三种冻结 W1024</th><td>主表的冻结：主表的训练方式（所有窗口共用一个学习率、训满 50 轮、取最后一轮）。调参后的冻结：第三轮，学习率在验证集上选、早停。重训的冻结：第四轮，用序列前 75% 重新训练，只在最后 20% 上评分。</td></tr>
+          <tr><th scope="row">记忆上限</th><td>让在线模型部署后只“记得”最近 1,024 步（离线训练用过的数据不算）：两个副本错开交替重启，每 832 步回到训练好的检查点（第 8.5、8.8 节）。</td></tr>
+          <tr><th scope="row">预热</th><td>在线模型在验证期就开始边预测边更新，测试期接着更新；验证期这一段叫预热（不是学习率 warm-up）。冻结模型不预热。</td></tr>
+          <tr><th scope="row">同起点冻结</th><td>测试开始时从在线模型复制出来、之后不再更新的那一份（对照 2，英文 matched-frozen）。</td></tr>
+          <tr><th scope="row">K(t)</th><td>在线模型从验证期预热开始、到时刻 t 为止一路用过的数据跨度（训练集两边都用过，不算在内）。</td></tr>
+          <tr><th scope="row">同等历史比较</th><td>找窗口 W ≥ K(t) 的最短冻结模型来比（对照 3，英文 F-cover）。</td></tr>
+          <tr><th scope="row">收益</th><td>(冻结误差 − 在线误差) ÷ 冻结误差 × 100%，正数表示在线更好。</td></tr>
+          <tr><th scope="row">配对</th><td>同一数据集、骨干、划分、预测长度、种子、在线方法下的一个在线运行和一个冻结运行，在共同的预测起点上评分，得到一个收益值。每格最多 180 组（10 × 2 × 3 × 3）。</td></tr>
+        </tbody></table></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>2026 年 11 月 9 日根据已完成实验的逐配置结果整理。主表和三个对照没有新跑实验，W4096 一段的固定数据集比较和对照 3 的分数据集说明，是用这些结果重新统计的。“补充实验”一节是 11 月 5–8 日新跑的四轮，实验 E 的结果还没回来。中位数只作描述。</footer>
+</main>
+<script>
+(function () {
+  var tip = document.createElement('div');
+  tip.className = 'tip'; tip.hidden = true; tip.setAttribute('role', 'tooltip');
+  document.body.appendChild(tip);
+  function place(x, y) {
+    var r = tip.getBoundingClientRect();
+    var nx = x + 14, ny = y + 14;
+    if (nx + r.width > window.innerWidth - 8) nx = x - r.width - 14;
+    if (ny + r.height > window.innerHeight - 8) ny = y - r.height - 14;
+    tip.style.left = Math.max(8, nx) + 'px';
+    tip.style.top = Math.max(8, ny) + 'px';
+  }
+  function show(el, x, y) {
+    var t = el.getAttribute('data-tip');
+    if (!t) return;
+    tip.textContent = t; tip.hidden = false; place(x, y);
+  }
+  function target(e) { return e.target && e.target.closest ? e.target.closest('[data-tip]') : null; }
+  document.addEventListener('pointerover', function (e) { var el = target(e); if (el) show(el, e.clientX, e.clientY); });
+  document.addEventListener('pointermove', function (e) {
+    if (tip.hidden) return;
+    if (target(e)) place(e.clientX, e.clientY); else tip.hidden = true;
+  });
+  document.addEventListener('pointerout', function (e) { var el = target(e); if (el && !el.contains(e.relatedTarget)) tip.hidden = true; });
+  document.addEventListener('focusin', function (e) { var el = target(e); if (el) { var r = el.getBoundingClientRect(); show(el, r.right, r.top); } });
+  document.addEventListener('focusout', function () { tip.hidden = true; });
+  window.addEventListener('scroll', function () { tip.hidden = true; }, { passive: true });
+})();
+</script>

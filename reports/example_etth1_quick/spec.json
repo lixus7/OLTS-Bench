@@ -1,0 +1,60 @@
+{
+  "common_W": {
+    "O": 1024,
+    "T": 4096
+  },
+  "datasets": [
+    "ETTh1"
+  ],
+  "frozen_windows": {
+    "O": [
+      96,
+      512,
+      720,
+      1024
+    ],
+    "T": [
+      96,
+      512,
+      720,
+      1024,
+      2048,
+      4096
+    ]
+  },
+  "horizons": [
+    96
+  ],
+  "keep_predictions": false,
+  "lr_grid": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "lr_selection_seed": 2024,
+  "matched_frozen": true,
+  "max_epochs": 50,
+  "min_train_origins": 1024,
+  "models": [
+    "DLinear"
+  ],
+  "multiplier_selection_seed": 2024,
+  "name": "etth1_quick",
+  "online_methods": [
+    "Naive",
+    "ER",
+    "PROCEED"
+  ],
+  "online_multipliers": [
+    1.0
+  ],
+  "online_window": 96,
+  "seeds": [
+    2024
+  ],
+  "splits": [
+    "O",
+    "T"
+  ],
+  "track": "C"
+}

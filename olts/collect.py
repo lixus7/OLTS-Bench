@@ -16,8 +16,13 @@ STREAM_COLS = ['job', 'evaluation', 'dataset', 'model', 'split', 'H', 'seed', 'm
 
 def collect(run):
     run = Path(run)
+    # Only the jobs of the current plan: a job left from an earlier choice (for example a different
+    # learning rate after --retry-failed) must not be mixed into the tables.
+    wanted = set(read(run / 'plan_jobs.json')) if (run / 'plan_jobs.json').exists() else None
     fits, streams = [], []
     for done in sorted((run / 'jobs').glob('*/DONE.json')):
+        if wanted is not None and done.parent.name not in wanted:
+            continue
         r = read(done)
         c = r['configuration']
         if c['kind'] == 'fit':

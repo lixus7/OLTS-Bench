@@ -1,7 +1,7 @@
 """Dataset registry and the two split protocols.
 
 The boundaries below reproduce the main study exactly: they were checked against
-the number of TEST forecast origins of all 78 delivered (dataset, split, H) scenarios.
+the number of TEST forecast origins of all 60 delivered (dataset, split, H) scenarios.
 
 O ("online" split, 20/5/75):  TRAIN = int(0.2 N), TEST = int(0.75 N), VALIDATION = the rest.
 T ("traditional" split):      TRAIN = int(r N) with r = 0.6 (ETT, PEMS08) or 0.7 (Weather,
