@@ -1,0 +1,57 @@
+{
+  "_comment": "Like etth1_quick on ETTh2 (same split sizes and windows as ETTh1). About 15 minutes on one GPU. The study ran this configuration, so scripts/compare_with_study.py can check it.",
+  "name": "etth2_quick",
+  "datasets": [
+    "ETTh2"
+  ],
+  "models": [
+    "DLinear"
+  ],
+  "splits": [
+    "O",
+    "T"
+  ],
+  "horizons": [
+    96
+  ],
+  "seeds": [
+    2024
+  ],
+  "frozen_windows": {
+    "O": [
+      96,
+      512,
+      720,
+      1024
+    ],
+    "T": [
+      96,
+      512,
+      720,
+      1024,
+      2048,
+      4096
+    ]
+  },
+  "common_W": {
+    "O": 1024,
+    "T": 4096
+  },
+  "online_window": 96,
+  "online_methods": [
+    "Naive",
+    "ER",
+    "PROCEED"
+  ],
+  "matched_frozen": true,
+  "lr_grid": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "lr_selection_seed": 2024,
+  "track": "C",
+  "online_multipliers": [
+    1.0
+  ]
+}

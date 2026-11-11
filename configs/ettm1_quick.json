@@ -1,0 +1,59 @@
+{
+  "_comment": "Like etth1_quick on ETTm1 (15-minute data, 4x longer than ETTh1): windows up to W4096 in both splits, training origins aligned to W4096 as in the study. Roughly 1 hour on one GPU with --jobs-per-gpu 4 (estimate), less on several GPUs. The study ran this configuration.",
+  "name": "ettm1_quick",
+  "datasets": [
+    "ETTm1"
+  ],
+  "models": [
+    "DLinear"
+  ],
+  "splits": [
+    "O",
+    "T"
+  ],
+  "horizons": [
+    96
+  ],
+  "seeds": [
+    2024
+  ],
+  "frozen_windows": {
+    "O": [
+      96,
+      512,
+      720,
+      1024,
+      2048,
+      4096
+    ],
+    "T": [
+      96,
+      512,
+      720,
+      1024,
+      2048,
+      4096
+    ]
+  },
+  "common_W": {
+    "O": 4096,
+    "T": 4096
+  },
+  "online_window": 96,
+  "online_methods": [
+    "Naive",
+    "ER",
+    "PROCEED"
+  ],
+  "matched_frozen": true,
+  "lr_grid": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "lr_selection_seed": 2024,
+  "track": "C",
+  "online_multipliers": [
+    1.0
+  ]
+}

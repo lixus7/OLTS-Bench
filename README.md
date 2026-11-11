@@ -8,6 +8,8 @@ An *online* model reads only the last 96 steps, but after deployment it keeps up
 
 This repository contains the study's code, its released scores and reports, and a short path for newcomers: run one dataset with a few fast models on your own GPUs, then turn the output into a report like ours.
 
+**New here? Start with the [exercise plan](docs/STUDENT_TASKS.md).** Over about two weeks it takes you from installation to one small experiment of your own and a report, with what to hand in at each step.
+
 ## Results so far
 
 Full study: 10 datasets, DLinear and PatchTST, horizons 24/96/336, 3 seeds, two splits. Each number is a median over pairs of runs: how much lower the online model's MSE is than the frozen model's (negative = the frozen model is better). Details and caveats: [docs/RESULTS.md](docs/RESULTS.md).
@@ -46,8 +48,8 @@ Then open `runs/etth1_quick/results/report_en.html` (or `report_zh.html`). Step-
 |---|---|
 | `olts/` | The benchmark: data preparation, engine (OnlineTSF kernels plus one causal scheduler), worker, planner, local multi-GPU runner, analysis, draft report |
 | `third_party/OnlineTSF` | Upstream OnlineTSF as a git submodule, pinned to commit `0a86461`, the commit the study used |
-| `configs/` | Experiment specs: `smoke`, `etth1_quick`, `etth1_student`, `etth1_small_lr`, `etth1_tuned_w1024` |
-| `docs/` | [GUIDE](docs/GUIDE.md) (step by step), [PROTOCOL](docs/PROTOCOL.md) (exact rules), [REPORTING](docs/REPORTING.md) (how to write the report), [RESULTS](docs/RESULTS.md) (findings) |
+| `configs/` | Experiment specs: `smoke`, `etth1_quick`, `etth1_student`; extensions `etth2_quick`, `ettm1_quick`, `etth1_h336_quick`, `etth1_small_lr`, `etth1_tuned_w1024` |
+| `docs/` | [STUDENT_TASKS](docs/STUDENT_TASKS.md) (exercises for newcomers), [GUIDE](docs/GUIDE.md) (step by step), [PROTOCOL](docs/PROTOCOL.md) (exact rules), [REPORTING](docs/REPORTING.md) (how to write the report), [RESULTS](docs/RESULTS.md) (findings) |
 | `reports/full_study/` | The study's reports (Chinese): the full brief and the two-page summary |
 | `reports/example_etth1_quick/` | The draft report produced by `configs/etth1_quick.json` on our machine |
 | `results/full_study/` | Per-run scores of the main study (CSV); they reproduce its Tables 1, 2, 4 and Figure 2 |

@@ -2,6 +2,7 @@
 
     python -m olts.analyze runs/etth1_quick                      # a local run (reads results/streams.csv)
     python -m olts.analyze --streams results/full_study/streams_main.csv --out results/full_study/check
+    python -m olts.analyze --streams results/full_study/streams_main.csv --where dataset=ETTh1 --where H=96 --out runs/study_etth1
 
 Definitions
   pair       two TEST runs that share dataset, model, split, H and seed and are scored on the same
@@ -39,6 +40,22 @@ def load_streams(path):
                     r[k] = None
             rows.append(r)
     return [r for r in rows if r.get('evaluation', 'TEST') == 'TEST']
+
+
+def apply_where(rows, where):
+    """Keep rows matching every KEY=VALUE condition, e.g. dataset=ETTh1, H=96, model=DLinear."""
+    for cond in where or ():
+        k, v = cond.split('=', 1)
+        def ok(r):
+            x = r.get(k)
+            if isinstance(x, (int, float)):
+                try:
+                    return float(x) == float(v)
+                except ValueError:
+                    return False
+            return str(x) == v
+        rows = [r for r in rows if ok(r)]
+    return rows
 
 
 def gain(ref, online):
@@ -85,11 +102,13 @@ def bootstrap(by_dataset, B=2000, seed=7):
     return [round(100 * meds[int(0.025 * B)], 1), round(100 * meds[int(0.975 * B) - 1], 1)]
 
 
-def analyze(run=None, streams_csv=None, out=None, online_window=96):
+def analyze(run=None, streams_csv=None, out=None, online_window=96, where=None):
     run = Path(run) if run else None
     streams_csv = Path(streams_csv) if streams_csv else run / 'results' / 'streams.csv'
     out = Path(out) if out else run / 'results'
-    rows = load_streams(streams_csv)
+    rows = apply_where(load_streams(streams_csv), where)
+    if not rows:
+        raise SystemExit(f'no TEST stream left in {streams_csv} after --where {where}')
     key = lambda r: (r['dataset'], r['model'], r['split'], r['H'], r['seed'])
     frozen = defaultdict(dict)        # key -> W -> row
     matched = {}                      # (key, method) -> row
@@ -207,7 +226,9 @@ if __name__ == '__main__':
     ap.add_argument('--streams', help='a streams.csv outside a run folder')
     ap.add_argument('--out', help='output folder (default RUN/results)')
     ap.add_argument('--online-window', type=int, default=96)
+    ap.add_argument('--where', action='append', metavar='KEY=VALUE',
+                    help='keep only matching streams; repeatable, e.g. --where dataset=ETTh1 --where H=96')
     a = ap.parse_args()
     if not a.run and not a.streams:
         ap.error('give a run folder or --streams')
-    analyze(a.run, a.streams, a.out, a.online_window)
+    analyze(a.run, a.streams, a.out, a.online_window, a.where)

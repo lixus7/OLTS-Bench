@@ -2,7 +2,7 @@
 
 # Getting started
 
-This guide takes you through the study's protocol on your own GPUs: one dataset and a few fast models. Along the way you learn what every output means. At the end you write a report like the ones in [reports/full_study](../reports/full_study/).
+This guide takes you through the study's protocol on your own GPUs: one dataset and a few fast models. Along the way you learn what every output means. At the end you write a report like the ones in [reports/full_study](../reports/full_study/). If you are new to the project, the [exercise plan](STUDENT_TASKS.md) says what to run and hand in; this guide explains how.
 
 **You need:**
 - Linux;
@@ -144,6 +144,8 @@ This lines up each of your TEST streams with the study's score for the same conf
 | `etth1_student.json` | DLinear + PatchTST, 3 seeds, both splits: everything the main study ran on ETTh1 at H = 96 | 112 fits, 132 TEST streams; roughly 1–2 hours on four A100s (estimate) |
 | `etth1_small_lr.json` | DLinear, 3 seeds; online LR = offline LR x multiplier, the multiplier picked on validation from 0.03, 0.1, 0.3, 1 (idea of supplementary round 1) | 56 fits, 24 VALIDATION and 66 TEST streams |
 | `etth1_tuned_w1024.json` | DLinear, 3 seeds; long-window online W1024 against a properly tuned frozen W1024: 5 LRs, early stopping (idea of supplementary round 3) | 20 fits, 24 VALIDATION and 30 TEST streams |
+| `etth2_quick.json`, `etth1_h336_quick.json` | like the quick run on ETTh2, or at horizon 336; the study ran both, so the comparison script checks them | 32 fits, 22 TEST streams each |
+| `ettm1_quick.json` | like the quick run on ETTm1 (4x longer data, windows up to W4096 in both splits); the study ran it | 38 fits, 24 TEST streams; about 1 hour on one GPU (estimate) |
 
 Fields you can set in your own spec (anything missing takes the default):
 
