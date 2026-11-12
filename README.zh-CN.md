@@ -13,7 +13,9 @@
 - 这项研究的代码、已发布的分数和报告；
 - 一条给新同学的入门路线：在自己的 GPU 上用一个数据集、几个跑得快的模型跑一遍，再把输出写成我们这样的报告。
 
-**新同学从这里开始：[练习任务书](docs/STUDENT_TASKS.zh-CN.md)。** 大约两周，从装环境到自己做一个小实验、写一份报告，每一步交什么都写清楚了。
+**新同学从这里开始：**
+1. 先读[入门引导](docs/CONCEPTS.zh-CN.md)：传统预测和在线预测在数据、训练、推理上差在哪。有 8 张图和 3 个不用 GPU 的小演示。
+2. 再做[练习任务书](docs/STUDENT_TASKS.zh-CN.md)：大约两周，从装环境到自己做一个小实验、写一份报告，每一步交什么都写清楚了。
 
 ## 目前的结果
 
@@ -61,7 +63,8 @@ python scripts/compare_with_study.py runs/etth1_quick           # 你的分数�
 | `olts/` | 基准代码：数据准备、引擎（OnlineTSF 的算子加一个因果调度器）、单个作业、实验规划、本机多卡运行器、分析、报告初稿 |
 | `third_party/OnlineTSF` | OnlineTSF 原仓库（git submodule），固定在研究用的提交 `0a86461` |
 | `configs/` | 实验配置：`smoke`、`etth1_quick`、`etth1_student`；扩展用的 `etth2_quick`、`ettm1_quick`、`etth1_h336_quick`、`etth1_small_lr`、`etth1_tuned_w1024` |
-| `docs/` | [STUDENT_TASKS](docs/STUDENT_TASKS.zh-CN.md)（新同学练习任务书）、[GUIDE](docs/GUIDE.zh-CN.md)（逐步上手）、[PROTOCOL](docs/PROTOCOL.zh-CN.md)（协议细节）、[REPORTING](docs/REPORTING.zh-CN.md)（怎么写报告）、[RESULTS](docs/RESULTS.zh-CN.md)（结果） |
+| `demos/` | 三个不用 GPU 的小演示：两种划分；每一步的评分、更新和预测；冻结、在线、泄漏三种用法的对比 |
+| `docs/` | [CONCEPTS](docs/CONCEPTS.zh-CN.md)（入门引导）、[STUDENT_TASKS](docs/STUDENT_TASKS.zh-CN.md)（新同学练习任务书）、[GUIDE](docs/GUIDE.zh-CN.md)（逐步上手）、[PROTOCOL](docs/PROTOCOL.zh-CN.md)（协议细节）、[REPORTING](docs/REPORTING.zh-CN.md)（怎么写报告）、[RESULTS](docs/RESULTS.zh-CN.md)（结果） |
 | `reports/full_study/` | 这项研究的报告（中文）：完整版和两页摘要 |
 | `reports/example_etth1_quick/` | 我们用 `configs/etth1_quick.json` 跑出来的报告初稿 |
 | `results/full_study/` | 主实验每次运行的分数（CSV），能复现完整版的表 1、表 2、表 4 和图 2 |

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="g" viewBox="0 0 760 334" width="760" height="334" role="img" aria-label="三种模型的参数在什么时候改变：冻结模型只在训练段上训练；在线模型从验证期开始每步更新；同起点副本在测试开始时冻结。">
+<title>三种模型的参数在什么时候改变：冻结模型只在训练段上训练；在线模型从验证期开始每步更新；同起点副本在测试开始时冻结。</title>
+<style>
+svg.g text { font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; font-size: 12px; fill: #44515d; }
+svg.g .g-b { font-size: 13px; font-weight: 600; fill: #14202b; }
+svg.g .g-k { fill: #14202b; }
+svg.g .g-s { font-size: 11px; fill: #66727d; }
+svg.g .g-m { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; fill: #44515d; }
+svg.g .g-n { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; font-weight: 500; fill: #ffffff; }
+svg.g .g-cell { fill: #eef1f4; }
+svg.g .g-fut { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; stroke-dasharray: 2 3; }
+svg.g .g-train { fill: #c6ced6; }
+svg.g .g-val { fill: #dbe1e7; }
+svg.g .g-test { fill: #eef1f4; }
+svg.g .g-xt { fill: #cfd6de; stroke: #44515d; stroke-width: 1.25; }
+svg.g .g-yt { fill: #d8f0e8; stroke: #1a9c7a; stroke-width: 1.5; }
+svg.g .g-p { fill: #ffffff; stroke: #1a9c7a; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-olt { fill: #dbe8f9; stroke: #2a78d6; stroke-width: 1.5; }
+svg.g .g-fzt { fill: #fbe3d9; stroke: #eb6834; stroke-width: 1.5; }
+svg.g .g-badt { fill: #f9dde7; stroke: #c2255c; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-card { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; }
+svg.g .g-soft { fill: #eef1f4; }
+svg.g .g-dot { fill: #44515d; }
+svg.g .g-ax { stroke: #c3cbd3; stroke-width: 1; fill: none; }
+svg.g .g-grid { stroke: #dde2e7; stroke-width: 1; fill: none; }
+svg.g .g-guide { stroke: #66727d; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+svg.g .g-now { stroke: #14202b; stroke-width: 1.5; fill: none; }
+svg.g .g-ln { stroke: #44515d; stroke-width: 1.25; fill: none; }
+svg.g .g-lnh { fill: #44515d; }
+svg.g .g-ln.ol, svg.g .g-tick.ol { stroke: #2a78d6; } svg.g .g-lnh.ol { fill: #2a78d6; }
+svg.g .g-ln.fz { stroke: #eb6834; } svg.g .g-lnh.fz { fill: #eb6834; }
+svg.g .g-ln.bad { stroke: #c2255c; } svg.g .g-lnh.bad { fill: #c2255c; }
+svg.g .g-thick { stroke-width: 2.5; stroke-linecap: round; }
+svg.g .g-tick { stroke-width: 1.5; fill: none; }
+svg.g .g-spark { fill: none; stroke: #44515d; stroke-width: 1.25; stroke-linejoin: round; }
+</style>
+<rect width="760" height="334" fill="#ffffff"/>
+<rect x="177.0" y="24.0" width="160.0" height="24.0" rx="3" class="g-train"/>
+<text x="257.0" y="40.0" class="g-k" text-anchor="middle">训练段</text>
+<text x="257.0" y="64.0" class="g-m" text-anchor="middle">0 – 2,879</text>
+<rect x="339.0" y="24.0" width="108.0" height="24.0" rx="3" class="g-val"/>
+<text x="393.0" y="40.0" class="g-k" text-anchor="middle">验证段</text>
+<text x="393.0" y="64.0" class="g-m" text-anchor="middle">2,880 – 3,599</text>
+<rect x="449.0" y="24.0" width="294.0" height="24.0" rx="3" class="g-test"/>
+<text x="596.0" y="40.0" class="g-k" text-anchor="middle">测试段</text>
+<text x="596.0" y="64.0" class="g-m" text-anchor="middle">3,600 – 14,399</text>
+<text x="16.0" y="40.0" class="g-k">ETTh1 · O 划分</text>
+<text x="16.0" y="64.0" class="g-s">行号（未按比例）</text>
+<line x1="338.0" y1="72.0" x2="338.0" y2="300.0" class="g-guide"/>
+<line x1="448.0" y1="72.0" x2="448.0" y2="300.0" class="g-guide"/>
+<text x="16.0" y="100.0" class="g-b">冻结模型</text>
+<text x="16.0" y="116.0" class="g-s">W = 96 … 1024</text>
+<rect x="179.0" y="86.0" width="156.0" height="32.0" rx="4" class="g-fzt"/>
+<text x="257.0" y="106.0" class="g-k" text-anchor="middle">离线训练 50 轮</text>
+<rect x="341.0" y="86.0" width="104.0" height="32.0" rx="4" class="g-fut"/>
+<text x="393.0" y="106.0" class="g-s" text-anchor="middle">只挑学习率</text>
+<line x1="452.0" y1="102.0" x2="742.0" y2="102.0" class="g-ln fz g-thick"/>
+<text x="456.0" y="95.0" class="g-k">参数不变，只预测</text>
+<text x="16.0" y="170.0" class="g-b">在线模型</text>
+<text x="16.0" y="186.0" class="g-s">W = 96 · Naive、ER</text>
+<rect x="179.0" y="156.0" width="156.0" height="32.0" rx="4" class="g-olt"/>
+<text x="257.0" y="176.0" class="g-k" text-anchor="middle">离线训练 50 轮</text>
+<path d="M344.0,162.0 L344.0,182.0 M350.5,162.0 L350.5,182.0 M357.0,162.0 L357.0,182.0 M363.5,162.0 L363.5,182.0 M370.0,162.0 L370.0,182.0 M376.5,162.0 L376.5,182.0 M383.0,162.0 L383.0,182.0 M389.5,162.0 L389.5,182.0 M396.0,162.0 L396.0,182.0 M402.5,162.0 L402.5,182.0 M409.0,162.0 L409.0,182.0 M415.5,162.0 L415.5,182.0 M422.0,162.0 L422.0,182.0 M428.5,162.0 L428.5,182.0 M435.0,162.0 L435.0,182.0" class="g-tick ol"/>
+<path d="M454.0,162.0 L454.0,182.0 M460.5,162.0 L460.5,182.0 M467.0,162.0 L467.0,182.0 M473.5,162.0 L473.5,182.0 M480.0,162.0 L480.0,182.0 M486.5,162.0 L486.5,182.0 M493.0,162.0 L493.0,182.0 M499.5,162.0 L499.5,182.0 M506.0,162.0 L506.0,182.0 M512.5,162.0 L512.5,182.0 M519.0,162.0 L519.0,182.0 M525.5,162.0 L525.5,182.0 M532.0,162.0 L532.0,182.0 M538.5,162.0 L538.5,182.0 M545.0,162.0 L545.0,182.0 M551.5,162.0 L551.5,182.0 M558.0,162.0 L558.0,182.0 M564.5,162.0 L564.5,182.0 M571.0,162.0 L571.0,182.0 M577.5,162.0 L577.5,182.0 M584.0,162.0 L584.0,182.0 M590.5,162.0 L590.5,182.0 M597.0,162.0 L597.0,182.0 M603.5,162.0 L603.5,182.0 M610.0,162.0 L610.0,182.0 M616.5,162.0 L616.5,182.0 M623.0,162.0 L623.0,182.0 M629.5,162.0 L629.5,182.0 M636.0,162.0 L636.0,182.0 M642.5,162.0 L642.5,182.0 M649.0,162.0 L649.0,182.0 M655.5,162.0 L655.5,182.0 M662.0,162.0 L662.0,182.0 M668.5,162.0 L668.5,182.0 M675.0,162.0 L675.0,182.0 M681.5,162.0 L681.5,182.0 M688.0,162.0 L688.0,182.0 M694.5,162.0 L694.5,182.0 M701.0,162.0 L701.0,182.0 M707.5,162.0 L707.5,182.0 M714.0,162.0 L714.0,182.0 M720.5,162.0 L720.5,182.0 M727.0,162.0 L727.0,182.0 M733.5,162.0 L733.5,182.0" class="g-tick ol"/>
+<text x="344.0" y="203.0" class="g-k">预热</text>
+<text x="344.0" y="218.0" class="g-k">720 次更新</text>
+<text x="456.0" y="203.0" class="g-k">每步先更新、再预测</text>
+<text x="456.0" y="218.0" class="g-k">10,705 次更新</text>
+<text x="16.0" y="254.0" class="g-b">同起点副本</text>
+<text x="16.0" y="270.0" class="g-s">Naive-frozen 等</text>
+<rect x="179.0" y="240.0" width="156.0" height="32.0" rx="4" class="g-olt"/>
+<text x="257.0" y="260.0" class="g-k" text-anchor="middle">离线训练 50 轮</text>
+<path d="M344.0,246.0 L344.0,266.0 M350.5,246.0 L350.5,266.0 M357.0,246.0 L357.0,266.0 M363.5,246.0 L363.5,266.0 M370.0,246.0 L370.0,266.0 M376.5,246.0 L376.5,266.0 M383.0,246.0 L383.0,266.0 M389.5,246.0 L389.5,266.0 M396.0,246.0 L396.0,266.0 M402.5,246.0 L402.5,266.0 M409.0,246.0 L409.0,266.0 M415.5,246.0 L415.5,266.0 M422.0,246.0 L422.0,266.0 M428.5,246.0 L428.5,266.0 M435.0,246.0 L435.0,266.0" class="g-tick ol"/>
+<circle cx="448.0" cy="256.0" r="4.5" class="g-lnh ol"/>
+<line x1="454.0" y1="256.0" x2="742.0" y2="256.0" class="g-ln ol g-thick"/>
+<text x="456.0" y="249.0" class="g-k">从这一刻起不再更新</text>
+<text x="344.0" y="287.0" class="g-k">同样的预热</text>
+<text x="16.0" y="322.0" class="g-s">PROCEED 只有预热不同：从 t = 2,975 起每步成对更新，625 步共 1,250 次。测试期也是每步一次。</text>
+</svg>

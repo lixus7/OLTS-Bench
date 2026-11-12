@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="g" viewBox="0 0 760 232" width="760" height="232" role="img" aria-label="一个样本由预测起点 t 定义：输入是最近 W 行，目标是之后 H 行。">
+<title>一个样本由预测起点 t 定义：输入是最近 W 行，目标是之后 H 行。</title>
+<style>
+svg.g text { font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; font-size: 12px; fill: #44515d; }
+svg.g .g-b { font-size: 13px; font-weight: 600; fill: #14202b; }
+svg.g .g-k { fill: #14202b; }
+svg.g .g-s { font-size: 11px; fill: #66727d; }
+svg.g .g-m { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; fill: #44515d; }
+svg.g .g-n { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; font-weight: 500; fill: #ffffff; }
+svg.g .g-cell { fill: #eef1f4; }
+svg.g .g-fut { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; stroke-dasharray: 2 3; }
+svg.g .g-train { fill: #c6ced6; }
+svg.g .g-val { fill: #dbe1e7; }
+svg.g .g-test { fill: #eef1f4; }
+svg.g .g-xt { fill: #cfd6de; stroke: #44515d; stroke-width: 1.25; }
+svg.g .g-yt { fill: #d8f0e8; stroke: #1a9c7a; stroke-width: 1.5; }
+svg.g .g-p { fill: #ffffff; stroke: #1a9c7a; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-olt { fill: #dbe8f9; stroke: #2a78d6; stroke-width: 1.5; }
+svg.g .g-fzt { fill: #fbe3d9; stroke: #eb6834; stroke-width: 1.5; }
+svg.g .g-badt { fill: #f9dde7; stroke: #c2255c; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-card { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; }
+svg.g .g-soft { fill: #eef1f4; }
+svg.g .g-dot { fill: #44515d; }
+svg.g .g-ax { stroke: #c3cbd3; stroke-width: 1; fill: none; }
+svg.g .g-grid { stroke: #dde2e7; stroke-width: 1; fill: none; }
+svg.g .g-guide { stroke: #66727d; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+svg.g .g-now { stroke: #14202b; stroke-width: 1.5; fill: none; }
+svg.g .g-ln { stroke: #44515d; stroke-width: 1.25; fill: none; }
+svg.g .g-lnh { fill: #44515d; }
+svg.g .g-ln.ol, svg.g .g-tick.ol { stroke: #2a78d6; } svg.g .g-lnh.ol { fill: #2a78d6; }
+svg.g .g-ln.fz { stroke: #eb6834; } svg.g .g-lnh.fz { fill: #eb6834; }
+svg.g .g-ln.bad { stroke: #c2255c; } svg.g .g-lnh.bad { fill: #c2255c; }
+svg.g .g-thick { stroke-width: 2.5; stroke-linecap: round; }
+svg.g .g-tick { stroke-width: 1.5; fill: none; }
+svg.g .g-spark { fill: none; stroke: #44515d; stroke-width: 1.25; stroke-linejoin: round; }
+</style>
+<rect width="760" height="232" fill="#ffffff"/>
+<rect x="151.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="170.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="189.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="208.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="227.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="246.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="265.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="284.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="303.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="322.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="341.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="360.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="379.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="398.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="417.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="436.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="455.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="474.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="493.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="512.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="531.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="550.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="569.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="588.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="607.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="626.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="645.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="664.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="683.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="702.5" y="62.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<line x1="473.0" y1="42.0" x2="473.0" y2="96.0" class="g-now"/>
+<text x="473.0" y="35.0" class="g-k" text-anchor="middle">预测起点 t：第 t 行刚观测到</text>
+<path d="M322.0,93.0 L322.0,98.0 L470.0,98.0 L470.0,93.0" class="g-ln"/>
+<path d="M476.0,93.0 L476.0,98.0 L567.0,98.0 L567.0,93.0" class="g-ln"/>
+<text x="465.0" y="116.0" text-anchor="end">输入：最近 W 行（t−W+1 … t）</text>
+<text x="481.0" y="116.0">目标：之后 H 行（t+1 … t+H）</text>
+<text x="16.0" y="79.0" class="g-b">起点 t</text>
+<rect x="151.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="170.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="189.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="208.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="227.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="246.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="265.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="284.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="303.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="322.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="341.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="360.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="379.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="398.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="417.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="436.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="455.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="474.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-xt"/>
+<rect x="493.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="512.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="531.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="550.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="569.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-yt"/>
+<rect x="588.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="607.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="626.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="645.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="664.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="683.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<rect x="702.5" y="150.0" width="16.0" height="26.0" rx="2" class="g-cell"/>
+<text x="16.0" y="167.0" class="g-b">起点 t+1</text>
+<text x="150.0" y="196.0">下一个样本整体右移一行，和上一个几乎完全重叠</text>
+<path d="M150.0,216.0 L713.0,216.0" class="g-ln"/>
+<polygon points="720.0,216.0 713.0,219.2 713.0,212.8" class="g-lnh"/>
+<text x="142.0" y="220.0" class="g-s" text-anchor="end">时间</text>
+</svg>

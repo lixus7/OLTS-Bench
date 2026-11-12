@@ -2,7 +2,7 @@
 
 # 上手指南
 
-这份指南带你在自己的 GPU 上把研究的协议跑一遍：一个数据集、几个跑得快的模型。你要弄懂每个输出是什么意思，最后写出一份像 [reports/full_study](../reports/full_study/) 那样的报告。新同学先看[练习任务书](STUDENT_TASKS.zh-CN.md)：它说跑什么、交什么；这份指南讲怎么跑。
+这份指南带你在自己的 GPU 上把研究的协议跑一遍：一个数据集、几个跑得快的模型。你要弄懂每个输出是什么意思，最后写出一份像 [reports/full_study](../reports/full_study/) 那样的报告。新同学先看[入门引导](CONCEPTS.zh-CN.md)和[练习任务书](STUDENT_TASKS.zh-CN.md)：前者讲两种预测设定差在哪，后者说跑什么、交什么；这份指南讲怎么跑。
 
 **需要：**
 - Linux；
@@ -62,7 +62,7 @@ python -m olts.run configs/smoke.json --jobs-per-gpu 4
 
 它在 ETTh1 的 O 划分上，用 DLinear 跑完整个流程：
 - 训练冻结 W96、W512 两个模型；
-- 跑在线 Naive、ER、PROCEED 和它们的同起点冻结副本；
+- 跑在线 Naive、ER、PROCEED 和它们的同起点副本；
 - 汇总，出报告。
 
 **只训练 2 轮，数字没有意义，只用来确认装好了。** 正常的输出像这样：
@@ -98,7 +98,7 @@ python -m olts.run configs/etth1_quick.json --jobs-per-gpu 4
 5. **第 5 步，测试流**（22 条）：
    - 每档窗口一条冻结模型；
    - 每种在线方法（W96）一条；
-   - 每种在线方法再加一条“同起点冻结副本”：测试开始那一刻复制在线模型，之后不再更新。
+   - 每种在线方法再加一条“同起点副本”：测试开始那一刻复制在线模型，之后不再更新。
 
 所有模型都在同一批测试时刻上评分。在 u 时刻发出的预测，要等它预测的 96 个真实值全部到齐（时刻 t ≥ u + 96）才评分、才拿来更新。
 
@@ -156,7 +156,7 @@ python scripts/compare_with_study.py runs/etth1_quick
 | `frozen_windows` | 冻结模型的输入长度；可以按划分分别给 | 96、512、720、1024 |
 | `common_W` | 训练起点对齐的窗口：所有窗口都从这一步开始取训练样本，短窗口不会多拿样本。必须给训练段留至少 1,024 个样本 | 最长的窗口 |
 | `online_window`、`online_methods` | 在线模型的输入长度和方法（Naive、ER、PROCEED） | 96；三种都跑 |
-| `matched_frozen` | 是否同时跑同起点冻结副本 | true |
+| `matched_frozen` | 是否同时跑同起点副本 | true |
 | `lr_grid`、`lr_selection_seed` | 离线学习率候选、用哪个种子选 | 1e-4、3e-4、1e-3；2024 |
 | `track` | C = 训练 50 轮取最后一轮（主表）；T = 最多 50 轮、5 轮不降就停、取最好一轮 | C |
 | `online_multipliers` | 在线学习率倍率候选；多于一个时在验证集上挑 | 1 |

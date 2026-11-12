@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="g" viewBox="0 0 760 258" width="760" height="258" role="img" aria-label="The five steps of one experiment and the wrap-up; the bottom line of each box is the job count of etth1_quick.">
+<title>The five steps of one experiment and the wrap-up; the bottom line of each box is the job count of etth1_quick.</title>
+<style>
+svg.g text { font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; font-size: 12px; fill: #44515d; }
+svg.g .g-b { font-size: 13px; font-weight: 600; fill: #14202b; }
+svg.g .g-k { fill: #14202b; }
+svg.g .g-s { font-size: 11px; fill: #66727d; }
+svg.g .g-m { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; fill: #44515d; }
+svg.g .g-n { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; font-weight: 500; fill: #ffffff; }
+svg.g .g-cell { fill: #eef1f4; }
+svg.g .g-fut { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; stroke-dasharray: 2 3; }
+svg.g .g-train { fill: #c6ced6; }
+svg.g .g-val { fill: #dbe1e7; }
+svg.g .g-test { fill: #eef1f4; }
+svg.g .g-xt { fill: #cfd6de; stroke: #44515d; stroke-width: 1.25; }
+svg.g .g-yt { fill: #d8f0e8; stroke: #1a9c7a; stroke-width: 1.5; }
+svg.g .g-p { fill: #ffffff; stroke: #1a9c7a; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-olt { fill: #dbe8f9; stroke: #2a78d6; stroke-width: 1.5; }
+svg.g .g-fzt { fill: #fbe3d9; stroke: #eb6834; stroke-width: 1.5; }
+svg.g .g-badt { fill: #f9dde7; stroke: #c2255c; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-card { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; }
+svg.g .g-soft { fill: #eef1f4; }
+svg.g .g-dot { fill: #44515d; }
+svg.g .g-ax { stroke: #c3cbd3; stroke-width: 1; fill: none; }
+svg.g .g-grid { stroke: #dde2e7; stroke-width: 1; fill: none; }
+svg.g .g-guide { stroke: #66727d; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+svg.g .g-now { stroke: #14202b; stroke-width: 1.5; fill: none; }
+svg.g .g-ln { stroke: #44515d; stroke-width: 1.25; fill: none; }
+svg.g .g-lnh { fill: #44515d; }
+svg.g .g-ln.ol, svg.g .g-tick.ol { stroke: #2a78d6; } svg.g .g-lnh.ol { fill: #2a78d6; }
+svg.g .g-ln.fz { stroke: #eb6834; } svg.g .g-lnh.fz { fill: #eb6834; }
+svg.g .g-ln.bad { stroke: #c2255c; } svg.g .g-lnh.bad { fill: #c2255c; }
+svg.g .g-thick { stroke-width: 2.5; stroke-linecap: round; }
+svg.g .g-tick { stroke-width: 1.5; fill: none; }
+svg.g .g-spark { fill: none; stroke: #44515d; stroke-width: 1.25; stroke-linejoin: round; }
+</style>
+<rect width="760" height="258" fill="#ffffff"/>
+<text x="16.0" y="18.0" class="g-m">python -m olts.run configs/etth1_quick.json</text>
+<rect x="16.0" y="32.0" width="136.0" height="104.0" rx="6" class="g-card"/>
+<circle cx="33.0" cy="51.0" r="10" class="g-dot"/>
+<text x="33.0" y="55.0" class="g-n" text-anchor="middle">1</text>
+<text x="50.0" y="55.5" class="g-b">LR candidates</text>
+<text x="26.0" y="80.0">seed 2024</text>
+<text x="26.0" y="97.0">windows × 3 LRs</text>
+<line x1="26.0" y1="108.0" x2="142.0" y2="108.0" class="g-grid"/>
+<text x="26.0" y="125.0" class="g-k">30 fits</text>
+<rect x="164.0" y="32.0" width="136.0" height="104.0" rx="6" class="g-card"/>
+<circle cx="181.0" cy="51.0" r="10" class="g-dot"/>
+<text x="181.0" y="55.0" class="g-n" text-anchor="middle">2</text>
+<text x="198.0" y="55.5" class="g-b">LR choice</text>
+<text x="174.0" y="80.0">VALIDATION MSE</text>
+<text x="174.0" y="97.0">best mean rank</text>
+<line x1="174.0" y1="108.0" x2="290.0" y2="108.0" class="g-grid"/>
+<text x="174.0" y="125.0" class="g-k">1e-4 in both splits</text>
+<path d="M152.0,84.0 L158.0,84.0" class="g-ln"/>
+<polygon points="164.0,84.0 158.0,86.7 158.0,81.3" class="g-lnh"/>
+<rect x="312.0" y="32.0" width="136.0" height="104.0" rx="6" class="g-card"/>
+<circle cx="329.0" cy="51.0" r="10" class="g-dot"/>
+<text x="329.0" y="55.0" class="g-n" text-anchor="middle">3</text>
+<text x="346.0" y="55.5" class="g-b">Other fits</text>
+<text x="322.0" y="80.0">the other seeds</text>
+<text x="322.0" y="97.0">PROCEED init</text>
+<line x1="322.0" y1="108.0" x2="438.0" y2="108.0" class="g-grid"/>
+<text x="322.0" y="125.0" class="g-k">2 new jobs</text>
+<path d="M300.0,84.0 L306.0,84.0" class="g-ln"/>
+<polygon points="312.0,84.0 306.0,86.7 306.0,81.3" class="g-lnh"/>
+<rect x="460.0" y="32.0" width="136.0" height="104.0" rx="6" class="g-card"/>
+<circle cx="477.0" cy="51.0" r="10" class="g-dot"/>
+<text x="477.0" y="55.0" class="g-n" text-anchor="middle">4</text>
+<text x="494.0" y="55.5" class="g-b">Multiplier</text>
+<text x="470.0" y="80.0">optional</text>
+<text x="470.0" y="97.0">on VALIDATION</text>
+<line x1="470.0" y1="108.0" x2="586.0" y2="108.0" class="g-grid"/>
+<text x="470.0" y="125.0" class="g-k">skipped</text>
+<path d="M448.0,84.0 L454.0,84.0" class="g-ln"/>
+<polygon points="460.0,84.0 454.0,86.7 454.0,81.3" class="g-lnh"/>
+<rect x="608.0" y="32.0" width="136.0" height="104.0" rx="6" class="g-card"/>
+<circle cx="625.0" cy="51.0" r="10" class="g-dot"/>
+<text x="625.0" y="55.0" class="g-n" text-anchor="middle">5</text>
+<text x="642.0" y="55.5" class="g-b">TEST streams</text>
+<text x="618.0" y="80.0">frozen: every window</text>
+<text x="618.0" y="97.0">online + copies</text>
+<line x1="618.0" y1="108.0" x2="734.0" y2="108.0" class="g-grid"/>
+<text x="618.0" y="125.0" class="g-k">22 streams</text>
+<path d="M596.0,84.0 L602.0,84.0" class="g-ln"/>
+<polygon points="608.0,84.0 602.0,86.7 602.0,81.3" class="g-lnh"/>
+<path d="M676.0,136.0 L676.0,152.0 L130.0,152.0 L130.0,163.0" class="g-ln"/>
+<polygon points="130.0,170.0 126.8,163.0 133.2,163.0" class="g-lnh"/>
+<rect x="16.0" y="170.0" width="228.0" height="56.0" rx="6" class="g-soft"/>
+<text x="130.0" y="192.0" class="g-b" text-anchor="middle">collect</text>
+<text x="130.0" y="211.0" class="g-m" text-anchor="middle">streams.csv, fits.csv</text>
+<rect x="266.0" y="170.0" width="228.0" height="56.0" rx="6" class="g-soft"/>
+<text x="380.0" y="192.0" class="g-b" text-anchor="middle">analyse: pairs and medians</text>
+<text x="380.0" y="211.0" class="g-m" text-anchor="middle">pairs.csv, summary.json</text>
+<path d="M244.0,198.0 L260.0,198.0" class="g-ln"/>
+<polygon points="266.0,198.0 260.0,200.7 260.0,195.3" class="g-lnh"/>
+<rect x="516.0" y="170.0" width="228.0" height="56.0" rx="6" class="g-soft"/>
+<text x="630.0" y="192.0" class="g-b" text-anchor="middle">draft report</text>
+<text x="630.0" y="211.0" class="g-m" text-anchor="middle">report_zh.html, report_en.html</text>
+<path d="M494.0,198.0 L510.0,198.0" class="g-ln"/>
+<polygon points="516.0,198.0 510.0,200.7 510.0,195.3" class="g-lnh"/>
+<text x="16.0" y="246.0" class="g-s">these files are written to runs/etth1_quick/results/</text>
+</svg>

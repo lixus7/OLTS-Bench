@@ -11,7 +11,8 @@ Over about two weeks, this plan takes you through four things:
 
 **You need:** 1–4 A100 40GB GPUs (one is enough; it is just slower).
 
-**Read first (about one hour):**
+**Read first (about two hours):**
+- the [primer](CONCEPTS.md): how traditional and online forecasting differ. Run its three demos and answer the self-check questions of section 7;
 - the [README](../README.md);
 - the two-page summary [BUA_brief_onepage_zh.pdf](../reports/full_study/BUA_brief_onepage_zh.pdf) (in Chinese): what the study asks and what it has found so far;
 - sections 1–5 of the [guide](GUIDE.md).
@@ -39,7 +40,7 @@ python -m olts.run configs/etth1_quick.json --jobs-per-gpu 4
 python scripts/compare_with_study.py runs/etth1_quick
 ```
 
-The last line of the comparison should read `22 of 22 TEST runs have a study counterpart; |difference| median 0.0000%`: your 22 TEST streams match the study's scores. On our RTX A5000 the largest relative difference was 4 × 10⁻⁷. If yours differ by a percent or more, your environment or data differ; sort that out before going on.
+The last line of the comparison should read `22 of 22 TEST runs have a study counterpart; |difference| median 0.0000%, largest 0.0000%`: your 22 TEST streams match the study's scores. On our RTX A5000 the largest relative difference was 4 × 10⁻⁷. If yours differ by a percent or more, your environment or data differ; sort that out before going on.
 
 **Hand in:** the comparison's last line, and one or two sentences for each of these five questions.
 
@@ -54,7 +55,7 @@ The last line of the comparison should read `22 of 22 TEST runs have a study cou
 
 1. 1e-4 in both splits. Inside each window, the seed-2024 models rank 1e-4, 3e-4 and 1e-3 by validation MSE; the LR with the best mean rank across windows wins (ties go to the smaller). Every window, seed and online model then uses it.
 2. Training must leave at least 1,024 training samples for the longest window. The O split's TRAIN has 2,880 rows, so the window W must satisfy 2,880 − 96 − W + 1 ≥ 1,024, that is W ≤ 1,761: the longest window is W1024.
-3. Frozen W96 is only trained offline and never updated after deployment. Naive-frozen is the online model itself: it predicts and updates through VALIDATION (the warm-up), and at the start of TEST a copy is taken and frozen. Its starting point equals the online model's, so "online vs Naive-frozen" isolates the effect of continuing to update during TEST.
+3. Frozen W96 is only trained offline and never updated after deployment. Naive-frozen is the online model itself: it first warms up, that is, it is updated at every step of VALIDATION without forecasting, and at the start of TEST a copy is taken and frozen. Its starting point equals the online model's, so "online vs Naive-frozen" isolates the effect of continuing to update during TEST.
 4. At t = u + 96, all 96 targets have arrived. The forecast is scored first, then this sample updates the online model, and then the next forecast is issued.
 5. "O split · ER vs frozen W1024: the online error is 5.3% lower than the frozen model's (online better in 1 of 1 pair)." The quick run has a single pair per cell, so it supports a statement about that pair only, not "generally better".
 

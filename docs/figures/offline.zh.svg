@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="g" viewBox="0 0 760 214" width="760" height="214" role="img" aria-label="离线训练：训练段的样本打乱后分批，重复 50 轮，保留最后一轮。">
+<title>离线训练：训练段的样本打乱后分批，重复 50 轮，保留最后一轮。</title>
+<style>
+svg.g text { font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; font-size: 12px; fill: #44515d; }
+svg.g .g-b { font-size: 13px; font-weight: 600; fill: #14202b; }
+svg.g .g-k { fill: #14202b; }
+svg.g .g-s { font-size: 11px; fill: #66727d; }
+svg.g .g-m { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; fill: #44515d; }
+svg.g .g-n { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace; font-size: 11px; font-weight: 500; fill: #ffffff; }
+svg.g .g-cell { fill: #eef1f4; }
+svg.g .g-fut { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; stroke-dasharray: 2 3; }
+svg.g .g-train { fill: #c6ced6; }
+svg.g .g-val { fill: #dbe1e7; }
+svg.g .g-test { fill: #eef1f4; }
+svg.g .g-xt { fill: #cfd6de; stroke: #44515d; stroke-width: 1.25; }
+svg.g .g-yt { fill: #d8f0e8; stroke: #1a9c7a; stroke-width: 1.5; }
+svg.g .g-p { fill: #ffffff; stroke: #1a9c7a; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-olt { fill: #dbe8f9; stroke: #2a78d6; stroke-width: 1.5; }
+svg.g .g-fzt { fill: #fbe3d9; stroke: #eb6834; stroke-width: 1.5; }
+svg.g .g-badt { fill: #f9dde7; stroke: #c2255c; stroke-width: 1.5; stroke-dasharray: 5 3; }
+svg.g .g-card { fill: #ffffff; stroke: #c3cbd3; stroke-width: 1; }
+svg.g .g-soft { fill: #eef1f4; }
+svg.g .g-dot { fill: #44515d; }
+svg.g .g-ax { stroke: #c3cbd3; stroke-width: 1; fill: none; }
+svg.g .g-grid { stroke: #dde2e7; stroke-width: 1; fill: none; }
+svg.g .g-guide { stroke: #66727d; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+svg.g .g-now { stroke: #14202b; stroke-width: 1.5; fill: none; }
+svg.g .g-ln { stroke: #44515d; stroke-width: 1.25; fill: none; }
+svg.g .g-lnh { fill: #44515d; }
+svg.g .g-ln.ol, svg.g .g-tick.ol { stroke: #2a78d6; } svg.g .g-lnh.ol { fill: #2a78d6; }
+svg.g .g-ln.fz { stroke: #eb6834; } svg.g .g-lnh.fz { fill: #eb6834; }
+svg.g .g-ln.bad { stroke: #c2255c; } svg.g .g-lnh.bad { fill: #c2255c; }
+svg.g .g-thick { stroke-width: 2.5; stroke-linecap: round; }
+svg.g .g-tick { stroke-width: 1.5; fill: none; }
+svg.g .g-spark { fill: none; stroke: #44515d; stroke-width: 1.25; stroke-linejoin: round; }
+</style>
+<rect width="760" height="214" fill="#ffffff"/>
+<rect x="16.0" y="28.0" width="184.0" height="52.0" rx="6" class="g-card"/>
+<text x="108.0" y="51.0" class="g-k" text-anchor="middle">训练样本</text>
+<text x="108.0" y="67.0" class="g-s" text-anchor="middle">各窗口共用的 1,761 个</text>
+<text x="16.0" y="172.0" class="g-s">图里的数字：</text>
+<text x="16.0" y="188.0" class="g-s">ETTh1 · O 划分 · H = 96</text>
+<rect x="224.0" y="28.0" width="130.0" height="52.0" rx="6" class="g-card"/>
+<text x="289.0" y="51.0" class="g-k" text-anchor="middle">每轮重新打乱</text>
+<text x="289.0" y="67.0" class="g-s" text-anchor="middle">不保留时间顺序</text>
+<rect x="378.0" y="28.0" width="114.0" height="52.0" rx="6" class="g-card"/>
+<text x="435.0" y="51.0" class="g-k" text-anchor="middle">每批 32 个</text>
+<text x="435.0" y="67.0" class="g-s" text-anchor="middle">每轮 56 批</text>
+<rect x="516.0" y="28.0" width="228.0" height="52.0" rx="6" class="g-card"/>
+<text x="630.0" y="51.0" class="g-k" text-anchor="middle">前向 → MSE → Adam 一步</text>
+<text x="630.0" y="67.0" class="g-s" text-anchor="middle">只对观测到的目标算损失</text>
+<path d="M200.0,54.0 L217.0,54.0" class="g-ln"/>
+<polygon points="224.0,54.0 217.0,57.1 217.0,50.9" class="g-lnh"/>
+<path d="M354.0,54.0 L371.0,54.0" class="g-ln"/>
+<polygon points="378.0,54.0 371.0,57.1 371.0,50.9" class="g-lnh"/>
+<path d="M492.0,54.0 L509.0,54.0" class="g-ln"/>
+<polygon points="516.0,54.0 509.0,57.1 509.0,50.9" class="g-lnh"/>
+<path d="M630.0,80.0 L630.0,106.0 L289.0,106.0 L289.0,87.0" class="g-ln"/>
+<polygon points="289.0,80.0 292.1,87.0 285.9,87.0" class="g-lnh"/>
+<text x="372.0" y="124.0" class="g-k">重复 50 轮 = 2,800 步，不早停</text>
+<rect x="224.0" y="150.0" width="268.0" height="50.0" rx="6" class="g-card"/>
+<text x="358.0" y="172.0" class="g-k" text-anchor="middle">每轮结束：在验证段算一次 MSE</text>
+<text x="358.0" y="188.0" class="g-s" text-anchor="middle">只用来挑学习率，不参与训练</text>
+<rect x="516.0" y="150.0" width="228.0" height="50.0" rx="6" class="g-fzt"/>
+<text x="630.0" y="172.0" class="g-k" text-anchor="middle">保留第 50 轮的参数</text>
+<text x="630.0" y="188.0" class="g-s" text-anchor="middle">冻结模型到此定型</text>
+<path d="M358.0,106.0 L358.0,143.0" class="g-ln"/>
+<polygon points="358.0,150.0 354.9,143.0 361.1,143.0" class="g-lnh"/>
+<path d="M492.0,175.0 L509.0,175.0" class="g-ln"/>
+<polygon points="516.0,175.0 509.0,178.2 509.0,171.8" class="g-lnh"/>
+</svg>

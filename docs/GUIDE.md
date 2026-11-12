@@ -2,7 +2,7 @@
 
 # Getting started
 
-This guide takes you through the study's protocol on your own GPUs: one dataset and a few fast models. Along the way you learn what every output means. At the end you write a report like the ones in [reports/full_study](../reports/full_study/). If you are new to the project, the [exercise plan](STUDENT_TASKS.md) says what to run and hand in; this guide explains how.
+This guide takes you through the study's protocol on your own GPUs: one dataset and a few fast models. Along the way you learn what every output means. At the end you write a report like the ones in [reports/full_study](../reports/full_study/). If you are new to the project, read the [primer](CONCEPTS.md) and the [exercise plan](STUDENT_TASKS.md) first: the primer explains how the two forecasting settings differ, the plan says what to run and hand in; this guide explains how.
 
 **You need:**
 - Linux;
@@ -62,7 +62,7 @@ python -m olts.run configs/smoke.json --jobs-per-gpu 4
 
 The smoke test runs the whole pipeline with DLinear on the O split of ETTh1:
 - it trains frozen W96 and W512 models;
-- it runs online Naive, ER and PROCEED, each with its matched frozen copy;
+- it runs online Naive, ER and PROCEED, each with its matched copy;
 - it collects the results and writes a report.
 
 **It trains for 2 epochs only, so the numbers mean nothing: it only checks the installation.** Normal output looks like this:
@@ -98,7 +98,7 @@ This is the main study's full protocol for ETTh1 with DLinear, horizon 96 and se
 5. **Step 5, TEST streams (22).** There are:
    - one frozen model per window;
    - one stream per online method (W96);
-   - one "matched frozen copy" per online method: the online model copied at the start of TEST and never updated afterwards.
+   - one "matched copy" per online method: the online model copied at the start of TEST and never updated afterwards.
 
 Every model is scored on the same forecast origins. A forecast issued at time u is scored, and used for updating, only once all 96 of its targets have arrived (t ≥ u + 96).
 
